@@ -1,0 +1,361 @@
+{
+  "fuentes": {
+    "mspas_desnutricion_aguda": {
+      "archivo": "data/raw/mspas_desnutricion_aguda_2012_2024.csv",
+      "sha256": "5dc8f1d17da9d2f39748d3d835729e8d6531ab32bd2f4e25bcbf03214ea12cba"
+    },
+    "hdx_limites_tabla": {
+      "archivo": "data/raw/hdx_gtm_admin_boundaries.xlsx",
+      "sha256": "c8434489cf8d06b9a033f8dd5ecad38f8edf2e3ed854d37cf2aca3279608c40e"
+    },
+    "hdx_limites_geojson": {
+      "archivo": "data/raw/hdx_gtm_admin_boundaries.geojson.zip",
+      "sha256": "f178eda98c46329380bdbb43f0637b4c43535bc843de6a0b8b960193b8f4363f"
+    },
+    "cod_ps_poblacion_2022": {
+      "archivo": "data/raw/cod_ps_gtm_admpop_2022.xlsx",
+      "sha256": "e8ced5c276d686b9f11cc1fb0e4c21d7b1a5eb256be6e787b110ce6674166cd4"
+    },
+    "cod_ps_poblacion_2023": {
+      "archivo": "data/raw/cod_ps_gtm_admpop_2023.xlsx",
+      "sha256": "5af63730e3f36e8002af10def488f0217a0eb2738a92203b50d8923a502530fb"
+    },
+    "cod_ps_poblacion_2024": {
+      "archivo": "data/raw/cod_ps_gtm_admpop_adm2_2024.csv",
+      "sha256": "0f63c1293fc4f3d0ad4a6f796ec89288df9f8811ff51c1a5638027f68d49365e"
+    },
+    "ine_proyeccion_GT01": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_01-guatemala.xlsx",
+      "sha256": "dd14039e9b9f87b16c460d433e5985b76caa257fb00f023662d8e8dbb34cc183"
+    },
+    "ine_proyeccion_GT02": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_02-el-progreso.xlsx",
+      "sha256": "a863cc2b4a1d13a43e6048442c11d7e32e2d4c64f2412c9cb485cdf2d5235dcb"
+    },
+    "ine_proyeccion_GT03": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_03-sacatepequez.xlsx",
+      "sha256": "c00f05381845a4541c205f236b07c9e18fbadedc33878d956298aa9a2f2ab8c7"
+    },
+    "ine_proyeccion_GT04": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_04-chimaltenango.xlsx",
+      "sha256": "6cea76039e9d2014420ee4170c9508fdec37414529ab547da96273658f9a055f"
+    },
+    "ine_proyeccion_GT05": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_05-escuintla.xlsx",
+      "sha256": "0f31cee6e9a6c956dcbc015df7af0155e7a0004119b46a37936348ec4c082f82"
+    },
+    "ine_proyeccion_GT06": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_06-santa-rosa.xlsx",
+      "sha256": "d586c773e9fe5d965bc36aef83c1b7f29a88fa36d3e7a17c8a804c237fefb843"
+    },
+    "ine_proyeccion_GT07": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_07-solola.xlsx",
+      "sha256": "6d6efaa21dbb6a0271f86ba11a12f0a251b7ef57e86edf42ac918458a3f981af"
+    },
+    "ine_proyeccion_GT08": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_08-totonicapan.xlsx",
+      "sha256": "e0642d09b7f9fcfd7e39b9a099b8f4e684dbcc1b74c7870455a4ad7fd1921350"
+    },
+    "ine_proyeccion_GT09": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_09-quetzaltenango.xlsx",
+      "sha256": "430fd8691bf43ebadf74993c830853b9f0122a5d158c5885c80b763d1d062d6f"
+    },
+    "ine_proyeccion_GT10": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_10-suchitepequez.xlsx",
+      "sha256": "55b5f588863717161347f73d229d6c9966c8b6217716a9a3302d5d79aa9c05e2"
+    },
+    "ine_proyeccion_GT11": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_11-retalhuleu.xlsx",
+      "sha256": "72821ba1d04723bec2ff2c7578a50218f61626f37205d22283df5cfd03e5746b"
+    },
+    "ine_proyeccion_GT12": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_12-san-marcos.xlsx",
+      "sha256": "c55b365839f8c9d7ede100cd0599764a08f88b68e3298beb740d136a9a3859e2"
+    },
+    "ine_proyeccion_GT13": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_13-huehuetenango.xlsx",
+      "sha256": "ef9c83c25ac3eef1b33aabea6f647f88d25d4c1fabcaf64d6b2304b1ea7db04d"
+    },
+    "ine_proyeccion_GT14": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_14-quiche.xlsx",
+      "sha256": "ffbb583f3c4be54711a9e7f50dd7e328b833560b4e6d14234dbe188a6dbf12ef"
+    },
+    "ine_proyeccion_GT15": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_15-baja-verapaz.xlsx",
+      "sha256": "38e3e38dff130cee1a65f87c419095d19b9c6e4ebe4eee9e07a38cd3d2bc8cdb"
+    },
+    "ine_proyeccion_GT16": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_16-alta-verapaz.xlsx",
+      "sha256": "125be8aad14ab8f1b8027edd6f8fe3059859acbef9c51c5ff71199d59b653267"
+    },
+    "ine_proyeccion_GT17": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_17-peten.xlsx",
+      "sha256": "e094f8e1df917eb5e305e847931a1e77dd49acf63ae8cad32c2d2438bc6fe6c9"
+    },
+    "ine_proyeccion_GT18": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_18-izabal.xlsx",
+      "sha256": "58302da6ac9528610862b5ed2496c385cf8fdd5b95a15c063da0426029e306e5"
+    },
+    "ine_proyeccion_GT19": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_19-zacapa.xlsx",
+      "sha256": "47785ef1573416203217b33c7c5ef74f32e9b513484d45f6c6a12ad2be4e4fe2"
+    },
+    "ine_proyeccion_GT20": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_20-chiquimula.xlsx",
+      "sha256": "c226892a1bc8d97c1a70e24427121fea522160241dc32192135806d5e8140391"
+    },
+    "ine_proyeccion_GT21": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_21-jalapa.xlsx",
+      "sha256": "5cc0c5b3a702a29193c72b8540fd646801e555f0ba0d5f49043978c82f999b30"
+    },
+    "ine_proyeccion_GT22": {
+      "archivo": "data/raw/ine_proyecciones_2015_2030_22-jutiapa.xlsx",
+      "sha256": "6d749cd7113fe29b0b9a6b0fd4929f58661b185fcc113a3137e66736e3748fad"
+    }
+  },
+  "mspas": {
+    "codificacion": "utf-8 con BOM",
+    "separador": ";",
+    "columnas_originales": [
+      "Año",
+      "Departamento",
+      "Municipio",
+      "grupo_etario",
+      "sexo",
+      "cantidad"
+    ],
+    "filas": 19671,
+    "anios": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "filas_por_anio": {
+      "2012": 1509,
+      "2013": 1675,
+      "2014": 1542,
+      "2015": 1474,
+      "2016": 1416,
+      "2017": 1413,
+      "2018": 1421,
+      "2019": 1430,
+      "2020": 1702,
+      "2021": 1482,
+      "2022": 1537,
+      "2023": 1543,
+      "2024": 1527
+    },
+    "casos_registrados_por_anio": {
+      "2012": 14981,
+      "2013": 17762,
+      "2014": 15180,
+      "2015": 15103,
+      "2016": 13774,
+      "2017": 12626,
+      "2018": 12597,
+      "2019": 15547,
+      "2020": 27068,
+      "2021": 22040,
+      "2022": 20414,
+      "2023": 24918,
+      "2024": 27795
+    },
+    "filas_por_grupo_etario": {
+      "1a-4a": 8260,
+      "1m-2m": 3256,
+      "2m-1a": 7374,
+      "<1m": 781
+    },
+    "filas_por_sexo": {
+      "F": 9719,
+      "M": 9952
+    },
+    "cantidad_min": 1,
+    "cantidad_max": 417,
+    "filas_con_cantidad_cero": 0,
+    "departamentos": 22,
+    "pares_departamento_municipio": 339,
+    "pares_con_registro_por_anio": {
+      "2012": 326,
+      "2013": 328,
+      "2014": 328,
+      "2015": 327,
+      "2016": 326,
+      "2017": 331,
+      "2018": 333,
+      "2019": 334,
+      "2020": 334,
+      "2021": 335,
+      "2022": 335,
+      "2023": 337,
+      "2024": 337
+    },
+    "filas_duplicadas": 0
+  },
+  "union": {
+    "pares_mspas": 339,
+    "por_metodo": {
+      "correspondencia_manual": 14,
+      "nombre_normalizado": 325
+    },
+    "pares_sin_union": [],
+    "municipios_referencia": 340,
+    "municipios_sin_registro_mspas": [
+      {
+        "codigo": "GT1021",
+        "nombre": "San José La Máquina",
+        "departamento": "Suchitepéquez"
+      }
+    ]
+  },
+  "poblacion": {
+    "fuente": "INE, proyecciones municipales 2015-2030 por sexo y edad simple (UNFPA en HDX)",
+    "anios_fuente": [
+      2015,
+      2030
+    ],
+    "anios_en_panel": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "municipios_por_anio": {
+      "2015": 340,
+      "2016": 340,
+      "2017": 340,
+      "2018": 340,
+      "2019": 340,
+      "2020": 340,
+      "2021": 340,
+      "2022": 340,
+      "2023": 340,
+      "2024": 340,
+      "2025": 340,
+      "2026": 340,
+      "2027": 340,
+      "2028": 340,
+      "2029": 340,
+      "2030": 340
+    },
+    "anios_mspas_sin_poblacion": [
+      2012,
+      2013,
+      2014
+    ],
+    "union_ine": {
+      "por_metodo": {
+        "correspondencia_manual": 22,
+        "nombre_normalizado": 318
+      },
+      "nombre_tomado_de_pestana": [
+        {
+          "codigo": "GT1229",
+          "departamento": "San Marcos",
+          "municipio": "San Lorenzo"
+        },
+        {
+          "codigo": "GT1329",
+          "departamento": "Huehuetenango",
+          "municipio": "San Gaspar Ixchil"
+        }
+      ]
+    },
+    "control_cod_ps": {
+      "anios": [
+        2022,
+        2023,
+        2024
+      ],
+      "celdas_comparadas": 1020,
+      "celdas_distintas": 0,
+      "diferencias": []
+    }
+  },
+  "panel": {
+    "celdas": 4420,
+    "con_registro_por_anio": {
+      "2012": 326,
+      "2013": 328,
+      "2014": 328,
+      "2015": 327,
+      "2016": 326,
+      "2017": 331,
+      "2018": 333,
+      "2019": 334,
+      "2020": 334,
+      "2021": 335,
+      "2022": 335,
+      "2023": 337,
+      "2024": 337
+    },
+    "sin_registro_por_anio": {
+      "2012": 14,
+      "2013": 12,
+      "2014": 12,
+      "2015": 13,
+      "2016": 14,
+      "2017": 9,
+      "2018": 7,
+      "2019": 6,
+      "2020": 6,
+      "2021": 5,
+      "2022": 5,
+      "2023": 3,
+      "2024": 3
+    },
+    "con_tasa_por_anio": {
+      "2015": 327,
+      "2016": 326,
+      "2017": 331,
+      "2018": 333,
+      "2019": 334,
+      "2020": 334,
+      "2021": 335,
+      "2022": 335,
+      "2023": 337,
+      "2024": 337
+    }
+  },
+  "piloto": {
+    "departamento": "GT20",
+    "municipios": 11,
+    "casos_registrados_por_anio": {
+      "2012": 1099,
+      "2013": 1459,
+      "2014": 857,
+      "2015": 938,
+      "2016": 626,
+      "2017": 618,
+      "2018": 556,
+      "2019": 567,
+      "2020": 596,
+      "2021": 671,
+      "2022": 742,
+      "2023": 934,
+      "2024": 1134
+    },
+    "celdas_sin_registro": []
+  },
+  "observaciones": [
+    "El CSV del MSPAS no contiene filas con cantidad 0: un municipio-año sin fila puede ser cero casos o falta de reporte. El panel lo marca como 'sin_registro' y no lo imputa.",
+    "GT1021 San José La Máquina (Suchitepéquez) existe en la referencia pero no aparece en el MSPAS en ningún año; no se asume cero.",
+    "Sin población municipal 0-4 para [2012, 2013, 2014]: la serie de proyecciones INE comienza en 2015. Esos años solo admiten análisis de conteos absolutos."
+  ]
+}
