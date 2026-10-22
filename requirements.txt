@@ -1,0 +1,11 @@
+numpy==2.5.4
+pandas==3.0.6
+scipy==1.18.1
+geopandas==1.2.0
+shapely==2.2.0
+networkx==3.7
+matplotlib==3.11.2
+seaborn==0.13.2
+plotly==7.1.0
+openpyxl==3.1.5
+pytest==9.1.1

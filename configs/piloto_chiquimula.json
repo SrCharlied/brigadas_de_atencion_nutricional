@@ -1,0 +1,45 @@
+{
+  "_nota": "Las claves con prefijo '_' documentan la configuración y el cargador las ignora. Ver docs/fuentes.md §5 y docs/decision_departamento.md.",
+  "_clasificacion": {
+    "departamento": "Decisión del equipo (Tarea 0.3), ratificada el 2026-10-22: GT20 = Chiquimula.",
+    "anios_desarrollo": "Partición temporal congelada (plan §5.2). Solo estos años se usan para ajustar o calibrar.",
+    "anios_validacion": "Partición temporal congelada (plan §5.2). Reservados para validación contra registros MSPAS; no usarlos para elegir pesos ni parámetros.",
+    "replicas": "Mínimo exigido (plan §6: 30 o más réplicas por condición).",
+    "semilla_raiz": "Valor arbitrario que se registra para reproducibilidad (plan §6). Las semillas por réplica se derivan de esta."
+  },
+  "_supuestos": {
+    "estado": "PROVISIONAL. Supuestos de escenario del equipo (plan §2.4), sin fuente oficial. NO son políticas, capacidades ni metas del MSPAS. Deben fijarse antes de observar resultados finales y estudiarse con sensibilidad (plan §4.7 y §6).",
+    "cantidad_brigadas": {
+      "valor": 3,
+      "fuente": "Ninguna; valor provisional elegido por el equipo.",
+      "sensibilidad": "Plan §6, escenario C: menor cantidad de brigadas (análisis adicional)."
+    },
+    "capacidad_por_brigada": {
+      "valor": 150,
+      "unidad": "Casos registrados atendibles por brigada y año. Unidad propuesta porque la demanda es un conteo anual; confirmar en docs/modelo.md (Integrante 2).",
+      "fuente": "Ninguna; valor provisional elegido por el equipo.",
+      "efecto_observado": "La capacidad total (3 × 150 = 450) equivale al 67.7 % de la demanda registrada media de desarrollo en Chiquimula (664.25 casos/año, 2015-2022) y al 39.7 % de 2024 (1,134). La restricción de capacidad es activa.",
+      "sensibilidad": "Plan §6, escenario C: capacidad por brigada -20 % (análisis adicional)."
+    },
+    "distancia_max_km": {
+      "valor": 40.0,
+      "unidad": "Kilómetros de distancia geodésica entre centroides municipales. No es distancia vial ni tiempo de viaje (plan §5.5).",
+      "fuente": "Ninguna; valor provisional elegido por el equipo.",
+      "efecto_observado": "En Chiquimula, 53 de 55 pares de municipios están a 40 km o menos (mediana 22.3 km, máximo 47.4 km). Con este valor la restricción de distancia casi no limita; conviene incluir valores menores en la sensibilidad.",
+      "sensibilidad": "Variar D_max (plan §4.2) en el análisis adicional."
+    },
+    "pendientes_de_declarar": [
+      "Pesos w_c, w_d y w_e de la función objetivo (plan §4.7): declararlos antes de observar resultados finales; responsables Integrantes 2 y 3.",
+      "Parámetros del algoritmo genético (población, generaciones, cruce, mutación, elitismo; plan §4.8): Integrante 3.",
+      "Presupuesto simulado, velocidad o tiempo de servicio: solo si se introducen en el modelo (plan §2.4)."
+    ]
+  },
+  "departamento": "GT20",
+  "anios_desarrollo": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+  "anios_validacion": [2023, 2024],
+  "cantidad_brigadas": 3,
+  "capacidad_por_brigada": 150,
+  "distancia_max_km": 40.0,
+  "replicas": 30,
+  "semilla_raiz": 20261021
+}

@@ -1,0 +1,22 @@
+# Planeación interna del equipo (no versionar)
+docs/privado/
+
+# Entorno y caché de Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Datos descargados y derivados: se regeneran con scripts/
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
