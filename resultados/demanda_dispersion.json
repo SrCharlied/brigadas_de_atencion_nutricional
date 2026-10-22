@@ -1,0 +1,15 @@
+{
+  "protocolo": "docs/protocolo_demanda.md §5",
+  "modelo_media": "M0",
+  "observaciones": 88,
+  "parametros_media": 11,
+  "umbral_phi": 1.5,
+  "nivel_significancia": 0.05,
+  "phi": 7.4002705279529355,
+  "a": 0.11595130032250303,
+  "logver_poisson": -522.2087091745885,
+  "logver_nb": -360.2362730231457,
+  "razon_verosimilitud": 323.94487230288564,
+  "valor_p": 1.0014028400112375e-72,
+  "distribucion": "binomial_negativa"
+}
