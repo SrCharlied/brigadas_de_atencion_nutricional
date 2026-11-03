@@ -52,8 +52,8 @@ d = demanda.generar_demanda(mu, rng, "binomial_negativa", a=a, escala=1.0)
 ## 4. Lo que deben saber antes de diseñar los experimentos
 
 1. **El nivel absoluto está subestimado.** Contra los registros reales de 2023–2024, el modelo previó 1,285 casos y hubo 2,068 (**−38 %**). Pero **ordena muy bien** los municipios (Spearman 0.94; acierta los 3 con más casos). En otras palabras, el *dónde* es confiable y el *cuánto* no.
-2. **La sensibilidad de +20 % se queda corta.** El nivel observado equivale a una escala de aproximadamente **1.6** (2,068 / 1,285). Sugerimos agregar un escenario con esa escala o justificar por qué no.
-3. **Con capacidad 150, la restricción de capacidad está activa:** la capacidad total cubre el 68 % de la demanda media de 2015–2022. **Con `D_max = 40 km`, la restricción de distancia casi no limita** (53 de 55 pares quedan dentro). Ver el bloque `_supuestos` en `configs/piloto_chiquimula.json`.
+2. **La sensibilidad de +20 % se queda corta.** El nivel observado equivale a una escala de aproximadamente **1.6** (2,068 / 1,285). Ya está incluida en la sensibilidad fijada de `docs/protocolo_parametros.md` §3.
+3. **Actualización del 2026-11-03: capacidad y distancia recalibradas.** Con 150 y 40 km, la capacidad se saturaba y la política base resultaba óptima en las 165 combinaciones de bases, así que no había nada que optimizar. Los valores congelados son **C = 221** (capacidad total igual a la demanda media de desarrollo) y **`D_max` = 22 km** (mediana de las distancias). Hay que **volver a correr `ejecutar_baseline`** y usar la sensibilidad fijada: demanda ×1.2 y ×1.6, capacidad 177 y `D_max` de 40 km. Detalle en `docs/protocolo_parametros.md`.
 4. **No usen 2023–2024 para calibrar** pesos ni parámetros del algoritmo genético. Son la referencia real reservada.
 5. Los valores de demanda son **casos registrados**, no prevalencia ni necesidad clínica.
 

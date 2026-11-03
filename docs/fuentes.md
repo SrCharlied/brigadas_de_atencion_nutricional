@@ -58,15 +58,17 @@ Responsable: Integrante 1. Los archivos originales están versionados en `data/r
 
 ## 5. Parámetros que no provienen de fuentes
 
-Son **supuestos de escenario** del equipo (plan §2.4): no tienen fuente oficial y **no son políticas, capacidades ni metas del MSPAS**. Se fijan antes de observar resultados finales y se estudian con sensibilidad (plan §4.7 y §6). El detalle de cada valor está en el bloque `_supuestos` de `configs/piloto_chiquimula.json`.
+Son **supuestos de escenario** del equipo (plan §2.4): no tienen fuente oficial y **no son políticas, capacidades ni metas del MSPAS**. Capacidad y distancia se recalibraron el 2026-11-03 con las reglas congeladas en `docs/protocolo_parametros.md`, porque los valores provisionales (150 y 40 km) saturaban la capacidad: la política base resultaba óptima en las 165 combinaciones de bases. El detalle de cada valor está en el bloque `_supuestos` de `configs/piloto_chiquimula.json`.
 
-| Parámetro | Valor | Estado | Unidad | Efecto observado en Chiquimula |
+| Parámetro | Valor | Estado | Regla y unidad | Efecto en Chiquimula |
 |---|---|---|---|---|
-| `cantidad_brigadas` | 3 | **Provisional** | brigadas | — |
-| `capacidad_por_brigada` | 150 | **Provisional** | casos registrados por brigada y año (unidad por confirmar en `docs/modelo.md`) | La capacidad total de 450 cubre el 67.7 % de la demanda media de desarrollo y el 39.7 % de 2024: la restricción está activa |
-| `distancia_max_km` | 40 | **Provisional** | km geodésicos entre centroides; no es distancia vial | 53 de 55 pares están dentro del radio: la restricción casi no limita |
-| Pesos `w_c`, `w_d`, `w_e` | — | Por declarar (Integrantes 2 y 3) | — | — |
+| `cantidad_brigadas` | 3 | Congelado | brigadas; sin cambio | — |
+| `capacidad_por_brigada` | 221 | **Congelado (regla)** | Capacidad total = demanda media anual de desarrollo (664.25) / 3. Casos registrados por brigada y año | Capacidad total de 663: 103.7 % de la demanda esperada de 2024, 71.0 % de la real de 2023 y 58.5 % de la de 2024 |
+| `distancia_max_km` | 22 | **Congelado (regla)** | Mediana de las distancias entre centroides (22.31 km), redondeada. km geodésicos; no es distancia vial | 26 de 55 pares quedan dentro del radio: la restricción sí limita |
+| Pesos `w_c`, `w_d`, `w_e` | 1.0 / 0.1 / 0.1 | Declarados (Integrante 2, `contratos.PesosObjetivo`) | — | — |
 | Parámetros del GA | — | Por declarar (Integrante 3) | — | — |
+
+Sensibilidad fijada con las reglas: demanda ×1.2 y ×1.6, capacidad 177 y `D_max` de 40 km (`docs/protocolo_parametros.md` §3).
 
 Los campos que **no** son supuestos se clasifican en `_clasificacion` del mismo archivo: departamento (decisión del equipo), partición temporal (congelada), réplicas (mínimo exigido) y semilla (arbitraria, registrada).
 

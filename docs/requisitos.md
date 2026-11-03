@@ -135,7 +135,7 @@ Los datos sintéticos solos no cuentan como validación.
 | Promedio y dispersión | Tablas de `resultados/` | Pendiente |
 | Error e incertidumbre; comparación reproducible | Error de validación (§5); intervalos y diferencias pareadas (elección metodológica nuestra, no exigida) | Pendiente |
 | Al menos una propiedad interna verificada (consistencia, límites, conservación o caso conocido) | Plan §7.2 y §7.3: capacidad no excedida, conservación de demanda, caso conocido con enumeración exacta. Ya hay conservación verificada en datos: total crudo = total del panel (239,805) | Parcial |
-| Al menos una prueba de sensibilidad, explicando qué cambia | Demanda +20 %. Además conviene variar `distancia_max_km`, que casi no limita en Chiquimula (`configs/`, `_supuestos`) | Pendiente |
+| Al menos una prueba de sensibilidad, explicando qué cambia | Fijada en `docs/protocolo_parametros.md` §3: demanda ×1.2 (obligatoria) y ×1.6, capacidad −20 % (177) y `D_max` de 40 km | Definida; pendiente de ejecutar |
 | Al menos 3 visualizaciones: comportamiento del sistema, comparación de escenarios, variabilidad/error o sensibilidad | Plan §12: mapa, base frente a optimizado, variabilidad y sensibilidad | Pendiente |
 | Cada gráfica con título, ejes, unidades, leyenda cuando corresponda y explicación | Revisión en el PR de visualización | Pendiente |
 

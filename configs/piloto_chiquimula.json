@@ -8,28 +8,31 @@
     "semilla_raiz": "Valor arbitrario que se registra para reproducibilidad (plan §6). Las semillas por réplica se derivan de esta."
   },
   "_supuestos": {
-    "estado": "PROVISIONAL. Supuestos de escenario del equipo (plan §2.4), sin fuente oficial. NO son políticas, capacidades ni metas del MSPAS. Deben fijarse antes de observar resultados finales y estudiarse con sensibilidad (plan §4.7 y §6).",
+    "estado": "CONGELADO el 2026-11-03 según docs/protocolo_parametros.md. Supuestos de escenario del equipo (plan §2.4), sin fuente oficial. NO son políticas, capacidades ni metas del MSPAS. Capacidad y distancia salen de reglas que solo usan datos de desarrollo y geografía, no del desempeño de ninguna política. Cambios posteriores se registran como desviación en ese protocolo.",
     "cantidad_brigadas": {
       "valor": 3,
-      "fuente": "Ninguna; valor provisional elegido por el equipo.",
+      "fuente": "Ninguna; elegido por el equipo y sin cambio en la recalibración.",
       "sensibilidad": "Plan §6, escenario C: menor cantidad de brigadas (análisis adicional)."
     },
     "capacidad_por_brigada": {
-      "valor": 150,
-      "unidad": "Casos registrados atendibles por brigada y año. Unidad propuesta porque la demanda es un conteo anual; confirmar en docs/modelo.md (Integrante 2).",
-      "fuente": "Ninguna; valor provisional elegido por el equipo.",
-      "efecto_observado": "La capacidad total (3 × 150 = 450) equivale al 67.7 % de la demanda registrada media de desarrollo en Chiquimula (664.25 casos/año, 2015-2022) y al 39.7 % de 2024 (1,134). La restricción de capacidad es activa.",
-      "sensibilidad": "Plan §6, escenario C: capacidad por brigada -20 % (análisis adicional)."
+      "valor": 221,
+      "unidad": "Casos registrados atendibles por brigada y año (unidad confirmada en docs/modelo.md).",
+      "regla": "Capacidad total = demanda registrada media anual de desarrollo (664.25 casos/año, 2015-2022) repartida entre 3 brigadas y redondeada: 664.25 / 3 = 221.4 -> 221.",
+      "efecto_aritmetico": "Capacidad total 663: 99.8 % de la demanda media de desarrollo, 103.7 % de la demanda esperada M0 de 2024 (639.5), 71.0 % de la demanda real de 2023 (934) y 58.5 % de la de 2024 (1,134).",
+      "valor_anterior": "150 (provisional): saturaba la capacidad y la política base resultaba óptima en las 165 combinaciones de bases.",
+      "sensibilidad": "Capacidad -20 %: 177 (docs/protocolo_parametros.md §3)."
     },
     "distancia_max_km": {
-      "valor": 40.0,
+      "valor": 22.0,
       "unidad": "Kilómetros de distancia geodésica entre centroides municipales. No es distancia vial ni tiempo de viaje (plan §5.5).",
-      "fuente": "Ninguna; valor provisional elegido por el equipo.",
-      "efecto_observado": "En Chiquimula, 53 de 55 pares de municipios están a 40 km o menos (mediana 22.3 km, máximo 47.4 km). Con este valor la restricción de distancia casi no limita; conviene incluir valores menores en la sensibilidad.",
-      "sensibilidad": "Variar D_max (plan §4.2) en el análisis adicional."
+      "regla": "Mediana de las 55 distancias entre centroides de Chiquimula (matriz de brigadas/distancias.py) = 22.31 km, redondeada al km.",
+      "efecto_aritmetico": "26 de 55 pares de municipios quedan a 22 km o menos: la restricción de acceso sí limita.",
+      "valor_anterior": "40.0 (provisional): 53 de 55 pares quedaban dentro y la restricción casi no limitaba.",
+      "sensibilidad": "D_max = 40 km (docs/protocolo_parametros.md §3)."
     },
+    "sensibilidad_fijada": "Demanda escala 1.2 y 1.6, capacidad 177 y D_max 40 km, según docs/protocolo_parametros.md §3.",
     "pendientes_de_declarar": [
-      "Pesos w_c, w_d y w_e de la función objetivo (plan §4.7): declararlos antes de observar resultados finales; responsables Integrantes 2 y 3.",
+      "Pesos w_c, w_d y w_e: declarados por el Integrante 2 en contratos.PesosObjetivo (1.0 / 0.1 / 0.1) y sin cambio en docs/protocolo_parametros.md.",
       "Parámetros del algoritmo genético (población, generaciones, cruce, mutación, elitismo; plan §4.8): Integrante 3.",
       "Presupuesto simulado, velocidad o tiempo de servicio: solo si se introducen en el modelo (plan §2.4)."
     ]
@@ -38,8 +41,8 @@
   "anios_desarrollo": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
   "anios_validacion": [2023, 2024],
   "cantidad_brigadas": 3,
-  "capacidad_por_brigada": 150,
-  "distancia_max_km": 40.0,
+  "capacidad_por_brigada": 221,
+  "distancia_max_km": 22.0,
   "replicas": 30,
   "semilla_raiz": 20261021
 }

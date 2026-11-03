@@ -1,3 +1,8 @@
 # Los archivos oficiales se guardan byte a byte: sin conversión de fin de línea,
 # para que su SHA-256 coincida con data/descargas.json en cualquier sistema.
 data/raw/** binary
+
+# Los scripts escriben los resultados con LF; se fija LF también al hacer checkout
+# para que regenerarlos en Windows no los marque como modificados.
+resultados/*.csv text eol=lf
+resultados/*.json text eol=lf
