@@ -40,7 +40,7 @@ Aplica el protocolo congelado de `docs/protocolo_demanda.md`: backtest de los mo
 .\.venv\Scripts\python.exe -m scripts.demo_caso_pequeno
 ```
 
-- `ejecutar_baseline` corre la heurística base (sin el algoritmo genético) con 30 réplicas pareadas, sensibilidad +20 % y evaluación con los casos reales de 2023–2024. Requiere haber corrido antes los scripts de datos y demanda.
+- `ejecutar_baseline` corre la heurística base (sin el algoritmo genético) con 30 réplicas pareadas por escala de demanda (×1.0, ×1.2 y ×1.6, ver `docs/protocolo_parametros.md`) y evaluación con los casos reales de 2023–2024. Requiere haber corrido antes los scripts de datos y demanda.
 - `demo_caso_pequeno` usa una red **sintética** de 5 municipios con óptimo conocido.
 
 Modelo, restricciones, unidades y supuestos: `docs/modelo.md`.

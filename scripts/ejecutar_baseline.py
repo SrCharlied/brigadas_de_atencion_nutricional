@@ -10,7 +10,7 @@ Uso:
 
 Salidas:
     data/processed/distancias_<dep>.csv       matriz congelada (km geodésicos)
-    resultados/baseline_<dep>_replicas.csv    réplicas simuladas (escala 1.0 y 1.2)
+    resultados/baseline_<dep>_replicas.csv    réplicas simuladas (escala 1.0, 1.2 y 1.6)
     resultados/baseline_<dep>_observado.csv   cobertura con los casos reales 2023–2024
     resultados/baseline_<dep>_resumen.json    bases elegidas y resumen
 """
@@ -48,7 +48,7 @@ def ejecutar(
     carpeta_resultados: Path,
     carpeta_procesados: Path,
     anio_objetivo: int,
-    escalas: tuple[float, ...] = (1.0, 1.2),
+    escalas: tuple[float, ...] = (1.0, 1.2, 1.6),  # docs/protocolo_parametros.md §3
 ) -> dict:
     config = cargar_configuracion(ruta_config)
     dep = config.departamento
