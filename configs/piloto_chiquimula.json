@@ -1,0 +1,48 @@
+{
+  "_nota": "Las claves con prefijo '_' documentan la configuración y el cargador las ignora. Ver docs/fuentes.md §5 y docs/decision_departamento.md.",
+  "_clasificacion": {
+    "departamento": "Decisión del equipo (Tarea 0.3), ratificada el 2026-10-22: GT20 = Chiquimula.",
+    "anios_desarrollo": "Partición temporal congelada (plan §5.2). Solo estos años se usan para ajustar o calibrar.",
+    "anios_validacion": "Partición temporal congelada (plan §5.2). Reservados para validación contra registros MSPAS; no usarlos para elegir pesos ni parámetros.",
+    "replicas": "Mínimo exigido (plan §6: 30 o más réplicas por condición).",
+    "semilla_raiz": "Valor arbitrario que se registra para reproducibilidad (plan §6). Las semillas por réplica se derivan de esta."
+  },
+  "_supuestos": {
+    "estado": "CONGELADO el 2026-11-03 según docs/protocolo_parametros.md. Supuestos de escenario del equipo (plan §2.4), sin fuente oficial. NO son políticas, capacidades ni metas del MSPAS. Capacidad y distancia salen de reglas que solo usan datos de desarrollo y geografía, no del desempeño de ninguna política. Cambios posteriores se registran como desviación en ese protocolo.",
+    "cantidad_brigadas": {
+      "valor": 3,
+      "fuente": "Ninguna; elegido por el equipo y sin cambio en la recalibración.",
+      "sensibilidad": "Plan §6, escenario C: menor cantidad de brigadas (análisis adicional)."
+    },
+    "capacidad_por_brigada": {
+      "valor": 221,
+      "unidad": "Casos registrados atendibles por brigada y año (unidad confirmada en docs/modelo.md).",
+      "regla": "Capacidad total = demanda registrada media anual de desarrollo (664.25 casos/año, 2015-2022) repartida entre 3 brigadas y redondeada: 664.25 / 3 = 221.4 -> 221.",
+      "efecto_aritmetico": "Capacidad total 663: 99.8 % de la demanda media de desarrollo, 103.7 % de la demanda esperada M0 de 2024 (639.5), 71.0 % de la demanda real de 2023 (934) y 58.5 % de la de 2024 (1,134).",
+      "valor_anterior": "150 (provisional): saturaba la capacidad y la política base resultaba óptima en las 165 combinaciones de bases.",
+      "sensibilidad": "Capacidad -20 %: 177 (docs/protocolo_parametros.md §3)."
+    },
+    "distancia_max_km": {
+      "valor": 22.0,
+      "unidad": "Kilómetros de distancia geodésica entre centroides municipales. No es distancia vial ni tiempo de viaje (plan §5.5).",
+      "regla": "Mediana de las 55 distancias entre centroides de Chiquimula (matriz de brigadas/distancias.py) = 22.31 km, redondeada al km.",
+      "efecto_aritmetico": "26 de 55 pares de municipios quedan a 22 km o menos: la restricción de acceso sí limita.",
+      "valor_anterior": "40.0 (provisional): 53 de 55 pares quedaban dentro y la restricción casi no limitaba.",
+      "sensibilidad": "D_max = 40 km (docs/protocolo_parametros.md §3)."
+    },
+    "sensibilidad_fijada": "Demanda escala 1.2 y 1.6, capacidad 177 y D_max 40 km, según docs/protocolo_parametros.md §3.",
+    "pendientes_de_declarar": [
+      "Pesos w_c, w_d y w_e: declarados por el Integrante 2 en contratos.PesosObjetivo (1.0 / 0.1 / 0.1) y sin cambio en docs/protocolo_parametros.md.",
+      "Parámetros del algoritmo genético (población, generaciones, cruce, mutación, elitismo; plan §4.8): Integrante 3.",
+      "Presupuesto simulado, velocidad o tiempo de servicio: solo si se introducen en el modelo (plan §2.4)."
+    ]
+  },
+  "departamento": "GT20",
+  "anios_desarrollo": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+  "anios_validacion": [2023, 2024],
+  "cantidad_brigadas": 3,
+  "capacidad_por_brigada": 221,
+  "distancia_max_km": 22.0,
+  "replicas": 30,
+  "semilla_raiz": 20261021
+}

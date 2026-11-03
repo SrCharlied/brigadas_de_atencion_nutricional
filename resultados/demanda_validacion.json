@@ -1,0 +1,60 @@
+{
+  "protocolo": "docs/protocolo_demanda.md §6",
+  "referencia": "Casos registrados MSPAS, años reservados; ver docs/fuentes.md",
+  "anios_validacion": [
+    2023,
+    2024
+  ],
+  "modelo_elegido": "M0",
+  "parametros_modelo": {
+    "tasa_por_1000": {
+      "GT2001": 12.44717246930972,
+      "GT2002": 18.163615560640732,
+      "GT2003": 13.278855975485188,
+      "GT2004": 10.664864369501466,
+      "GT2005": 15.127898238093913,
+      "GT2006": 12.087816980642183,
+      "GT2007": 17.1448857703713,
+      "GT2008": 8.349389852280027,
+      "GT2009": 4.827737546631555,
+      "GT2010": 12.964890697454338,
+      "GT2011": 9.756396882861877
+    }
+  },
+  "metricas": {
+    "M0": {
+      "observaciones": 22,
+      "casos_observados": 2068,
+      "casos_previstos": 1285.2512857975248,
+      "mae": 36.375554600268565,
+      "wape": 0.3869739851092401,
+      "sesgo_casos": -782.7487142024752,
+      "sesgo_relativo": -0.3785051809489726,
+      "por_anio": {
+        "2023": {
+          "observado": 934,
+          "previsto": 645.7546631589903,
+          "error": -288.2453368410097
+        },
+        "2024": {
+          "observado": 1134,
+          "previsto": 639.4966226385343,
+          "error": -494.5033773614657
+        }
+      },
+      "spearman_ranking": 0.9384990180111028,
+      "coincidencia_top3": 3,
+      "top3_observado": [
+        "GT2001",
+        "GT2004",
+        "GT2005"
+      ],
+      "top3_previsto": [
+        "GT2001",
+        "GT2004",
+        "GT2005"
+      ]
+    }
+  },
+  "advertencia": "Valida la demanda municipal agregada de casos registrados; no valida tiempos de atencion, capacidad de brigadas, resultados clinicos ni prevalencia."
+}

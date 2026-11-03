@@ -1,0 +1,341 @@
+codigo,codigo_departamento,departamento,nombre,departamento_mspas,municipio_mspas,metodo_union,anios_con_registro,anios_sin_registro,anios_con_poblacion
+GT0101,GT01,Guatemala,Guatemala,GUATEMALA,GUATEMALA,nombre_normalizado,13,0,10
+GT0102,GT01,Guatemala,Santa Catarina Pinula,GUATEMALA,SANTA CATARINA PINULA,nombre_normalizado,13,0,10
+GT0103,GT01,Guatemala,San José Pinula,GUATEMALA,SAN JOSÉ PINULA,nombre_normalizado,13,0,10
+GT0104,GT01,Guatemala,San José del Golfo,GUATEMALA,SAN JOSÉ DEL GOLFO,nombre_normalizado,13,0,10
+GT0105,GT01,Guatemala,Palencia,GUATEMALA,PALENCIA,nombre_normalizado,13,0,10
+GT0106,GT01,Guatemala,Chinautla,GUATEMALA,CHINAUTLA,nombre_normalizado,13,0,10
+GT0107,GT01,Guatemala,San Pedro Ayampuc,GUATEMALA,SAN PEDRO AYAMPUC,nombre_normalizado,13,0,10
+GT0108,GT01,Guatemala,Mixco,GUATEMALA,MIXCO,nombre_normalizado,13,0,10
+GT0109,GT01,Guatemala,San Pedro Sacatepéquez,GUATEMALA,SAN PEDRO SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT0110,GT01,Guatemala,San Juan Sacatepéquez,GUATEMALA,SAN JUAN SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT0111,GT01,Guatemala,San Raimundo,GUATEMALA,SAN RAYMUNDO,correspondencia_manual,13,0,10
+GT0112,GT01,Guatemala,Chuarrancho,GUATEMALA,CHUARRANCHO,nombre_normalizado,13,0,10
+GT0113,GT01,Guatemala,Fraijanes,GUATEMALA,FRAIJANES,nombre_normalizado,13,0,10
+GT0114,GT01,Guatemala,Amatitlán,GUATEMALA,AMATITLÁN,nombre_normalizado,13,0,10
+GT0115,GT01,Guatemala,Villa Nueva,GUATEMALA,VILLA NUEVA,nombre_normalizado,13,0,10
+GT0116,GT01,Guatemala,Villa Canales,GUATEMALA,VILLA CANALES,nombre_normalizado,13,0,10
+GT0117,GT01,Guatemala,Petapa,GUATEMALA,SAN MIGUEL PETAPA,correspondencia_manual,13,0,10
+GT0201,GT02,El Progreso,Guastatoya,EL PROGRESO,GUASTATOYA,nombre_normalizado,13,0,10
+GT0202,GT02,El Progreso,Morazán,EL PROGRESO,MORAZÁN,nombre_normalizado,13,0,10
+GT0203,GT02,El Progreso,San Agustín Acasaguastlán,EL PROGRESO,SAN AGUSTÍN ACASAGUASTLÁN,nombre_normalizado,13,0,10
+GT0204,GT02,El Progreso,San Cristóbal Acasaguastlán,EL PROGRESO,SAN CRISTÓBAL ACASAGUASTLÁN,nombre_normalizado,13,0,10
+GT0205,GT02,El Progreso,El Jícaro,EL PROGRESO,EL JÍCARO,nombre_normalizado,13,0,10
+GT0206,GT02,El Progreso,Sanarate,EL PROGRESO,SANARATE,nombre_normalizado,13,0,10
+GT0207,GT02,El Progreso,Sansare,EL PROGRESO,SANSARE,nombre_normalizado,13,0,10
+GT0208,GT02,El Progreso,San Antonio La Paz,EL PROGRESO,SAN ANTONIO LA PAZ,nombre_normalizado,13,0,10
+GT0301,GT03,Sacatepéquez,Antigua Guatemala,SACATEPEQUEZ,ANTIGUA GUATEMALA,nombre_normalizado,13,0,10
+GT0302,GT03,Sacatepéquez,Jocotenango,SACATEPEQUEZ,JOCOTENANGO,nombre_normalizado,13,0,10
+GT0303,GT03,Sacatepéquez,Pastores,SACATEPEQUEZ,PASTORES,nombre_normalizado,13,0,10
+GT0304,GT03,Sacatepéquez,Sumpango,SACATEPEQUEZ,SUMPANGO,nombre_normalizado,13,0,10
+GT0305,GT03,Sacatepéquez,Santo Domingo Xenacoj,SACATEPEQUEZ,SANTO DOMINGO XENACOJ,nombre_normalizado,13,0,10
+GT0306,GT03,Sacatepéquez,Santiago Sacatepéquez,SACATEPEQUEZ,SANTIAGO SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT0307,GT03,Sacatepéquez,San Bartolomé Milpas Altas,SACATEPEQUEZ,SAN BARTOLOMÉ MILPAS ALTAS,nombre_normalizado,12,1,10
+GT0308,GT03,Sacatepéquez,San Lucas Sacatepéquez,SACATEPEQUEZ,SAN LUCAS SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT0309,GT03,Sacatepéquez,Santa Lucía Milpas Altas,SACATEPEQUEZ,SANTA LUCÍA MILPAS ALTAS,nombre_normalizado,13,0,10
+GT0310,GT03,Sacatepéquez,Magdalena Milpas Altas,SACATEPEQUEZ,MAGDALENA MILPAS ALTAS,nombre_normalizado,13,0,10
+GT0311,GT03,Sacatepéquez,Santa María de Jesús,SACATEPEQUEZ,SANTA MARÍA DE JESÚS,nombre_normalizado,13,0,10
+GT0312,GT03,Sacatepéquez,Ciudad Vieja,SACATEPEQUEZ,CIUDAD VIEJA,nombre_normalizado,13,0,10
+GT0313,GT03,Sacatepéquez,San Miguel Dueñas,SACATEPEQUEZ,SAN MIGUEL DUEÑAS,nombre_normalizado,13,0,10
+GT0314,GT03,Sacatepéquez,Alotenango,SACATEPEQUEZ,ALOTENANGO,nombre_normalizado,13,0,10
+GT0315,GT03,Sacatepéquez,San Antonio Aguas Calientes,SACATEPEQUEZ,SAN ANTONIO AGUAS CALIENTES,nombre_normalizado,13,0,10
+GT0316,GT03,Sacatepéquez,Santa Catarina Barahona,SACATEPEQUEZ,SANTA CATARINA BARAHONA,nombre_normalizado,10,3,10
+GT0401,GT04,Chimaltenango,Chimaltenango,CHIMALTENANGO,CHIMALTENANGO,nombre_normalizado,13,0,10
+GT0402,GT04,Chimaltenango,San José Poaquil,CHIMALTENANGO,SAN JOSÉ POAQUIL,nombre_normalizado,13,0,10
+GT0403,GT04,Chimaltenango,San Martín Jilotepeque,CHIMALTENANGO,SAN MARTÍN JILOTEPEQUE,nombre_normalizado,13,0,10
+GT0404,GT04,Chimaltenango,Comalapa,CHIMALTENANGO,SAN JUAN COMALAPA,correspondencia_manual,13,0,10
+GT0405,GT04,Chimaltenango,Santa Apolonia,CHIMALTENANGO,SANTA APOLONIA,nombre_normalizado,13,0,10
+GT0406,GT04,Chimaltenango,Tecpán Guatemala,CHIMALTENANGO,TECPÁN GUATEMALA,nombre_normalizado,13,0,10
+GT0407,GT04,Chimaltenango,Patzún,CHIMALTENANGO,PATZÚN,nombre_normalizado,13,0,10
+GT0408,GT04,Chimaltenango,Pochuta,CHIMALTENANGO,POCHUTA,nombre_normalizado,13,0,10
+GT0409,GT04,Chimaltenango,Patzicía,CHIMALTENANGO,PATZICÍA,nombre_normalizado,13,0,10
+GT0410,GT04,Chimaltenango,Santa Cruz Balanyá,CHIMALTENANGO,SANTA CRUZ BALANYÁ,nombre_normalizado,13,0,10
+GT0411,GT04,Chimaltenango,Acatenango,CHIMALTENANGO,ACATENANGO,nombre_normalizado,13,0,10
+GT0412,GT04,Chimaltenango,Yepocapa,CHIMALTENANGO,YEPOCAPA,nombre_normalizado,13,0,10
+GT0413,GT04,Chimaltenango,San Andrés Itzapa,CHIMALTENANGO,SAN ANDRÉS ITZAPA,nombre_normalizado,13,0,10
+GT0414,GT04,Chimaltenango,Parramos,CHIMALTENANGO,PARRAMOS,nombre_normalizado,13,0,10
+GT0415,GT04,Chimaltenango,Zaragoza,CHIMALTENANGO,ZARAGOZA,nombre_normalizado,13,0,10
+GT0416,GT04,Chimaltenango,El Tejar,CHIMALTENANGO,EL TEJAR,nombre_normalizado,13,0,10
+GT0501,GT05,Escuintla,Escuintla,ESCUINTLA,ESCUINTLA,nombre_normalizado,13,0,10
+GT0502,GT05,Escuintla,Santa Lucía Cotzumalguapa,ESCUINTLA,SANTA LUCÍA COTZUMALGUAPA,nombre_normalizado,13,0,10
+GT0503,GT05,Escuintla,La Democracia,ESCUINTLA,LA DEMOCRACIA,nombre_normalizado,13,0,10
+GT0504,GT05,Escuintla,Siquinalá,ESCUINTLA,SIQUINALÁ,nombre_normalizado,13,0,10
+GT0505,GT05,Escuintla,Masagua,ESCUINTLA,MASAGUA,nombre_normalizado,13,0,10
+GT0506,GT05,Escuintla,Tiquisate,ESCUINTLA,TIQUISATE,nombre_normalizado,13,0,10
+GT0507,GT05,Escuintla,La Gomera,ESCUINTLA,LA GOMERA,nombre_normalizado,13,0,10
+GT0508,GT05,Escuintla,Guanagazapa,ESCUINTLA,GUANAGAZAPA,nombre_normalizado,13,0,10
+GT0509,GT05,Escuintla,San José,ESCUINTLA,PUERTO DE SAN JOSÉ,correspondencia_manual,13,0,10
+GT0510,GT05,Escuintla,Iztapa,ESCUINTLA,IZTAPA,nombre_normalizado,13,0,10
+GT0511,GT05,Escuintla,Palín,ESCUINTLA,PALÍN,nombre_normalizado,13,0,10
+GT0512,GT05,Escuintla,San Vicente Pacaya,ESCUINTLA,SAN VICENTE PACAYA,nombre_normalizado,13,0,10
+GT0513,GT05,Escuintla,Nueva Concepción,ESCUINTLA,NUEVA CONCEPCIÓN,nombre_normalizado,13,0,10
+GT0514,GT05,Escuintla,Sipacate,ESCUINTLA,SIPACATE,nombre_normalizado,8,5,9
+GT0601,GT06,Santa Rosa,Cuilapa,SANTA ROSA,CUILAPA,nombre_normalizado,13,0,10
+GT0602,GT06,Santa Rosa,Barberena,SANTA ROSA,BARBERENA,nombre_normalizado,13,0,10
+GT0603,GT06,Santa Rosa,Santa Rosa de Lima,SANTA ROSA,SANTA ROSA DE LIMA,nombre_normalizado,13,0,10
+GT0604,GT06,Santa Rosa,Casillas,SANTA ROSA,CASILLAS,nombre_normalizado,13,0,10
+GT0605,GT06,Santa Rosa,San Rafael Las Flores,SANTA ROSA,SAN RAFAEL LAS FLORES,nombre_normalizado,13,0,10
+GT0606,GT06,Santa Rosa,Oratorio,SANTA ROSA,ORATORIO,nombre_normalizado,13,0,10
+GT0607,GT06,Santa Rosa,San Juan Tecuaco,SANTA ROSA,SAN JUAN TECUACO,nombre_normalizado,13,0,10
+GT0608,GT06,Santa Rosa,Chiquimulilla,SANTA ROSA,CHIQUIMULILLA,nombre_normalizado,13,0,10
+GT0609,GT06,Santa Rosa,Taxisco,SANTA ROSA,TAXISCO,nombre_normalizado,13,0,10
+GT0610,GT06,Santa Rosa,Santa María Ixhuatán,SANTA ROSA,SANTA MARÍA IXHUATÁN,nombre_normalizado,13,0,10
+GT0611,GT06,Santa Rosa,Guazacapán,SANTA ROSA,GUAZACAPÁN,nombre_normalizado,13,0,10
+GT0612,GT06,Santa Rosa,Santa Cruz Naranjo,SANTA ROSA,SANTA CRUZ NARANJO,nombre_normalizado,13,0,10
+GT0613,GT06,Santa Rosa,Pueblo Nuevo Viñas,SANTA ROSA,PUEBLO NUEVO VIÑAS,nombre_normalizado,13,0,10
+GT0614,GT06,Santa Rosa,Nueva Santa Rosa,SANTA ROSA,NUEVA SANTA ROSA,nombre_normalizado,13,0,10
+GT0701,GT07,Sololá,Sololá,SOLOLA,SOLOLÁ,nombre_normalizado,13,0,10
+GT0702,GT07,Sololá,San José Chacayá,SOLOLA,SAN JOSÉ CHACAYÁ,nombre_normalizado,10,3,10
+GT0703,GT07,Sololá,Santa María Visitación,SOLOLA,SANTA MARÍA VISITACIÓN,nombre_normalizado,6,7,10
+GT0704,GT07,Sololá,Santa Lucía Utatlán,SOLOLA,SANTA LUCÍA UTATLÁN,nombre_normalizado,13,0,10
+GT0705,GT07,Sololá,Nahualá,SOLOLA,NAHUALÁ,nombre_normalizado,13,0,10
+GT0706,GT07,Sololá,Santa Catarina Ixtahuacán,SOLOLA,SANTA CATARINA IXTAHUACÁN,nombre_normalizado,13,0,10
+GT0707,GT07,Sololá,Santa Clara La Laguna,SOLOLA,SANTA CLARA LA LAGUNA,nombre_normalizado,6,7,10
+GT0708,GT07,Sololá,Concepción,SOLOLA,CONCEPCIÓN,nombre_normalizado,12,1,10
+GT0709,GT07,Sololá,San Andrés Semetabaj,SOLOLA,SAN ANDRÉS SEMETABAJ,nombre_normalizado,10,3,10
+GT0710,GT07,Sololá,Panajachel,SOLOLA,PANAJACHEL,nombre_normalizado,13,0,10
+GT0711,GT07,Sololá,Santa Catarina Palopó,SOLOLA,SANTA CATARINA PALOPÓ,nombre_normalizado,5,8,10
+GT0712,GT07,Sololá,San Antonio Palopó,SOLOLA,SAN ANTONIO PALOPÓ,nombre_normalizado,12,1,10
+GT0713,GT07,Sololá,San Lucas Tolimán,SOLOLA,SAN LUCAS TOLIMÁN,nombre_normalizado,13,0,10
+GT0714,GT07,Sololá,Santa Cruz La Laguna,SOLOLA,SANTA CRUZ LA LAGUNA,nombre_normalizado,13,0,10
+GT0715,GT07,Sololá,San Pablo La Laguna,SOLOLA,SAN PABLO LA LAGUNA,nombre_normalizado,12,1,10
+GT0716,GT07,Sololá,San Marcos La Laguna,SOLOLA,SAN MARCOS LA LAGUNA,nombre_normalizado,10,3,10
+GT0717,GT07,Sololá,San Juan La Laguna,SOLOLA,SAN JUAN LA LAGUNA,nombre_normalizado,10,3,10
+GT0718,GT07,Sololá,San Pedro La Laguna,SOLOLA,SAN PEDRO LA LAGUNA,nombre_normalizado,7,6,10
+GT0719,GT07,Sololá,Santiago Atitlán,SOLOLA,SANTIAGO ATITLÁN,nombre_normalizado,13,0,10
+GT0801,GT08,Totonicapán,Totonicapán,TOTONICAPAN,TOTONICAPÁN,nombre_normalizado,13,0,10
+GT0802,GT08,Totonicapán,San Cristóbal Totonicapán,TOTONICAPAN,SAN CRISTÓBAL TOTONICAPÁN,nombre_normalizado,13,0,10
+GT0803,GT08,Totonicapán,San Francisco El Alto,TOTONICAPAN,SAN FRANCISCO EL ALTO,nombre_normalizado,13,0,10
+GT0804,GT08,Totonicapán,San Andrés Xecul,TOTONICAPAN,SAN ANDRÉS XECUL,nombre_normalizado,13,0,10
+GT0805,GT08,Totonicapán,Momostenango,TOTONICAPAN,MOMOSTENANGO,nombre_normalizado,13,0,10
+GT0806,GT08,Totonicapán,Santa María Chiquimula,TOTONICAPAN,SANTA MARÍA CHIQUIMULA,nombre_normalizado,13,0,10
+GT0807,GT08,Totonicapán,Santa Lucía La Reforma,TOTONICAPAN,SANTA LUCÍA LA REFORMA,nombre_normalizado,13,0,10
+GT0808,GT08,Totonicapán,San Bartolo,TOTONICAPAN,SAN BARTOLO,nombre_normalizado,13,0,10
+GT0901,GT09,Quetzaltenango,Quetzaltenango,QUETZALTENANGO,QUETZALTENANGO,nombre_normalizado,13,0,10
+GT0902,GT09,Quetzaltenango,Salcajá,QUETZALTENANGO,SALCAJÁ,nombre_normalizado,12,1,10
+GT0903,GT09,Quetzaltenango,Olintepeque,QUETZALTENANGO,OLINTEPEQUE,nombre_normalizado,13,0,10
+GT0904,GT09,Quetzaltenango,San Carlos Sija,QUETZALTENANGO,SAN CARLOS SIJA,nombre_normalizado,13,0,10
+GT0905,GT09,Quetzaltenango,Sibilia,QUETZALTENANGO,SIBILIA,nombre_normalizado,12,1,10
+GT0906,GT09,Quetzaltenango,Cabricán,QUETZALTENANGO,CABRICÁN,nombre_normalizado,13,0,10
+GT0907,GT09,Quetzaltenango,Cajolá,QUETZALTENANGO,CAJOLÁ,nombre_normalizado,13,0,10
+GT0908,GT09,Quetzaltenango,San Miguel Sigüila,QUETZALTENANGO,SAN MIGUEL SIGÜILÁ,nombre_normalizado,13,0,10
+GT0909,GT09,Quetzaltenango,Ostuncalco,QUETZALTENANGO,SAN JUAN OSTUNCALCO,correspondencia_manual,13,0,10
+GT0910,GT09,Quetzaltenango,San Mateo,QUETZALTENANGO,SAN MATEO,nombre_normalizado,13,0,10
+GT0911,GT09,Quetzaltenango,Concepción Chiquirichapa,QUETZALTENANGO,CONCEPCIÓN CHIQUIRICHAPA,nombre_normalizado,13,0,10
+GT0912,GT09,Quetzaltenango,San Martín Sacatepéquez,QUETZALTENANGO,SAN MARTÍN SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT0913,GT09,Quetzaltenango,Almolonga,QUETZALTENANGO,ALMOLONGA,nombre_normalizado,12,1,10
+GT0914,GT09,Quetzaltenango,Cantel,QUETZALTENANGO,CANTEL,nombre_normalizado,13,0,10
+GT0915,GT09,Quetzaltenango,Huitán,QUETZALTENANGO,HUITÁN,nombre_normalizado,13,0,10
+GT0916,GT09,Quetzaltenango,Zunil,QUETZALTENANGO,ZUNIL,nombre_normalizado,13,0,10
+GT0917,GT09,Quetzaltenango,Colomba,QUETZALTENANGO,COLOMBA,nombre_normalizado,13,0,10
+GT0918,GT09,Quetzaltenango,San Francisco La Unión,QUETZALTENANGO,SAN FRANCISCO LA UNIÓN,nombre_normalizado,10,3,10
+GT0919,GT09,Quetzaltenango,El Palmar,QUETZALTENANGO,EL PALMAR,nombre_normalizado,13,0,10
+GT0920,GT09,Quetzaltenango,Coatepeque,QUETZALTENANGO,COATEPEQUE,nombre_normalizado,13,0,10
+GT0921,GT09,Quetzaltenango,Génova,QUETZALTENANGO,GÉNOVA,nombre_normalizado,13,0,10
+GT0922,GT09,Quetzaltenango,Flores Costa Cuca,QUETZALTENANGO,FLORES COSTA CUCA,nombre_normalizado,13,0,10
+GT0923,GT09,Quetzaltenango,La Esperanza,QUETZALTENANGO,LA ESPERANZA,nombre_normalizado,13,0,10
+GT0924,GT09,Quetzaltenango,Palestina de Los Altos,QUETZALTENANGO,PALESTINA DE LOS ALTOS,nombre_normalizado,13,0,10
+GT1001,GT10,Suchitepéquez,Mazatenango,SUCHITEPEQUEZ,MAZATENANGO,nombre_normalizado,13,0,10
+GT1002,GT10,Suchitepéquez,Cuyotenango,SUCHITEPEQUEZ,CUYOTENANGO,nombre_normalizado,13,0,10
+GT1003,GT10,Suchitepéquez,San Francisco Zapotitlán,SUCHITEPEQUEZ,SAN FRANCISCO ZAPOTITLÁN,nombre_normalizado,13,0,10
+GT1004,GT10,Suchitepéquez,San Bernardino,SUCHITEPEQUEZ,SAN BERNARDINO,nombre_normalizado,13,0,10
+GT1005,GT10,Suchitepéquez,San José El Ídolo,SUCHITEPEQUEZ,SAN JOSÉ EL IDOLO,nombre_normalizado,13,0,10
+GT1006,GT10,Suchitepéquez,Santo Domingo Suchitepéquez,SUCHITEPEQUEZ,SANTO DOMINGO SUCHITEPÉQUEZ,nombre_normalizado,13,0,10
+GT1007,GT10,Suchitepéquez,San Lorenzo,SUCHITEPEQUEZ,SAN LORENZO,nombre_normalizado,13,0,10
+GT1008,GT10,Suchitepéquez,Samayac,SUCHITEPEQUEZ,SAMAYAC,nombre_normalizado,13,0,10
+GT1009,GT10,Suchitepéquez,San Pablo Jocopilas,SUCHITEPEQUEZ,SAN PABLO JOCOPILAS,nombre_normalizado,13,0,10
+GT1010,GT10,Suchitepéquez,San Antonio Suchitepéquez,SUCHITEPEQUEZ,SAN ANTONIO SUCHITEPÉQUEZ,nombre_normalizado,13,0,10
+GT1011,GT10,Suchitepéquez,San Miguel Panán,SUCHITEPEQUEZ,SAN MIGUEL PANÁN,nombre_normalizado,13,0,10
+GT1012,GT10,Suchitepéquez,San Gabriel,SUCHITEPEQUEZ,SAN GABRIEL,nombre_normalizado,13,0,10
+GT1013,GT10,Suchitepéquez,Chicacao,SUCHITEPEQUEZ,CHICACAO,nombre_normalizado,13,0,10
+GT1014,GT10,Suchitepéquez,Patulul,SUCHITEPEQUEZ,PATULUL,nombre_normalizado,13,0,10
+GT1015,GT10,Suchitepéquez,Santa Bárbara,SUCHITEPEQUEZ,SANTA BÁRBARA,nombre_normalizado,13,0,10
+GT1016,GT10,Suchitepéquez,San Juan Bautista,SUCHITEPEQUEZ,SAN JUAN BAUTISTA,nombre_normalizado,13,0,10
+GT1017,GT10,Suchitepéquez,Santo Tomás La Unión,SUCHITEPEQUEZ,SANTO TOMÁS LA UNIÓN,nombre_normalizado,13,0,10
+GT1018,GT10,Suchitepéquez,Zunilito,SUCHITEPEQUEZ,ZUNILITO,nombre_normalizado,13,0,10
+GT1019,GT10,Suchitepéquez,Pueblo Nuevo,SUCHITEPEQUEZ,PUEBLO NUEVO SUCHITEPÉQUEZ,correspondencia_manual,13,0,10
+GT1020,GT10,Suchitepéquez,Río Bravo,SUCHITEPEQUEZ,RÍO BRAVO,nombre_normalizado,13,0,10
+GT1021,GT10,Suchitepéquez,San José La Máquina,,,sin_registro_mspas,0,13,10
+GT1101,GT11,Retalhuleu,Retalhuleu,RETALHULEU,RETALHULEU,nombre_normalizado,13,0,10
+GT1102,GT11,Retalhuleu,San Sebastián,RETALHULEU,SAN SEBASTIÁN,nombre_normalizado,13,0,10
+GT1103,GT11,Retalhuleu,Santa Cruz Muluá,RETALHULEU,SANTA CRUZ MULÚA,nombre_normalizado,13,0,10
+GT1104,GT11,Retalhuleu,San Martín Zapotitlán,RETALHULEU,SAN MARTÍN ZAPOTITLÁN,nombre_normalizado,13,0,10
+GT1105,GT11,Retalhuleu,San Felipe,RETALHULEU,SAN FELIPE,nombre_normalizado,13,0,10
+GT1106,GT11,Retalhuleu,San Andrés Villa Seca,RETALHULEU,SAN ANDRÉS VILLA SECA,nombre_normalizado,13,0,10
+GT1107,GT11,Retalhuleu,Champerico,RETALHULEU,CHAMPERICO,nombre_normalizado,13,0,10
+GT1108,GT11,Retalhuleu,Nuevo San Carlos,RETALHULEU,NUEVO SAN CARLOS,nombre_normalizado,13,0,10
+GT1109,GT11,Retalhuleu,El Asintal,RETALHULEU,EL ASINTAL,nombre_normalizado,13,0,10
+GT1201,GT12,San Marcos,San Marcos,SAN MARCOS,SAN MARCOS,nombre_normalizado,13,0,10
+GT1202,GT12,San Marcos,San Pedro Sacatepéquez,SAN MARCOS,SAN PEDRO SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT1203,GT12,San Marcos,San Antonio Sacatepéquez,SAN MARCOS,SAN ANTONIO SACATEPÉQUEZ,nombre_normalizado,13,0,10
+GT1204,GT12,San Marcos,Comitancillo,SAN MARCOS,COMITANCILLO,nombre_normalizado,13,0,10
+GT1205,GT12,San Marcos,San Miguel Ixtahuacán,SAN MARCOS,SAN MIGUEL IXTAHUACÁN,nombre_normalizado,13,0,10
+GT1206,GT12,San Marcos,Concepción Tutuapa,SAN MARCOS,CONCEPCIÓN TUTUAPA,nombre_normalizado,13,0,10
+GT1207,GT12,San Marcos,Tacaná,SAN MARCOS,TACANÁ,nombre_normalizado,13,0,10
+GT1208,GT12,San Marcos,Sibinal,SAN MARCOS,SIBINAL,nombre_normalizado,13,0,10
+GT1209,GT12,San Marcos,Tajumulco,SAN MARCOS,TAJUMULCO,nombre_normalizado,13,0,10
+GT1210,GT12,San Marcos,Tejutla,SAN MARCOS,TEJUTLA,nombre_normalizado,13,0,10
+GT1211,GT12,San Marcos,San Rafael Pie de la Cuesta,SAN MARCOS,SAN RAFAEL PIÉ DE LA CUESTA,nombre_normalizado,13,0,10
+GT1212,GT12,San Marcos,Nuevo Progreso,SAN MARCOS,NUEVO PROGRESO,nombre_normalizado,13,0,10
+GT1213,GT12,San Marcos,El Tumbador,SAN MARCOS,EL TUMBADOR,nombre_normalizado,13,0,10
+GT1214,GT12,San Marcos,El Rodeo,SAN MARCOS,EL RODEO,nombre_normalizado,13,0,10
+GT1215,GT12,San Marcos,Malacatán,SAN MARCOS,MALACATÁN,nombre_normalizado,13,0,10
+GT1216,GT12,San Marcos,Catarina,SAN MARCOS,CATARINA,nombre_normalizado,10,3,10
+GT1217,GT12,San Marcos,Ayutla,SAN MARCOS,AYUTLA,nombre_normalizado,13,0,10
+GT1218,GT12,San Marcos,Ocós,SAN MARCOS,OCÓS,nombre_normalizado,13,0,10
+GT1219,GT12,San Marcos,San Pablo,SAN MARCOS,SAN PABLO,nombre_normalizado,13,0,10
+GT1220,GT12,San Marcos,El Quetzal,SAN MARCOS,EL QUETZAL,nombre_normalizado,13,0,10
+GT1221,GT12,San Marcos,La Reforma,SAN MARCOS,LA REFORMA,nombre_normalizado,13,0,10
+GT1222,GT12,San Marcos,Pajapita,SAN MARCOS,PAJAPITA,nombre_normalizado,13,0,10
+GT1223,GT12,San Marcos,Ixchiguán,SAN MARCOS,IXCHIGUÁN,nombre_normalizado,13,0,10
+GT1224,GT12,San Marcos,San José Ojetenam,SAN MARCOS,SAN JOSÉ OJETENAM,nombre_normalizado,13,0,10
+GT1225,GT12,San Marcos,San Cristóbal Cucho,SAN MARCOS,SAN CRISTÓBAL CUCHO,nombre_normalizado,13,0,10
+GT1226,GT12,San Marcos,Sipacapa,SAN MARCOS,SIPACAPA,nombre_normalizado,13,0,10
+GT1227,GT12,San Marcos,Esquipulas Palo Gordo,SAN MARCOS,ESQUIPULAS PALO GORDO,nombre_normalizado,13,0,10
+GT1228,GT12,San Marcos,Río Blanco,SAN MARCOS,RÍO BLANCO,nombre_normalizado,13,0,10
+GT1229,GT12,San Marcos,San Lorenzo,SAN MARCOS,SAN LORENZO,nombre_normalizado,13,0,10
+GT1230,GT12,San Marcos,La Blanca,SAN MARCOS,LA BLANCA,nombre_normalizado,1,12,10
+GT1301,GT13,Huehuetenango,Huehuetenango,HUEHUETENANGO,HUEHUETENANGO,nombre_normalizado,13,0,10
+GT1302,GT13,Huehuetenango,Chiantla,HUEHUETENANGO,CHIANTLA,nombre_normalizado,13,0,10
+GT1303,GT13,Huehuetenango,Malacatancito,HUEHUETENANGO,MALACATANCITO,nombre_normalizado,13,0,10
+GT1304,GT13,Huehuetenango,Cuilco,HUEHUETENANGO,CUILCO,nombre_normalizado,13,0,10
+GT1305,GT13,Huehuetenango,Nentón,HUEHUETENANGO,NENTÓN,nombre_normalizado,13,0,10
+GT1306,GT13,Huehuetenango,San Pedro Necta,HUEHUETENANGO,SAN PEDRO NECTA,nombre_normalizado,13,0,10
+GT1307,GT13,Huehuetenango,Jacaltenango,HUEHUETENANGO,JACALTENANGO,nombre_normalizado,13,0,10
+GT1308,GT13,Huehuetenango,Soloma,HUEHUETENANGO,SAN PEDRO SOLOMA,correspondencia_manual,13,0,10
+GT1309,GT13,Huehuetenango,Ixtahuacán,HUEHUETENANGO,SAN ILDELFONSO IXTAHUACÁN,correspondencia_manual,13,0,10
+GT1310,GT13,Huehuetenango,Santa Bárbara,HUEHUETENANGO,SANTA BÁRBARA,nombre_normalizado,13,0,10
+GT1311,GT13,Huehuetenango,La Libertad,HUEHUETENANGO,LA LIBERTAD,nombre_normalizado,13,0,10
+GT1312,GT13,Huehuetenango,La Democracia,HUEHUETENANGO,LA DEMOCRACIA,nombre_normalizado,13,0,10
+GT1313,GT13,Huehuetenango,San Miguel Acatán,HUEHUETENANGO,SAN MIGUEL ACATÁN,nombre_normalizado,13,0,10
+GT1314,GT13,Huehuetenango,San Rafael La Independencia,HUEHUETENANGO,SAN RAFAEL LA INDEPENDENCIA,nombre_normalizado,13,0,10
+GT1315,GT13,Huehuetenango,Todos Santos Cuchumatán,HUEHUETENANGO,TODOS SANTOS CUCHUMATÁN,nombre_normalizado,12,1,10
+GT1316,GT13,Huehuetenango,San Juan Atitán,HUEHUETENANGO,SAN JUAN ATITÁN,nombre_normalizado,13,0,10
+GT1317,GT13,Huehuetenango,Santa Eulalia,HUEHUETENANGO,SANTA EULALIA,nombre_normalizado,13,0,10
+GT1318,GT13,Huehuetenango,San Mateo Ixtatán,HUEHUETENANGO,SAN MATEO IXTATÁN,nombre_normalizado,13,0,10
+GT1319,GT13,Huehuetenango,Colotenango,HUEHUETENANGO,COLOTENANGO,nombre_normalizado,13,0,10
+GT1320,GT13,Huehuetenango,San Sebastián Huehuetenango,HUEHUETENANGO,SAN SEBASTIÁN HUEHUETENANGO,nombre_normalizado,13,0,10
+GT1321,GT13,Huehuetenango,Tectitán,HUEHUETENANGO,TECTITÁN,nombre_normalizado,13,0,10
+GT1322,GT13,Huehuetenango,Concepción Huista,HUEHUETENANGO,CONCEPCIÓN HUISTA,nombre_normalizado,13,0,10
+GT1323,GT13,Huehuetenango,San Juan Ixcoy,HUEHUETENANGO,SAN JUAN IXCOY,nombre_normalizado,13,0,10
+GT1324,GT13,Huehuetenango,San Antonio Huista,HUEHUETENANGO,SAN ANTONIO HUISTA,nombre_normalizado,12,1,10
+GT1325,GT13,Huehuetenango,San Sebastián Coatán,HUEHUETENANGO,SAN SEBASTIÁN COATÁN,nombre_normalizado,13,0,10
+GT1326,GT13,Huehuetenango,Barillas,HUEHUETENANGO,BARILLAS,nombre_normalizado,13,0,10
+GT1327,GT13,Huehuetenango,Aguacatán,HUEHUETENANGO,AGUACATÁN,nombre_normalizado,13,0,10
+GT1328,GT13,Huehuetenango,San Rafael Petzal,HUEHUETENANGO,SAN RAFAEL PETZAL,nombre_normalizado,13,0,10
+GT1329,GT13,Huehuetenango,San Gaspar Ixchil,HUEHUETENANGO,SAN GASPAR IXCHIL,nombre_normalizado,13,0,10
+GT1330,GT13,Huehuetenango,Santiago Chimaltenango,HUEHUETENANGO,SANTIAGO CHIMALTENANGO,nombre_normalizado,13,0,10
+GT1331,GT13,Huehuetenango,Santa Ana Huista,HUEHUETENANGO,SANTA ANA HUISTA,nombre_normalizado,13,0,10
+GT1332,GT13,Huehuetenango,Unión Cantinil,HUEHUETENANGO,UNION CANTINIL,nombre_normalizado,13,0,10
+GT1333,GT13,Huehuetenango,Petatán,HUEHUETENANGO,PETATÁN,nombre_normalizado,7,6,9
+GT1401,GT14,Quiché,Santa Cruz del Quiché,QUICHE,SANTA CRUZ DEL QUICHÉ,nombre_normalizado,13,0,10
+GT1402,GT14,Quiché,Chiché,QUICHE,CHICHÉ,nombre_normalizado,13,0,10
+GT1403,GT14,Quiché,Chinique,QUICHE,CHINIQUE,nombre_normalizado,13,0,10
+GT1404,GT14,Quiché,Zacualpa,QUICHE,ZACUALPA,nombre_normalizado,13,0,10
+GT1405,GT14,Quiché,Chajul,QUICHE,CHAJUL,nombre_normalizado,13,0,10
+GT1406,GT14,Quiché,Chichicastenango,QUICHE,CHICHICASTENANGO,nombre_normalizado,13,0,10
+GT1407,GT14,Quiché,Patzité,QUICHE,PATZITÉ,nombre_normalizado,13,0,10
+GT1408,GT14,Quiché,San Antonio Ilotenango,QUICHE,SAN ANTONIO ILOTENANGO,nombre_normalizado,13,0,10
+GT1409,GT14,Quiché,San Pedro Jocopilas,QUICHE,SAN PEDRO JOCOPILAS,nombre_normalizado,13,0,10
+GT1410,GT14,Quiché,Cunén,QUICHE,CUNÉN,nombre_normalizado,13,0,10
+GT1411,GT14,Quiché,San Juan Cotzal,QUICHE,SAN JUAN COTZAL,nombre_normalizado,13,0,10
+GT1412,GT14,Quiché,Joyabaj,QUICHE,JOYABAJ,nombre_normalizado,13,0,10
+GT1413,GT14,Quiché,Nebaj,QUICHE,NEBAJ,nombre_normalizado,13,0,10
+GT1414,GT14,Quiché,San Andrés Sajcabajá,QUICHE,SAN ANDRÉS SAJCABAJÁ,nombre_normalizado,13,0,10
+GT1415,GT14,Quiché,Uspantán,QUICHE,SAN MIGUEL USPANTÁN,correspondencia_manual,13,0,10
+GT1416,GT14,Quiché,Sacapulas,QUICHE,SACAPULAS,nombre_normalizado,13,0,10
+GT1417,GT14,Quiché,San Bartolomé Jocotenango,QUICHE,SAN BARTOLOMÉ JOCOTENANGO,nombre_normalizado,13,0,10
+GT1418,GT14,Quiché,Canillá,QUICHE,CANILLÁ,nombre_normalizado,12,1,10
+GT1419,GT14,Quiché,Chicamán,QUICHE,CHICAMÁN,nombre_normalizado,13,0,10
+GT1420,GT14,Quiché,Ixcán,QUICHE,IXCÁN,nombre_normalizado,13,0,10
+GT1421,GT14,Quiché,Pachalum,QUICHE,PACHALÚN,correspondencia_manual,13,0,10
+GT1501,GT15,Baja Verapaz,Salamá,BAJA VERAPAZ,SALAMÁ,nombre_normalizado,13,0,10
+GT1502,GT15,Baja Verapaz,San Miguel Chicaj,BAJA VERAPAZ,SAN MIGUEL CHICAJ,nombre_normalizado,13,0,10
+GT1503,GT15,Baja Verapaz,Rabinal,BAJA VERAPAZ,RABINAL,nombre_normalizado,13,0,10
+GT1504,GT15,Baja Verapaz,Cubulco,BAJA VERAPAZ,CUBULCO,nombre_normalizado,13,0,10
+GT1505,GT15,Baja Verapaz,Granados,BAJA VERAPAZ,GRANADOS,nombre_normalizado,13,0,10
+GT1506,GT15,Baja Verapaz,El Chol,BAJA VERAPAZ,EL CHOL,nombre_normalizado,12,1,10
+GT1507,GT15,Baja Verapaz,San Jerónimo,BAJA VERAPAZ,SAN JERÓNIMO,nombre_normalizado,13,0,10
+GT1508,GT15,Baja Verapaz,Purulhá,BAJA VERAPAZ,PURULHÁ,nombre_normalizado,13,0,10
+GT1601,GT16,Alta Verapaz,Cobán,ALTA VERAPAZ,COBÁN,nombre_normalizado,13,0,10
+GT1602,GT16,Alta Verapaz,Santa Cruz Verapaz,ALTA VERAPAZ,SANTA CRUZ VERAPAZ,nombre_normalizado,13,0,10
+GT1603,GT16,Alta Verapaz,San Cristóbal Verapaz,ALTA VERAPAZ,SAN CRISTÓBAL VERAPAZ,nombre_normalizado,13,0,10
+GT1604,GT16,Alta Verapaz,Tactic,ALTA VERAPAZ,TACTIC,nombre_normalizado,13,0,10
+GT1605,GT16,Alta Verapaz,Tamahú,ALTA VERAPAZ,TAMAHÚ,nombre_normalizado,13,0,10
+GT1606,GT16,Alta Verapaz,Tucurú,ALTA VERAPAZ,TUCURÚ,nombre_normalizado,13,0,10
+GT1607,GT16,Alta Verapaz,Panzós,ALTA VERAPAZ,PANZOS,nombre_normalizado,13,0,10
+GT1608,GT16,Alta Verapaz,Senahú,ALTA VERAPAZ,SENAHÚ,nombre_normalizado,13,0,10
+GT1609,GT16,Alta Verapaz,San Pedro Carchá,ALTA VERAPAZ,SAN PEDRO CARCHÁ,nombre_normalizado,13,0,10
+GT1610,GT16,Alta Verapaz,San Juan Chamelco,ALTA VERAPAZ,SAN JUAN CHAMELCO,nombre_normalizado,13,0,10
+GT1611,GT16,Alta Verapaz,Lanquín,ALTA VERAPAZ,LANQUÍN,nombre_normalizado,13,0,10
+GT1612,GT16,Alta Verapaz,Cahabón,ALTA VERAPAZ,CAHABÓN,nombre_normalizado,13,0,10
+GT1613,GT16,Alta Verapaz,Chisec,ALTA VERAPAZ,CHISEC,nombre_normalizado,13,0,10
+GT1614,GT16,Alta Verapaz,Chahal,ALTA VERAPAZ,CHAHAL,nombre_normalizado,13,0,10
+GT1615,GT16,Alta Verapaz,Fray Bartolomé de Las Casas,ALTA VERAPAZ,FRAY BARTOLOMÉ DE LAS CASAS,nombre_normalizado,13,0,10
+GT1616,GT16,Alta Verapaz,Santa Catalina La Tinta,ALTA VERAPAZ,LA TINTA,correspondencia_manual,13,0,10
+GT1617,GT16,Alta Verapaz,Raxruhá,ALTA VERAPAZ,RAXRUHA,nombre_normalizado,13,0,10
+GT1701,GT17,Petén,Flores,EL PETEN,FLORES,nombre_normalizado,13,0,10
+GT1702,GT17,Petén,San José,EL PETEN,SAN JOSÉ,nombre_normalizado,13,0,10
+GT1703,GT17,Petén,San Benito,EL PETEN,SAN BENITO,nombre_normalizado,13,0,10
+GT1704,GT17,Petén,San Andrés,EL PETEN,SAN ANDRÉS,nombre_normalizado,13,0,10
+GT1705,GT17,Petén,La Libertad,EL PETEN,LA LIBERTAD,nombre_normalizado,13,0,10
+GT1706,GT17,Petén,San Francisco,EL PETEN,SAN FRANCISCO,nombre_normalizado,13,0,10
+GT1707,GT17,Petén,Santa Ana,EL PETEN,SANTA ANA,nombre_normalizado,13,0,10
+GT1708,GT17,Petén,Dolores,EL PETEN,DOLORES,nombre_normalizado,13,0,10
+GT1709,GT17,Petén,San Luis,EL PETEN,SAN LUIS,nombre_normalizado,13,0,10
+GT1710,GT17,Petén,Sayaxché,EL PETEN,SAYAXCHÉ,nombre_normalizado,13,0,10
+GT1711,GT17,Petén,Melchor de Mencos,EL PETEN,MELCHOR DE MENCOS,nombre_normalizado,13,0,10
+GT1712,GT17,Petén,Poptún,EL PETEN,POPTÚN,nombre_normalizado,13,0,10
+GT1713,GT17,Petén,Las Cruces,EL PETEN,LAS CRUCES,nombre_normalizado,13,0,10
+GT1714,GT17,Petén,El Chal,EL PETEN,EL CHAL,nombre_normalizado,13,0,10
+GT1801,GT18,Izabal,Puerto Barrios,IZABAL,PUERTO BARRIOS,nombre_normalizado,13,0,10
+GT1802,GT18,Izabal,Lívingston,IZABAL,LIVINGSTON,nombre_normalizado,13,0,10
+GT1803,GT18,Izabal,El Estor,IZABAL,EL ESTOR,nombre_normalizado,13,0,10
+GT1804,GT18,Izabal,Morales,IZABAL,MORALES,nombre_normalizado,13,0,10
+GT1805,GT18,Izabal,Los Amates,IZABAL,LOS AMATES,nombre_normalizado,13,0,10
+GT1901,GT19,Zacapa,Zacapa,ZACAPA,ZACAPA,nombre_normalizado,13,0,10
+GT1902,GT19,Zacapa,Estanzuela,ZACAPA,ESTANZUELA,nombre_normalizado,13,0,10
+GT1903,GT19,Zacapa,Río Hondo,ZACAPA,RÍO HONDO,nombre_normalizado,13,0,10
+GT1904,GT19,Zacapa,Gualán,ZACAPA,GUALÁN,nombre_normalizado,13,0,10
+GT1905,GT19,Zacapa,Teculután,ZACAPA,TECULUTÁN,nombre_normalizado,13,0,10
+GT1906,GT19,Zacapa,Usumatlán,ZACAPA,USUMATLÁN,nombre_normalizado,13,0,10
+GT1907,GT19,Zacapa,Cabañas,ZACAPA,CABAÑAS,nombre_normalizado,13,0,10
+GT1908,GT19,Zacapa,San Diego,ZACAPA,SAN DIEGO,nombre_normalizado,12,1,10
+GT1909,GT19,Zacapa,La Unión,ZACAPA,LA UNIÓN,nombre_normalizado,13,0,10
+GT1910,GT19,Zacapa,Huité,ZACAPA,HUITÉ,nombre_normalizado,13,0,10
+GT1911,GT19,Zacapa,San Jorge,ZACAPA,SAN JORGE,nombre_normalizado,13,0,10
+GT2001,GT20,Chiquimula,Chiquimula,CHIQUIMULA,CHIQUIMULA,nombre_normalizado,13,0,10
+GT2002,GT20,Chiquimula,San José La Arada,CHIQUIMULA,SAN JOSÉ LA ARADA,nombre_normalizado,13,0,10
+GT2003,GT20,Chiquimula,San Juan Ermita,CHIQUIMULA,SAN JUAN LA ERMITA,correspondencia_manual,13,0,10
+GT2004,GT20,Chiquimula,Jocotán,CHIQUIMULA,JOCOTÁN,nombre_normalizado,13,0,10
+GT2005,GT20,Chiquimula,Camotán,CHIQUIMULA,CAMOTÁN,nombre_normalizado,13,0,10
+GT2006,GT20,Chiquimula,Olopa,CHIQUIMULA,OLOPA,nombre_normalizado,13,0,10
+GT2007,GT20,Chiquimula,Esquipulas,CHIQUIMULA,ESQUIPULAS,nombre_normalizado,13,0,10
+GT2008,GT20,Chiquimula,Concepción Las Minas,CHIQUIMULA,CONCEPCIÓN LAS MINAS,nombre_normalizado,13,0,10
+GT2009,GT20,Chiquimula,Quezaltepeque,CHIQUIMULA,QUETZALTEPEQUE,correspondencia_manual,13,0,10
+GT2010,GT20,Chiquimula,San Jacinto,CHIQUIMULA,SAN JACINTO,nombre_normalizado,13,0,10
+GT2011,GT20,Chiquimula,Ipala,CHIQUIMULA,IPALA,nombre_normalizado,13,0,10
+GT2101,GT21,Jalapa,Jalapa,JALAPA,JALAPA,nombre_normalizado,13,0,10
+GT2102,GT21,Jalapa,San Pedro Pinula,JALAPA,SAN PEDRO PINULA,nombre_normalizado,13,0,10
+GT2103,GT21,Jalapa,San Luis Jilotepeque,JALAPA,SAN LUIS JILOTEPEQUE,nombre_normalizado,13,0,10
+GT2104,GT21,Jalapa,San Manuel Chaparrón,JALAPA,SAN MANUEL CHAPARRÓN,nombre_normalizado,13,0,10
+GT2105,GT21,Jalapa,San Carlos Alzatate,JALAPA,SAN CARLOS ALZATATE,nombre_normalizado,13,0,10
+GT2106,GT21,Jalapa,Monjas,JALAPA,MONJAS,nombre_normalizado,12,1,10
+GT2107,GT21,Jalapa,Mataquescuintla,JALAPA,MATAQUESCUINTLA,nombre_normalizado,13,0,10
+GT2201,GT22,Jutiapa,Jutiapa,JUTIAPA,JUTIAPA,nombre_normalizado,13,0,10
+GT2202,GT22,Jutiapa,El Progreso,JUTIAPA,EL PROGRESO,nombre_normalizado,12,1,10
+GT2203,GT22,Jutiapa,Santa Catarina Mita,JUTIAPA,SANTA CATARINA MITA,nombre_normalizado,13,0,10
+GT2204,GT22,Jutiapa,Agua Blanca,JUTIAPA,AGUA BLANCA,nombre_normalizado,13,0,10
+GT2205,GT22,Jutiapa,Asunción Mita,JUTIAPA,ASUNCIÓN MITA,nombre_normalizado,13,0,10
+GT2206,GT22,Jutiapa,Yupiltepeque,JUTIAPA,YUPILTEPEQUE,nombre_normalizado,12,1,10
+GT2207,GT22,Jutiapa,Atescatempa,JUTIAPA,ATESCATEMPA,nombre_normalizado,13,0,10
+GT2208,GT22,Jutiapa,Jerez,JUTIAPA,JEREZ,nombre_normalizado,6,7,10
+GT2209,GT22,Jutiapa,El Adelanto,JUTIAPA,EL ADELANTO,nombre_normalizado,13,0,10
+GT2210,GT22,Jutiapa,Zapotitlán,JUTIAPA,ZAPOTITLÁN,nombre_normalizado,13,0,10
+GT2211,GT22,Jutiapa,Comapa,JUTIAPA,COMAPA,nombre_normalizado,13,0,10
+GT2212,GT22,Jutiapa,Jalpatagua,JUTIAPA,JALPATAGUA,nombre_normalizado,13,0,10
+GT2213,GT22,Jutiapa,Conguaco,JUTIAPA,CONGUACO,nombre_normalizado,13,0,10
+GT2214,GT22,Jutiapa,Moyuta,JUTIAPA,MOYUTA,nombre_normalizado,13,0,10
+GT2215,GT22,Jutiapa,Pasaco,JUTIAPA,PASACO,nombre_normalizado,12,1,10
+GT2216,GT22,Jutiapa,San José Acatempa,JUTIAPA,SAN JOSÉ ACATEMPA,nombre_normalizado,12,1,10
+GT2217,GT22,Jutiapa,Quesada,JUTIAPA,QUEZADA,correspondencia_manual,13,0,10
