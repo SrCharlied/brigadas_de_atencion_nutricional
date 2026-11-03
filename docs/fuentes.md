@@ -1,6 +1,6 @@
 # Fuentes de datos
 
-Responsable: Integrante 1. Los checksums y fechas exactas de descarga están en `data/descargas.json`. El reporte de calidad es `resultados/calidad_datos.json`.
+Responsable: Integrante 1. Los archivos originales están versionados en `data/raw/` (ver `data/README.md`). Los checksums y las fechas exactas de descarga están en `data/descargas.json`. El reporte de calidad es `resultados/calidad_datos.json`.
 
 ## 1. Casos registrados — MSPAS
 

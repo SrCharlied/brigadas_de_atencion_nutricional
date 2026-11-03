@@ -31,13 +31,32 @@ class ErrorDescarga(RuntimeError):
     pass
 
 
+def problema_respuesta(estado: int | None, encabezados) -> str | None:
+    """Describe por qué una respuesta del servidor no es el archivo pedido, o None si es válida."""
+    if estado in (None, 200):
+        return None
+    if str(encabezados.get("x-amzn-waf-action", "")).lower() == "challenge":
+        return (
+            f"el servidor respondió HTTP {estado} con un desafío antibots (AWS WAF) en lugar del archivo. "
+            "No es un cambio de versión; reintente más tarde o use los archivos versionados en data/raw"
+        )
+    return f"el servidor respondió HTTP {estado} en lugar del archivo"
+
+
 def _bajar(url: str, destino: Path, timeout: float) -> None:
+    """Descarga a un temporal y solo reemplaza ``destino`` si la respuesta es válida y no vacía."""
     temporal = destino.with_name(destino.name + ".part")
     solicitud = urllib.request.Request(url, headers={"User-Agent": AGENTE})
     try:
-        with urllib.request.urlopen(solicitud, timeout=timeout) as respuesta, temporal.open("wb") as salida:
-            while bloque := respuesta.read(1 << 20):
-                salida.write(bloque)
+        with urllib.request.urlopen(solicitud, timeout=timeout) as respuesta:
+            problema = problema_respuesta(getattr(respuesta, "status", None), respuesta.headers)
+            if problema:
+                raise ErrorDescarga(f"{destino.name}: {problema}")
+            with temporal.open("wb") as salida:
+                while bloque := respuesta.read(1 << 20):
+                    salida.write(bloque)
+        if temporal.stat().st_size == 0:
+            raise ErrorDescarga(f"{destino.name}: la descarga llegó vacía (0 bytes); no se reemplazó ningún archivo")
     except Exception:
         temporal.unlink(missing_ok=True)
         raise

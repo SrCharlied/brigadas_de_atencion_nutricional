@@ -61,7 +61,7 @@ Sin extensión, plantilla ni estilo de citas fijos. **Se deben citar todas las f
 | Código fuente | En curso |
 | README con instrucciones reproducibles | En curso (`README.md`) |
 | `requirements.txt` o equivalente | Hecho (versiones fijas) |
-| Datos autorizados o procedimiento para obtenerlos | Hecho: `scripts/descargar_datos.py` con checksums en `data/descargas.json`. Todas las fuentes son públicas, sin datos personales |
+| Datos autorizados o procedimiento para obtenerlos | Hecho: datos oficiales versionados en `data/raw/` (licencias abiertas), verificables con `scripts/descargar_datos.py` contra los checksums de `data/descargas.json`. Todas las fuentes son públicas, sin datos personales |
 | Estructura organizada | Hecho (plan §8) |
 
 "Accesible para evaluación" no exige que sea público.

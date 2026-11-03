@@ -2,7 +2,7 @@ import hashlib
 
 import pytest
 
-from scripts.descargar_datos import ErrorDescarga, sincronizar
+from scripts.descargar_datos import ErrorDescarga, problema_respuesta, sincronizar
 
 
 @pytest.fixture
@@ -52,6 +52,37 @@ def test_archivo_raw_editado_se_detecta(tmp_path, origen):
     (tmp_path / "raw" / "fuente.csv").write_bytes(b"editado a mano")
     with pytest.raises(ErrorDescarga, match="no coincide"):
         sincronizar(fuente_local(origen), registro, tmp_path / "raw")
+
+
+def test_descarga_vacia_se_rechaza_sin_tocar_registro_ni_raw(tmp_path, origen):
+    registro = {}
+    sincronizar(fuente_local(origen), registro, tmp_path / "raw")
+    original = dict(registro["prueba"])
+    (tmp_path / "raw" / "fuente.csv").unlink()
+    origen.write_bytes(b"")  # el servidor responde sin contenido
+    with pytest.raises(ErrorDescarga, match="vací"):
+        sincronizar(fuente_local(origen), registro, tmp_path / "raw", forzar=True)
+    assert registro["prueba"] == original
+    assert not (tmp_path / "raw" / "fuente.csv").exists()
+    assert not list((tmp_path / "raw").glob("*.part"))
+
+
+@pytest.mark.parametrize(
+    "estado, encabezados, fragmento",
+    [
+        (202, {"x-amzn-waf-action": "challenge"}, "antibots"),
+        (202, {}, "202"),
+        (403, {}, "403"),
+    ],
+)
+def test_problema_respuesta_explica_rechazos_del_servidor(estado, encabezados, fragmento):
+    assert fragmento in problema_respuesta(estado, encabezados)
+
+
+@pytest.mark.parametrize("estado", [200, None])
+def test_problema_respuesta_acepta_respuestas_normales(estado):
+    # None: esquemas sin código HTTP, como file:// en las pruebas.
+    assert problema_respuesta(estado, {}) is None
 
 
 def test_version_nueva_en_servidor_se_rechaza_sin_forzar(tmp_path, origen):

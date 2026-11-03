@@ -7,11 +7,12 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Datos descargados y derivados: se regeneran con scripts/
-data/raw/*
+# Datos derivados: se regeneran con scripts/.
+# data/raw SÍ se versiona (fuentes públicas con licencia abierta), porque los
+# portales pueden bloquear descargas automáticas; ver data/README.md.
+data/raw/*.part
 data/interim/*
 data/processed/*
-!data/raw/.gitkeep
 !data/interim/.gitkeep
 !data/processed/.gitkeep
 
