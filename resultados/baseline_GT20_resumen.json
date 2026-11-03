@@ -1,0 +1,43 @@
+{
+  "departamento": "GT20",
+  "anio_objetivo_media": 2024,
+  "supuestos": {
+    "cantidad_brigadas": 3,
+    "capacidad_por_brigada_casos_anio": 221,
+    "distancia_max_km_geodesica": 22.0,
+    "pesos": {
+      "w_c": 1.0,
+      "w_d": 0.1,
+      "w_e": 0.1
+    }
+  },
+  "bases": [
+    {
+      "indice": 0,
+      "codigo": "GT2001",
+      "nombre": "Chiquimula"
+    },
+    {
+      "indice": 4,
+      "codigo": "GT2005",
+      "nombre": "Camotán"
+    },
+    {
+      "indice": 3,
+      "codigo": "GT2004",
+      "nombre": "Jocotán"
+    }
+  ],
+  "replicas_por_escala": 30,
+  "cobertura_media_pct": {
+    "escala_1": 77.71896294949431,
+    "escala_1.2": 75.89895960799193,
+    "escala_1.6": 63.572154886186595
+  },
+  "cobertura_observada_pct": {
+    "observado_2023": 70.44967880085653,
+    "observado_2024": 58.46560846560847
+  },
+  "todas_factibles": true,
+  "nota": "Resultados simulados; km geodésicos entre centroides; casos registrados, no prevalencia."
+}

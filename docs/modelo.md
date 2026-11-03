@@ -17,7 +17,12 @@ Este documento describe lo que está implementado en `brigadas/contratos.py`, `d
 | Demanda por réplica | Dato simulado (M0 + binomial negativa, `a = 0.116`) | `demanda.py` vía `simulacion.generador_binomial_negativa` |
 | `tests/fixtures/caso_pequeno.json` | Dato sintético de verificación | equipo |
 
-Los valores de `configs/piloto_chiquimula.json` para Chiquimula (`GT20`): 3 brigadas, 150 casos por brigada y año, `D_max = 40 km`. Son **provisionales** (ver bloque `_supuestos`) y deben estudiarse con sensibilidad. No representan políticas actuales del MSPAS.
+Los valores de `configs/piloto_chiquimula.json` para Chiquimula (`GT20`) son 3 brigadas, **221 casos por brigada y año** y **`D_max = 22 km`**. Están congelados desde el 2026-11-03 con las reglas de `docs/protocolo_parametros.md`:
+
+- **Capacidad total = demanda media de desarrollo** (664.25 / 3, redondeado).
+- **`D_max` = mediana de las distancias entre centroides** (22.31 km, redondeada).
+
+Los valores provisionales anteriores (150 y 40 km) saturaban la capacidad: la política base resultaba óptima en las 165 combinaciones de bases. No representan políticas actuales del MSPAS.
 
 ## 2. Unidades
 
@@ -99,7 +104,7 @@ J = w_c · (1 − cobertura)
 
 1. `derivar_semillas(semilla_raiz, replicas)` produce una semilla entera por réplica (`SeedSequence`), registrada en cada fila.
 2. De cada semilla salen dos flujos: uno para la demanda y otro para las políticas.
-3. La demanda se genera **una vez** por réplica y se entrega como arreglo de solo lectura a todas las políticas. La sensibilidad se hace con otro generador (`escala = 1.2`, o 1.6 según `docs/interfaz_demanda.md`) y las **mismas semillas**, cambiando el nombre de `escenario`.
+3. La demanda se genera **una vez** por réplica y se entrega como arreglo de solo lectura a todas las políticas. La sensibilidad de demanda se hace con otro generador (`escala = 1.2` y `1.6`, fijadas en `docs/protocolo_parametros.md` §3) y las **mismas semillas**, cambiando el nombre de `escenario`.
 4. Cada política recibe un generador nuevo creado desde el mismo flujo: el orden de ejecución no altera resultados y las diferencias son pareadas.
 5. Se mide el tiempo de cada política y se guardan los campos del contrato `ResultadoReplica` (`guardar_resultados_csv` / `cargar_resultados_csv`).
 
@@ -143,10 +148,22 @@ python -m scripts.ejecutar_baseline --config configs/piloto_chiquimula.json
 1. Carga los municipios de `GT20` desde `data/processed/municipios.csv` y congela la matriz en `data/processed/distancias_GT20.csv`.
 2. Calcula la referencia de la política base: casos medios 2015–2022 por municipio (años sin registro se excluyen, no se toman como cero).
 3. Ajusta M0 con 2015–2022 y calcula `mu` con la población proyectada del año objetivo (`--anio-objetivo`, por defecto 2024; solo usa población, no casos de ese año). El año objetivo definitivo lo fija `docs/diseno_experimental.md` (Integrante 3).
-4. Corre 30 réplicas pareadas con escala 1.0 y 1.2.
+4. Corre 30 réplicas pareadas con escalas de demanda 1.0, 1.2 y 1.6.
 5. Evalúa la política base con los **casos observados** de 2023 y 2024 (`evaluar_demanda_fija`), como pidió el Integrante 1 para la comparación con la referencia real.
 
-Salidas en `resultados/baseline_GT20_*.csv/json`. El algoritmo genético se integra pasando otra política con la firma `Politica` (o `crear_politica_bases_fijas(mejores_bases)`).
+Salidas en `resultados/baseline_GT20_*.csv/json`. El algoritmo genético se integra pasando otra política con la firma `Politica` (o `crear_politica_bases_fijas(mejores_bases)`). La sensibilidad de capacidad (177) y de `D_max` (40 km) compara ambas políticas y se ejecuta en los experimentos (Integrante 3).
+
+**Resultado con los parámetros congelados (2026-11-03), solo política base.** Bases: Chiquimula, Camotán y Jocotán (las 3 mayores demandas medias de desarrollo). Todas las asignaciones son factibles.
+
+| Escenario | Cobertura media |
+|---|---|
+| Simulado, escala 1.0 (demanda esperada 639.5; capacidad 663) | 77.7 % |
+| Simulado, escala 1.2 | 75.9 % |
+| Simulado, escala 1.6 | 63.6 % |
+| Observado 2023 (934 casos) | 70.4 % (658 de 663 cupos) |
+| Observado 2024 (1,134 casos) | 58.5 % (= 663 / 1,134: capacidad saturada) |
+
+Con la escala 1.0 sobra capacidad y aun así queda demanda sin cubrir, porque `D_max` sí limita: la ubicación de las bases importa. En 2024 observado, la capacidad sigue saturada (ver `docs/protocolo_parametros.md`). La columna `tiempo_ejecucion_ms` cambia en cada ejecución; el resto de los resultados es reproducible.
 
 ## 13. Respuesta a `docs/interfaz_demanda.md`
 

@@ -51,11 +51,13 @@ def test_baseline_de_punta_a_punta(tmp_path):
     # Bases = las 2 mayores demandas medias de desarrollo (tasas 20 y 12).
     assert [b["codigo"] for b in resumen["bases"]] == ["GT2004", "GT2002"]
     assert resumen["todas_factibles"]
-    assert set(resumen["cobertura_media_pct"]) == {"escala_1", "escala_1.2"}
-    assert resumen["cobertura_media_pct"]["escala_1.2"] <= resumen["cobertura_media_pct"]["escala_1"]
+    # Escalas de demanda fijadas en docs/protocolo_parametros.md §3: base, +20 % y nivel observado (×1.6).
+    cobertura = resumen["cobertura_media_pct"]
+    assert set(cobertura) == {"escala_1", "escala_1.2", "escala_1.6"}
+    assert cobertura["escala_1.6"] <= cobertura["escala_1.2"] <= cobertura["escala_1"]
     assert set(resumen["cobertura_observada_pct"]) == {"observado_2023", "observado_2024"}
     replicas = pd.read_csv(tmp_path / "res" / "baseline_GT20_replicas.csv")
-    assert len(replicas) == 60
+    assert len(replicas) == 90
     assert (tmp_path / "proc" / "distancias_GT20.csv").exists()
 
 
