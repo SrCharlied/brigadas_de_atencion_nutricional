@@ -20,7 +20,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m scripts.preparar_datos --config configs/piloto_chiquimula.json
 ```
 
-- `descargar_datos` baja las fuentes de `data/fuentes.json` y verifica su SHA-256 contra `data/descargas.json`. Si la versión publicada cambió, se detiene.
+- Los archivos oficiales ya vienen versionados en `data/raw/`. `descargar_datos` verifica su SHA-256 contra `data/descargas.json` y solo descarga las fuentes que falten en `data/fuentes.json`. Si una versión publicada cambió o un portal bloquea la descarga, se detiene sin reemplazar archivos.
 - `preparar_datos` genera el panel municipio × año en `data/processed/` y, en `resultados/`, el reporte de calidad (`calidad_datos.json`), la tabla de unión territorial (`union_municipios.csv`) y la comparación de departamentos candidatos (`candidatos_departamento.csv`).
 
 Detalles de las fuentes y sus limitaciones: `docs/fuentes.md` y `data/README.md`.
@@ -51,7 +51,7 @@ Modelo, restricciones, unidades y supuestos: `docs/modelo.md`.
 brigadas/    paquete principal (datos, demanda, simulación, GA, métricas, visualización)
 scripts/     puntos de entrada reproducibles
 configs/     escenarios en JSON
-data/        fuentes, referencias territoriales y datos (raw/processed no se versionan)
+data/        fuentes, referencias territoriales y datos (raw se versiona; processed se regenera)
 tests/       pruebas pytest
 docs/        documentación del proyecto (docs/privado/ no se versiona)
 resultados/  salidas de los scripts

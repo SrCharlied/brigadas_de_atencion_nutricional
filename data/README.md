@@ -2,12 +2,27 @@
 
 | Carpeta | Contenido | ¿Se versiona? |
 |---|---|---|
-| `raw/` | Archivos oficiales tal como se descargan. **No editar a mano.** | No; se regeneran con `python -m scripts.descargar_datos` |
+| `raw/` | Archivos oficiales tal como se descargan (28 archivos, unos 14.5 MB). **No editar a mano.** | **Sí**, byte a byte (ver abajo) |
 | `interim/` | Intermedios temporales | No |
 | `processed/` | Salidas de `scripts/preparar_datos.py` | No; se regeneran |
 | `referencia/` | Tablas de correspondencia territorial revisadas por el equipo | **Sí** |
 | `fuentes.json` | Catálogo de fuentes: URL, licencia y clasificación | **Sí** |
 | `descargas.json` | Checksum SHA-256, tamaño y fecha de cada descarga | **Sí** |
+
+## Por qué `raw/` se versiona
+
+El 2026-11-03, HDX empezó a responder a las descargas automáticas con un desafío antibots (HTTP 202 sin contenido), y el portal del INE ya pedía captcha. Para que el proyecto se reproduzca sin depender de esos portales, los archivos originales van en el repositorio. Las licencias lo permiten:
+
+| Fuente | Licencia |
+|---|---|
+| MSPAS | Creative Commons Attribution |
+| HDX/OCHA (límites y COD-PS) | CC BY-IGO |
+| INE vía UNFPA | CC0 |
+
+La atribución está en `docs/fuentes.md`.
+
+- `.gitattributes` marca `data/raw/**` como binario, para que git no convierta los fines de línea (con `core.autocrlf=true`, en Windows, alteraba los CSV y su checksum).
+- `python -m scripts.descargar_datos` **verifica** los archivos presentes contra `descargas.json` y solo descarga los que falten. Si un portal responde con un desafío, una respuesta vacía o un código distinto de 200, lo informa sin reemplazar ningún archivo.
 
 ## Tablas de referencia
 
