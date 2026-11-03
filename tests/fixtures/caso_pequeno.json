@@ -1,0 +1,30 @@
+{
+  "descripcion": "Red sintética de 5 municipios en línea recta (posiciones 0, 4, 20, 36 y 40 km). Datos SINTÉTICOS para verificación; no provienen del MSPAS.",
+  "posiciones_km": [0, 4, 20, 36, 40],
+  "distancias_km": [
+    [0, 4, 20, 36, 40],
+    [4, 0, 16, 32, 36],
+    [20, 16, 0, 16, 20],
+    [36, 32, 16, 0, 4],
+    [40, 36, 20, 4, 0]
+  ],
+  "demanda": [10, 6, 10, 6, 10],
+  "cantidad_brigadas": 2,
+  "capacidad": 100,
+  "distancia_max_km": 5,
+  "pesos": {"w_c": 1.0, "w_d": 0.1, "w_e": 0.1},
+  "solucion_esperada": {
+    "razonamiento": "Con D_max = 5 una base solo cubre su propio grupo: {0,1}, {2} o {3,4}. La mejor cobertura (32 de 42) exige una base en {0,1} y otra en {3,4}. Entre esas cuatro opciones, ubicar las bases en 0 y 4 hace que solo viajen los municipios de demanda 6 (4 km cada uno): distancia media = (6·4 + 6·4)/32 = 1.5 km. El municipio 2 queda sin cubrir en todas, así que la peor cobertura municipal es 0.",
+    "bases_optimas": [0, 4],
+    "demanda_cubierta": 32,
+    "cobertura": 0.7619047619047619,
+    "distancia_media_km": 1.5,
+    "objetivo": 0.36809523809523814
+  },
+  "politica_base_esperada": {
+    "razonamiento": "Las dos mayores demandas de referencia son 10 (índices 0, 2 y 4); el empate se resuelve por menor índice, así que la base elige {0, 2} y cubre 10 + 6 + 10 = 26.",
+    "bases": [0, 2],
+    "demanda_cubierta": 26,
+    "cobertura": 0.6190476190476191
+  }
+}

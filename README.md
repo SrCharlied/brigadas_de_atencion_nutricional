@@ -33,6 +33,18 @@ Detalles de las fuentes y sus limitaciones: `docs/fuentes.md` y `data/README.md`
 
 Aplica el protocolo congelado de `docs/protocolo_demanda.md`: backtest de los modelos M0, M1 y M2 con los años de desarrollo, elección entre Poisson y binomial negativa, y validación única contra el MSPAS de 2023–2024. Las salidas quedan en `resultados/demanda_*.json` y `resultados/figuras/validacion_demanda.png`.
 
+## Simulación y política base
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.ejecutar_baseline --config configs/piloto_chiquimula.json
+.\.venv\Scripts\python.exe -m scripts.demo_caso_pequeno
+```
+
+- `ejecutar_baseline` corre la heurística base (sin el algoritmo genético) con 30 réplicas pareadas, sensibilidad +20 % y evaluación con los casos reales de 2023–2024. Requiere haber corrido antes los scripts de datos y demanda.
+- `demo_caso_pequeno` usa una red **sintética** de 5 municipios con óptimo conocido.
+
+Modelo, restricciones, unidades y supuestos: `docs/modelo.md`.
+
 ## Estructura
 
 ```text
