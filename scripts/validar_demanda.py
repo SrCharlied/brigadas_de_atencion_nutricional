@@ -37,7 +37,7 @@ RESULTADOS = RAIZ / "resultados"
 
 
 def _escribir_json(ruta: Path, contenido: dict) -> None:
-    ruta.write_text(json.dumps(contenido, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    ruta.write_text(json.dumps(contenido, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
 
 
 def _parametros(modelo: demanda.ModeloDemanda) -> dict:

@@ -129,15 +129,15 @@ Los datos sintéticos solos no cuentan como validación.
 
 | Requisito de la guía | Cómo se cumple | Estado |
 |---|---|---|
-| Al menos 3 condiciones: base, mejora y sensibilidad | Heurística base, algoritmo genético y demanda +20 % (plan §6) | Pendiente |
-| 30 o más repeticiones independientes por condición si hay aleatoriedad | `replicas: 30` en `configs/piloto_chiquimula.json` | Configurado |
-| Registrar semillas | `semilla_raiz` y semillas derivadas por réplica | Configurado |
-| Promedio y dispersión | Tablas de `resultados/` | Pendiente |
-| Error e incertidumbre; comparación reproducible | Error de validación (§5); intervalos y diferencias pareadas (elección metodológica nuestra, no exigida) | Pendiente |
-| Al menos una propiedad interna verificada (consistencia, límites, conservación o caso conocido) | Plan §7.2 y §7.3: capacidad no excedida, conservación de demanda, caso conocido con enumeración exacta. Ya hay conservación verificada en datos: total crudo = total del panel (239,805) | Parcial |
-| Al menos una prueba de sensibilidad, explicando qué cambia | Fijada en `docs/protocolo_parametros.md` §3: demanda ×1.2 (obligatoria) y ×1.6, capacidad −20 % (177) y `D_max` de 40 km | Definida; pendiente de ejecutar |
-| Al menos 3 visualizaciones: comportamiento del sistema, comparación de escenarios, variabilidad/error o sensibilidad | Plan §12: mapa, base frente a optimizado, variabilidad y sensibilidad | Pendiente |
-| Cada gráfica con título, ejes, unidades, leyenda cuando corresponda y explicación | Revisión en el PR de visualización | Pendiente |
+| Al menos 3 condiciones: base, mejora y sensibilidad | Política base, algoritmo genético y 4 variantes de sensibilidad (`docs/diseno_experimental.md`) | **Hecho** |
+| 30 o más repeticiones independientes por condición si hay aleatoriedad | 30 réplicas pareadas por condición (`resultados/experimentos_replicas.csv`) | **Hecho** |
+| Registrar semillas | `semilla_raiz` 20261021 y la semilla de cada réplica en los CSV | **Hecho** |
+| Promedio y dispersión | `resultados/experimentos_resumen.csv` (media, desviación estándar y mediana) | **Hecho** |
+| Error e incertidumbre; comparación reproducible | Error de validación de la demanda (MAE, WAPE, sesgo) e IC 95 % de las diferencias pareadas; reproducción en un clon limpio con 21 salidas idénticas | **Hecho** |
+| Al menos una propiedad interna verificada (consistencia, límites, conservación o caso conocido) | 10 propiedades con pruebas (`docs/modelo.md` §11), conservación de casos (239,805), caso conocido y algoritmo genético frente al óptimo exacto (150 de 150 con brecha 0) | **Hecho** |
+| Al menos una prueba de sensibilidad, explicando qué cambia | Demanda ×1.2 y ×1.6, capacidad 177 y `D_max` de 40 km, interpretadas en el informe | **Hecho** |
+| Al menos 3 visualizaciones: comportamiento del sistema, comparación de escenarios, variabilidad/error o sensibilidad | Mapa de asignación, comparación de escenarios, diferencias pareadas, convergencia y validación de la demanda (`resultados/figuras/`) | **Hecho** |
+| Cada gráfica con título, ejes, unidades, leyenda cuando corresponda y explicación | Revisadas visualmente; la explicación va en el pie de figura del informe | **Hecho** |
 
 Si el costo impidiera hacer 30 repeticiones, habría que justificarlo y aprobar previamente una alternativa.
 

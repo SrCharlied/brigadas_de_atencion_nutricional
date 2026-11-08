@@ -128,7 +128,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1
     finally:
-        REGISTRO.write_text(json.dumps(registro, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        REGISTRO.write_text(json.dumps(registro, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     for identificador, estado in estados.items():
         print(f"{estado:<12} {identificador}  {registro[identificador]['sha256'][:16]}")
     return 0

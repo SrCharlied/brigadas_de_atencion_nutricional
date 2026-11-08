@@ -1,0 +1,6 @@
+condicion,bases_base,bases_genetico_mas_frecuente,bases_optimo_exacto,nombres_base,nombres_genetico_mas_frecuente,nombres_optimo_exacto
+nominal,0-3-4,1-4-8,1-4-8,"Chiquimula, Jocotán, Camotán","San José La Arada, Camotán, Quezaltepeque","San José La Arada, Camotán, Quezaltepeque"
+demanda_x1.2,0-3-4,1-4-8,1-4-8,"Chiquimula, Jocotán, Camotán","San José La Arada, Camotán, Quezaltepeque","San José La Arada, Camotán, Quezaltepeque"
+demanda_x1.6,0-3-4,1-4-8,1-4-8,"Chiquimula, Jocotán, Camotán","San José La Arada, Camotán, Quezaltepeque","San José La Arada, Camotán, Quezaltepeque"
+capacidad_177,0-3-4,0-4-6,0-4-6,"Chiquimula, Jocotán, Camotán","Chiquimula, Camotán, Esquipulas","Chiquimula, Camotán, Esquipulas"
+dmax_40,0-3-4,0-3-5,0-3-5,"Chiquimula, Jocotán, Camotán","Chiquimula, Jocotán, Olopa","Chiquimula, Jocotán, Olopa"

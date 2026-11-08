@@ -109,7 +109,7 @@ def ejecutar(
         "nota": "Resultados simulados; km geodésicos entre centroides; casos registrados, no prevalencia.",
     }
     ruta = carpeta_resultados / f"baseline_{dep}_resumen.json"
-    ruta.write_text(json.dumps(resumen, ensure_ascii=False, indent=2), encoding="utf-8")
+    ruta.write_text(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     return resumen
 
 

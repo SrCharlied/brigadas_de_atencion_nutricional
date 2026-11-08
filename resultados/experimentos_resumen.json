@@ -1,0 +1,299 @@
+{
+  "diseno": "docs/diseno_experimental.md",
+  "departamento": "GT20",
+  "anio_objetivo_media": 2024,
+  "parametros_genetico": {
+    "poblacion": 40,
+    "generaciones_max": 100,
+    "generaciones_sin_mejora": 20,
+    "torneo": 3,
+    "prob_cruce": 0.9,
+    "prob_mutacion": 0.3,
+    "elitismo": 2
+  },
+  "pesos": {
+    "w_c": 1.0,
+    "w_d": 0.1,
+    "w_e": 0.1
+  },
+  "condiciones": [
+    {
+      "nombre": "nominal",
+      "escala": 1.0,
+      "capacidad": null,
+      "distancia_max_km": null
+    },
+    {
+      "nombre": "demanda_x1.2",
+      "escala": 1.2,
+      "capacidad": null,
+      "distancia_max_km": null
+    },
+    {
+      "nombre": "demanda_x1.6",
+      "escala": 1.6,
+      "capacidad": null,
+      "distancia_max_km": null
+    },
+    {
+      "nombre": "capacidad_177",
+      "escala": 1.0,
+      "capacidad": 177,
+      "distancia_max_km": null
+    },
+    {
+      "nombre": "dmax_40",
+      "escala": 1.0,
+      "capacidad": null,
+      "distancia_max_km": 40.0
+    }
+  ],
+  "resumen": [
+    {
+      "condicion": "nominal",
+      "replicas": 30,
+      "cobertura_base_media": 77.7189629494943,
+      "cobertura_base_desviacion": 4.147224217306031,
+      "cobertura_base_mediana": 78.4851956439451,
+      "distancia_km_base_media": 2.958507088772386,
+      "distancia_km_base_desviacion": 0.7638917006383632,
+      "peor_cobertura_base_media": 0.0,
+      "peor_cobertura_base_desviacion": 0.0,
+      "tiempo_ms_base_media": 0.21376333218843988,
+      "tiempo_ms_base_desviacion": 0.038445782832498714,
+      "cobertura_genetico_media": 91.99978513014501,
+      "cobertura_genetico_desviacion": 5.895494759291041,
+      "cobertura_genetico_mediana": 91.46586725471082,
+      "distancia_km_genetico_media": 11.030855999381979,
+      "distancia_km_genetico_desviacion": 1.500603831492206,
+      "peor_cobertura_genetico_media": 0.4501915024947351,
+      "peor_cobertura_genetico_desviacion": 0.37342282817166805,
+      "tiempo_ms_genetico_media": 42.14931666986862,
+      "tiempo_ms_genetico_desviacion": 3.8216283143913476,
+      "diferencia_media_pp": 14.280822180650697,
+      "diferencia_desviacion_pp": 6.803423804965184,
+      "ic95_inferior_pp": 11.740381980910554,
+      "ic95_superior_pp": 16.82126238039084,
+      "cambio_relativo_pct": 18.374952056335463,
+      "todas_factibles": true
+    },
+    {
+      "condicion": "demanda_x1.2",
+      "replicas": 30,
+      "cobertura_base_media": 75.89895960799193,
+      "cobertura_base_desviacion": 5.150739122866555,
+      "cobertura_base_mediana": 77.1580971397933,
+      "distancia_km_base_media": 3.013888889033319,
+      "distancia_km_base_desviacion": 0.9314270501824365,
+      "peor_cobertura_base_media": 0.0,
+      "peor_cobertura_base_desviacion": 0.0,
+      "tiempo_ms_base_media": 0.20014666467128941,
+      "tiempo_ms_base_desviacion": 0.013721835957395396,
+      "cobertura_genetico_media": 84.52278356430155,
+      "cobertura_genetico_desviacion": 8.294006118594558,
+      "cobertura_genetico_mediana": 83.46874949621963,
+      "distancia_km_genetico_media": 11.079593041146124,
+      "distancia_km_genetico_desviacion": 1.6693661386544532,
+      "peor_cobertura_genetico_media": 0.1787444506959529,
+      "peor_cobertura_genetico_desviacion": 0.30452419621277566,
+      "tiempo_ms_genetico_media": 41.589403331939444,
+      "tiempo_ms_genetico_desviacion": 3.815555421733999,
+      "diferencia_media_pp": 8.623823956309609,
+      "diferencia_desviacion_pp": 6.712804487336558,
+      "ic95_inferior_pp": 6.117221565880826,
+      "ic95_superior_pp": 11.130426346738393,
+      "cambio_relativo_pct": 11.362242645815591,
+      "todas_factibles": true
+    },
+    {
+      "condicion": "demanda_x1.6",
+      "replicas": 30,
+      "cobertura_base_media": 63.572154886186595,
+      "cobertura_base_desviacion": 7.1975791209616125,
+      "cobertura_base_mediana": 61.987131958400816,
+      "distancia_km_base_media": 2.001591891453129,
+      "distancia_km_base_desviacion": 1.2872404477541628,
+      "peor_cobertura_base_media": 0.0,
+      "peor_cobertura_base_desviacion": 0.0,
+      "tiempo_ms_base_media": 0.20119000012831142,
+      "tiempo_ms_base_desviacion": 0.015758377378325937,
+      "cobertura_genetico_media": 65.33926333744071,
+      "cobertura_genetico_desviacion": 9.835683959299391,
+      "cobertura_genetico_mediana": 62.69538585352768,
+      "distancia_km_genetico_media": 11.571899993972526,
+      "distancia_km_genetico_desviacion": 2.0840919619022316,
+      "peor_cobertura_genetico_media": 0.027956989247311825,
+      "peor_cobertura_genetico_desviacion": 0.12465060750091457,
+      "tiempo_ms_genetico_media": 42.62072000225695,
+      "tiempo_ms_genetico_desviacion": 4.127731252158649,
+      "diferencia_media_pp": 1.7671084512541086,
+      "diferencia_desviacion_pp": 4.033925431500463,
+      "ic95_inferior_pp": 0.26081593990726915,
+      "ic95_superior_pp": 3.273400962600948,
+      "cambio_relativo_pct": 2.7796894008355824,
+      "todas_factibles": true
+    },
+    {
+      "condicion": "capacidad_177",
+      "replicas": 30,
+      "cobertura_base_media": 74.34106857300826,
+      "cobertura_base_desviacion": 4.794802583467001,
+      "cobertura_base_mediana": 74.66095504082455,
+      "distancia_km_base_media": 2.961999926761746,
+      "distancia_km_base_desviacion": 0.9584537682120998,
+      "peor_cobertura_base_media": 0.0,
+      "peor_cobertura_base_desviacion": 0.0,
+      "tiempo_ms_base_media": 0.21826333443944654,
+      "tiempo_ms_base_desviacion": 0.024542285441542994,
+      "cobertura_genetico_media": 78.55743614501026,
+      "cobertura_genetico_desviacion": 7.790977571563767,
+      "cobertura_genetico_mediana": 76.9102993675827,
+      "distancia_km_genetico_media": 5.160222672046197,
+      "distancia_km_genetico_desviacion": 2.0495050533355093,
+      "peor_cobertura_genetico_media": 0.0,
+      "peor_cobertura_genetico_desviacion": 0.0,
+      "tiempo_ms_genetico_media": 42.8932800006199,
+      "tiempo_ms_genetico_desviacion": 4.096518911421019,
+      "diferencia_media_pp": 4.216367572001949,
+      "diferencia_desviacion_pp": 6.5680077203016864,
+      "ic95_inferior_pp": 1.7638331829667204,
+      "ic95_superior_pp": 6.668901961037177,
+      "cambio_relativo_pct": 5.671653169554825,
+      "todas_factibles": true
+    },
+    {
+      "condicion": "dmax_40",
+      "replicas": 30,
+      "cobertura_base_media": 96.86992194713058,
+      "cobertura_base_desviacion": 3.969797779199714,
+      "cobertura_base_mediana": 98.26569174542912,
+      "distancia_km_base_media": 9.187671378421516,
+      "distancia_km_base_desviacion": 2.7348757925713674,
+      "peor_cobertura_base_media": 0.48944694846003045,
+      "peor_cobertura_base_desviacion": 0.4775601161515458,
+      "tiempo_ms_base_media": 0.21062666395058235,
+      "tiempo_ms_base_desviacion": 0.01046027038411076,
+      "cobertura_genetico_media": 97.02571853670308,
+      "cobertura_genetico_desviacion": 4.01073461560344,
+      "cobertura_genetico_mediana": 98.90633970408521,
+      "distancia_km_genetico_media": 9.882430967867261,
+      "distancia_km_genetico_desviacion": 3.4417303504369268,
+      "peor_cobertura_genetico_media": 0.5752139101119479,
+      "peor_cobertura_genetico_desviacion": 0.48206838931008056,
+      "tiempo_ms_genetico_media": 42.90072333145266,
+      "tiempo_ms_genetico_desviacion": 3.026641183985956,
+      "diferencia_media_pp": 0.15579658957246967,
+      "diferencia_desviacion_pp": 0.4391914493784222,
+      "ic95_inferior_pp": -0.008200192837117648,
+      "ic95_superior_pp": 0.319793371982057,
+      "cambio_relativo_pct": 0.16083071653293987,
+      "todas_factibles": true
+    }
+  ],
+  "comparacion_real": {
+    "observado_2023": {
+      "casos": 934.0,
+      "cobertura_base_pct": 70.44967880085653,
+      "cobertura_genetico_pct": 70.98501070663812,
+      "diferencia_pp": 0.5353319057815895,
+      "cambio_relativo_pct": 0.7598784194528945
+    },
+    "observado_2024": {
+      "casos": 1134.0,
+      "cobertura_base_pct": 58.46560846560847,
+      "cobertura_genetico_pct": 58.46560846560847,
+      "diferencia_pp": 0.0,
+      "cambio_relativo_pct": 0.0
+    }
+  },
+  "calidad_genetico": [
+    {
+      "condicion": "nominal",
+      "proporcion_alcanza_optimo": 1.0,
+      "brecha_media": 0.0,
+      "brecha_maxima": 0.0,
+      "generaciones_media": 22.3,
+      "evaluaciones_media": 96.96666666666667
+    },
+    {
+      "condicion": "demanda_x1.2",
+      "proporcion_alcanza_optimo": 1.0,
+      "brecha_media": 0.0,
+      "brecha_maxima": 0.0,
+      "generaciones_media": 22.3,
+      "evaluaciones_media": 96.96666666666667
+    },
+    {
+      "condicion": "demanda_x1.6",
+      "proporcion_alcanza_optimo": 1.0,
+      "brecha_media": 0.0,
+      "brecha_maxima": 0.0,
+      "generaciones_media": 22.3,
+      "evaluaciones_media": 96.96666666666667
+    },
+    {
+      "condicion": "capacidad_177",
+      "proporcion_alcanza_optimo": 1.0,
+      "brecha_media": 0.0,
+      "brecha_maxima": 0.0,
+      "generaciones_media": 22.3,
+      "evaluaciones_media": 96.03333333333333
+    },
+    {
+      "condicion": "dmax_40",
+      "proporcion_alcanza_optimo": 1.0,
+      "brecha_media": 0.0,
+      "brecha_maxima": 0.0,
+      "generaciones_media": 22.233333333333334,
+      "evaluaciones_media": 93.2
+    }
+  ],
+  "bases": [
+    {
+      "condicion": "nominal",
+      "bases_base": "0-3-4",
+      "bases_genetico_mas_frecuente": "1-4-8",
+      "bases_optimo_exacto": "1-4-8",
+      "nombres_base": "Chiquimula, Jocotán, Camotán",
+      "nombres_genetico_mas_frecuente": "San José La Arada, Camotán, Quezaltepeque",
+      "nombres_optimo_exacto": "San José La Arada, Camotán, Quezaltepeque"
+    },
+    {
+      "condicion": "demanda_x1.2",
+      "bases_base": "0-3-4",
+      "bases_genetico_mas_frecuente": "1-4-8",
+      "bases_optimo_exacto": "1-4-8",
+      "nombres_base": "Chiquimula, Jocotán, Camotán",
+      "nombres_genetico_mas_frecuente": "San José La Arada, Camotán, Quezaltepeque",
+      "nombres_optimo_exacto": "San José La Arada, Camotán, Quezaltepeque"
+    },
+    {
+      "condicion": "demanda_x1.6",
+      "bases_base": "0-3-4",
+      "bases_genetico_mas_frecuente": "1-4-8",
+      "bases_optimo_exacto": "1-4-8",
+      "nombres_base": "Chiquimula, Jocotán, Camotán",
+      "nombres_genetico_mas_frecuente": "San José La Arada, Camotán, Quezaltepeque",
+      "nombres_optimo_exacto": "San José La Arada, Camotán, Quezaltepeque"
+    },
+    {
+      "condicion": "capacidad_177",
+      "bases_base": "0-3-4",
+      "bases_genetico_mas_frecuente": "0-4-6",
+      "bases_optimo_exacto": "0-4-6",
+      "nombres_base": "Chiquimula, Jocotán, Camotán",
+      "nombres_genetico_mas_frecuente": "Chiquimula, Camotán, Esquipulas",
+      "nombres_optimo_exacto": "Chiquimula, Camotán, Esquipulas"
+    },
+    {
+      "condicion": "dmax_40",
+      "bases_base": "0-3-4",
+      "bases_genetico_mas_frecuente": "0-3-5",
+      "bases_optimo_exacto": "0-3-5",
+      "nombres_base": "Chiquimula, Jocotán, Camotán",
+      "nombres_genetico_mas_frecuente": "Chiquimula, Jocotán, Olopa",
+      "nombres_optimo_exacto": "Chiquimula, Jocotán, Olopa"
+    }
+  ],
+  "nota": "Resultados simulados; km geodésicos entre centroides; casos registrados, no prevalencia."
+}

@@ -45,6 +45,19 @@ Aplica el protocolo congelado de `docs/protocolo_demanda.md`: backtest de los mo
 
 Modelo, restricciones, unidades y supuestos: `docs/modelo.md`.
 
+## Algoritmo genético y experimentos
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.ejecutar_experimentos --config configs/piloto_chiquimula.json
+.\.venv\Scripts\python.exe -m scripts.generar_reporte --config configs/piloto_chiquimula.json
+```
+
+- `ejecutar_experimentos` compara la política base con el algoritmo genético en 5 condiciones (nominal, demanda ×1.2 y ×1.6, capacidad 177 y `D_max` de 40 km), con 30 réplicas pareadas cada una. También evalúa ambas con los casos reales de 2023–2024 y mide la brecha del algoritmo frente al óptimo exacto. Las salidas quedan en `resultados/experimentos_*`.
+- `generar_reporte` produce las figuras en `resultados/figuras/`: mapa de asignación, comparación de escenarios, diferencias pareadas y convergencia.
+- La columna `tiempo_ejecucion_ms` cambia en cada ejecución; el resto de los resultados es reproducible.
+
+Diseño y parámetros congelados: `docs/diseno_experimental.md`. Técnica: `docs/algoritmo_genetico.md`.
+
 ## Estructura
 
 ```text
