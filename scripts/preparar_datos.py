@@ -287,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
     union_tabla.to_csv(RESULTADOS / "union_municipios.csv", index=False, lineterminator="\n")
     candidatos.to_csv(RESULTADOS / "candidatos_departamento.csv", index=False, lineterminator="\n")
     (RESULTADOS / "calidad_datos.json").write_text(
-        json.dumps(calidad, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        json.dumps(calidad, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
     )
 
     print(f"panel: {len(panel)} celdas, {panel['codigo'].nunique()} municipios, años {anios[0]}-{anios[-1]}")

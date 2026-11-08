@@ -1,113 +1,128 @@
-"""Ejecuta base, optimizado y sensibilidad.
+"""Experimentos base vs. algoritmo genético según docs/diseno_experimental.md.
 
-Responsable: Integrante 3. Pendiente de implementar (Hito 5).
-Se ejecutan 30 replicas independientes para el escenario base, optimizado y sensibilidad. Se guardan los resultados en la carpeta de resultados.    
+Requiere haber corrido antes:
+    python -m scripts.preparar_datos --config configs/piloto_chiquimula.json
+    python -m scripts.validar_demanda --config configs/piloto_chiquimula.json
+
+Uso:
+    python -m scripts.ejecutar_experimentos --config configs/piloto_chiquimula.json
+
+Salidas (resultados/):
+    experimentos_replicas.csv       5 condiciones × 30 réplicas × 2 políticas
+    experimentos_observado.csv      ambas políticas con los casos reales 2023 y 2024
+    experimentos_resumen.csv        métricas por condición y diferencia pareada con IC 95 %
+    experimentos_calidad.csv        brecha del algoritmo genético frente al óptimo exacto
+    experimentos_convergencia.csv   mejor y mediana de J por generación
+    experimentos_bases.csv          bases elegidas por cada política
+    experimentos_resumen.json       resumen para el informe
+La columna tiempo_ejecucion_ms cambia en cada ejecución; el resto es reproducible.
 """
 
-import os
+from __future__ import annotations
+
+import argparse
 import json
-import numpy as np
+from dataclasses import asdict
+from pathlib import Path
+
 import pandas as pd
 
-# Importaciones relativas de los módulos creados por el equipo
-# (Ajusta los nombres de importación si tus compañeros usaron otros nombres de archivos o clases)
-try:
-    from brigadas.simulacion import Simulator  # Motor de simulación del sistema
-    from brigadas.optimizador import AlgoritmoGenetico  # Técnica adicional investigada
-    from brigadas.datos import cargar_datos_chiquimula  # Carga de datos reales de Chiquimula
-except ImportError:
-    # Estructura provisional de respaldo por si los módulos aún se están integrando
-    pass
+from brigadas import demanda
+from brigadas.baseline import demanda_media_desarrollo
+from brigadas.config import cargar_configuracion
+from brigadas.contratos import PesosObjetivo
+from brigadas.distancias import cargar_municipios_csv, matriz_distancias
+from brigadas.experimentos import CONDICIONES, ejecutar_experimentos, resumir_experimentos
+from brigadas.genetico import ParametrosGenetico
+from brigadas.simulacion import guardar_resultados_csv
 
-def asegurar_directorios():
-    """Garantiza que la carpeta de resultados y subcarpetas existan."""
-    os.makedirs("resultados/Figuras", exist_ok=True)
+RAIZ = Path(__file__).resolve().parents[1]
 
-def ejecutar_replicas(config, n_replicas=30):
-    """
-    Ejecuta el modelo N veces de forma independiente variando las semillas aleatorias,
-    cumpliendo con el requisito de al menos 30 réplicas de la Parte 5 de la rúbrica.
-    """
-    resultados_replicas = []
-    
-    print(f"[*] Iniciando ejecución de {n_replicas} réplicas independientes...")
-    
-    for i in range(n_replicas):
-        semilla = 42 + i  # Semilla única y reproducible por réplica
-        np.random.seed(semilla)
-        
-        # Simulación del escenario base (ej. asignación voraz o actual)
-        # TODO: Reemplazar con la llamada real al simulador base de tu equipo
-        cobertura_base = np.random.normal(loc=65.0, scale=4.0)  # Ejemplo estocástico
-        
-        # Simulación del escenario mejorado (con Algoritmo Genético)
-        # TODO: Reemplazar con la llamada real al optimizador de tus compañeros
-        cobertura_opt = np.random.normal(loc=88.0, scale=2.5)   # Ejemplo estocástico
-        
-        resultados_replicas.append({
-            "replica": i + 1,
-            "semilla": semilla,
-            "cobertura_base": round(cobertura_base, 2),
-            "cobertura_optimizada": round(cobertura_opt, 2),
-            "mejora_porcentual": round(((cobertura_opt - cobertura_base) / cobertura_base) * 100, 2)
-        })
-        
-    df_replicas = pd.DataFrame(resultados_replicas)
-    return df_replicas
 
-def ejecutar_analisis_sensibilidad():
-    """
-    Evalúa la robustez del modelo variando parámetros críticos (ej. aumento de demanda un 30%).
-    Cumple con el requisito de análisis de sensibilidad de la Parte 5.
-    """
-    print("[*] Ejecutando análisis de sensibilidad (variación de demanda y capacidad)...")
-    
-    variaciones = [-20, 0, +20, +40]  # Porcentajes de cambio en la demanda
-    resultados_sensibilidad = []
-    
-    for var in variaciones:
-        # Simulamos el impacto de la variación en el desempeño
-        rendimiento_promedio = 85.0 - (var * 0.15) if var > 0 else 80.0 + (abs(var) * 0.05)
-        resultados_sensibilidad.append({
-            "variacion_demanda_pct": var,
-            "cobertura_promedio_simulada": round(rendimiento_promedio, 2)
-        })
-        
-    return pd.DataFrame(resultados_sensibilidad)
+def _nombres(cadena: str, municipios) -> list[str]:
+    return [municipios[int(i)].nombre for i in cadena.split("-")]
 
-def main():
-    asegurar_directorios()
-    
-    print(" INICIANDO BATERÍA EXPERIMENTAL")
 
-    
-    # 1. Ejecución principal con 30 réplicas
-    df_30_replicas = ejecutar_replicas(config={}, n_replicas=30)
-    
-    # Calcular estadísticas resumen (promedio y desviación estándar)
-    resumen_estadistico = {
-        "base_media": float(df_30_replicas["cobertura_base"].mean()),
-        "base_std": float(df_30_replicas["cobertura_base"].std()),
-        "optimizado_media": float(df_30_replicas["cobertura_optimizada"].mean()),
-        "optimizado_std": float(df_30_replicas["cobertura_optimizada"].std()),
-        "mejora_promedio_pct": float(df_30_replicas["mejora_porcentual"].mean())
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--config", default="configs/piloto_chiquimula.json")
+    parser.add_argument("--anio-objetivo", type=int, default=2024,
+                        help="Año cuya población proyectada multiplica las tasas M0 (no usa casos de ese año).")
+    args = parser.parse_args(argv)
+    config = cargar_configuracion(RAIZ / args.config)
+    dep = config.departamento
+    resultados = RAIZ / "resultados"
+    parametros, pesos = ParametrosGenetico(), PesosObjetivo()
+
+    municipios = cargar_municipios_csv(RAIZ / "data" / "processed" / "municipios.csv", dep)
+    codigos = [m.codigo for m in municipios]
+    distancias = matriz_distancias(municipios)
+    panel = pd.read_csv(RAIZ / "data" / "processed" / f"panel_{dep}.csv", dtype={"codigo": str})
+    panel = panel[panel["codigo"].isin(codigos)]
+
+    referencia = demanda_media_desarrollo(panel, config.anios_desarrollo, codigos)
+    desarrollo = panel[panel["anio"].isin(config.anios_desarrollo)]
+    modelo = demanda.ajustar(desarrollo, "M0", config.anios_desarrollo)
+    objetivo = panel[panel["anio"] == args.anio_objetivo].sort_values("codigo")
+    mu = modelo.media(objetivo)["mu"].to_numpy(dtype=float)
+    a = json.loads((resultados / "demanda_dispersion.json").read_text(encoding="utf-8"))["a"]
+    observados = {}
+    for anio in config.anios_validacion:
+        filas = panel[panel["anio"] == anio].sort_values("codigo")
+        if filas["casos_registrados"].isna().any():
+            raise ValueError(f"Hay municipios sin registro en {anio}; no se imputan como cero.")
+        observados[f"observado_{anio}"] = filas["casos_registrados"].to_numpy(dtype=float)
+
+    r = ejecutar_experimentos(config, referencia, mu, a, distancias, observados, CONDICIONES, parametros, pesos)
+    resumen = resumir_experimentos(r.replicas)
+
+    guardar_resultados_csv(r.replicas, resultados / "experimentos_replicas.csv")
+    guardar_resultados_csv(r.observado, resultados / "experimentos_observado.csv")
+    resumen.to_csv(resultados / "experimentos_resumen.csv", index=False, lineterminator="\n")
+    r.calidad.to_csv(resultados / "experimentos_calidad.csv", index=False, lineterminator="\n")
+    r.convergencia.to_csv(resultados / "experimentos_convergencia.csv", index=False, lineterminator="\n")
+    bases = r.bases.copy()
+    for columna in ("bases_base", "bases_genetico_mas_frecuente", "bases_optimo_exacto"):
+        bases[columna.replace("bases_", "nombres_")] = bases[columna].map(lambda c: ", ".join(_nombres(c, municipios)))
+    bases.to_csv(resultados / "experimentos_bases.csv", index=False, lineterminator="\n")
+
+    observado = pd.DataFrame([x.a_dict() for x in r.observado])
+    real = {}
+    for escenario, sub in observado.groupby("escenario"):
+        base = float(sub.loc[sub["politica"] == "base", "porcentaje_cobertura"].iloc[0])
+        ga = float(sub.loc[sub["politica"] == "genetico", "porcentaje_cobertura"].iloc[0])
+        real[escenario] = {"casos": float(observados[escenario].sum()), "cobertura_base_pct": base,
+                           "cobertura_genetico_pct": ga, "diferencia_pp": ga - base,
+                           "cambio_relativo_pct": (ga - base) / base * 100 if base else None}
+    calidad = r.calidad.groupby("condicion", sort=False).agg(
+        proporcion_alcanza_optimo=("alcanza_optimo", "mean"), brecha_media=("brecha", "mean"),
+        brecha_maxima=("brecha", "max"), generaciones_media=("generaciones", "mean"),
+        evaluaciones_media=("evaluaciones", "mean"))
+    contenido = {
+        "diseno": "docs/diseno_experimental.md",
+        "departamento": dep,
+        "anio_objetivo_media": args.anio_objetivo,
+        "parametros_genetico": asdict(parametros),
+        "pesos": asdict(pesos),
+        "condiciones": [asdict(c) for c in CONDICIONES],
+        "resumen": resumen.to_dict("records"),
+        "comparacion_real": real,
+        "calidad_genetico": calidad.reset_index().to_dict("records"),
+        "bases": bases.to_dict("records"),
+        "nota": "Resultados simulados; km geodésicos entre centroides; casos registrados, no prevalencia.",
     }
-    
-    # 2. Análisis de sensibilidad
-    df_sensibilidad = ejecutar_analisis_sensibilidad()
-    
-    # 3. Guardar resultados en la carpeta resultados/
-    df_30_replicas.to_csv("resultados/baseline_GT20_replicas.csv", index=False)
-    df_sensibilidad.to_csv("resultados/sensibilidad_resultados.csv", index=False)
-    
-    with open("resultados/baseline_GT20_resumen.json", "w", encoding="utf-8") as f:
-        json.dump(resumen_estadistico, f, indent=4, ensure_ascii=False)
-        
-    print("\n Experimento completado.")
-    print(f" - Promedio Escenario Base: {resumen_estadistico['base_media']:.2f}% (± {resumen_estadistico['base_std']:.2f})")
-    print(f" - Promedio Optimizado (AG): {resumen_estadistico['optimizado_media']:.2f}% (± {resumen_estadistico['optimizado_std']:.2f})")
-    print(f" - Mejora Promedio Simulada: {resumen_estadistico['mejora_promedio_pct']:.2f}%")
-    print("Archivos guardados correctamente en la carpeta /resultados.\n")
+    (resultados / "experimentos_resumen.json").write_text(
+        json.dumps(contenido, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+    columnas = ["condicion", "cobertura_base_media", "cobertura_genetico_media", "diferencia_media_pp",
+                "ic95_inferior_pp", "ic95_superior_pp"]
+    print(resumen[columnas].round(2).to_string(index=False))
+    for escenario, valores in real.items():
+        print(f"{escenario}: base {valores['cobertura_base_pct']:.1f} % | genético {valores['cobertura_genetico_pct']:.1f} %"
+              f" | diferencia {valores['diferencia_pp']:+.2f} pp")
+    print(calidad.round(4).to_string())
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
