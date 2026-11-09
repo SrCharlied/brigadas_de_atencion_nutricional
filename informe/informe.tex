@@ -75,7 +75,9 @@ Se construyó un sistema reproducible de apoyo a decisiones que compara una asig
 
 El modelo de demanda, elegido con un protocolo fijado de antemano, ordena correctamente a los municipios por carga (Spearman $=0.938$ frente a los registros reservados de 2023--2024), pero subestima el nivel total en un 37.9\,\%.
 
-En la condición nominal (3 brigadas de 221 casos/año y radio de 22 km), el algoritmo genético eleva la cobertura simulada de 77.7\,\% a 92.0\,\%: \textbf{+14.3 puntos porcentuales} (IC 95\,\%: 11.7 a 16.8) en 30 réplicas pareadas, a cambio de una mayor distancia media de atención. La ventaja se reduce cuando la capacidad se satura (demanda $\times1.6$: +1.8 pp) y desaparece cuando la distancia deja de limitar (radio de 40 km: +0.2 pp). Con los casos reales de 2023 y 2024, cuya demanda supera ampliamente la capacidad, la diferencia es de +0.5 y 0.0 pp. El algoritmo alcanzó el óptimo exacto en las 150 ejecuciones.
+En la condición nominal (3 brigadas de 221 casos/año y radio de 22 km), el algoritmo genético eleva la cobertura simulada de 77.7\,\% a 92.0\,\%: \textbf{+14.3 puntos porcentuales} (IC 95\,\%: 11.7 a 16.8) en 30 réplicas pareadas, a cambio de una mayor distancia media de atención. La ventaja se reduce cuando la capacidad se satura (demanda $\times1.6$: +1.8 pp) y desaparece cuando la distancia deja de limitar (radio de 40 km: +0.2 pp). Con los casos reales de 2023 y 2024, cuya demanda supera ampliamente la capacidad, la diferencia es de +0.5 y 0.0 pp. El algoritmo alcanzó el óptimo exacto en las 150 ejecuciones. En un análisis adicional a mayor escala (Huehuetenango y el país completo), supera a la búsqueda aleatoria con el mismo presupuesto en 118 de 120 casos, pero una heurística voraz lo supera a escala nacional.
+
+Como propuesta, un estudio de tamizaje modela que las brigadas \emph{evalúan niños} (20 a 35 evaluaciones por día, según el PMA) e \emph{identifican casos} según la tasa de cada municipio, con tiempos de viaje por carretera. Para identificar el 80\,\% de los casos esperados, Chiquimula necesita entre 5 y 8 brigadas según su productividad. Con 27.5 evaluaciones por día, 6 brigadas (dos en Jocotán, dos en Camotán, una en Esquipulas y una en Quezaltepeque) identifican el 83\,\% de los casos evaluando al 71\,\% de los niños. Orientar las brigadas por tasa encuentra 8 puntos más de casos que evaluar a la misma cantidad de niños sin priorizar.
 
 Todos los resultados de cobertura son \textbf{simulados} bajo supuestos declarados: no representan una reducción real de la desnutrición ni una recomendación operativa para el MSPAS.
 
@@ -87,7 +89,10 @@ Todos los resultados de cobertura son \textbf{simulados} bajo supuestos declarad
 
 El Ministerio de Salud Pública y Asistencia Social (MSPAS) publica los casos registrados de desnutrición aguda en menores de cinco años por año, departamento, municipio, grupo etario y sexo, de 2012 a 2024~\cite{mspas}. En ese periodo el archivo suma 239{,}805 casos registrados a nivel nacional, con un aumento marcado desde 2020: 15{,}547 casos en 2019 frente a 27{,}068 en 2020 y 27{,}795 en 2024.
 
-\pendiente{Agregar contexto bibliográfico sobre la desnutrición aguda en Guatemala y el uso de brigadas o equipos móviles, con fuentes confiables (MSPAS, SESAN, UNICEF, OPS). No usar cifras sin fuente.}
+La desnutrición en la primera infancia es un problema persistente en Guatemala: según la Encuesta Nacional de Salud Materno Infantil 2014--2015, la más reciente de alcance nacional, la desnutrición crónica afectaba al 46.5\,\% de los menores de cinco años~\cite{ensmi}. Este proyecto trabaja con la \emph{desnutrición aguda}, que es la que registra el MSPAS en los datos usados y la que buscan y tratan los equipos de campo.
+\pendiente{Confirmar la cifra de 46.5\,\% en el informe final de la ENSMI (FR318); se verificó en documentos del SIINSAN, pero no en el PDF original.}
+
+Para detectar y tratar la desnutrición aguda en las comunidades más alejadas y de difícil acceso, el MSPAS opera \textbf{brigadas de salud y nutrición}: equipos de una nutricionista, tres auxiliares de enfermería y un piloto que hacen evaluaciones nutricionales en visitas domiciliarias, entregan micronutrientes y desparasitan a menores de cinco años. UNICEF las apoyó desde 2018 con más de 72 equipos hasta que el MSPAS las institucionalizó~\cite{unicef2024}. Como el número de equipos es limitado, decidir desde dónde opera cada uno y a qué municipios atiende es un problema de asignación territorial, que es el que aborda este proyecto con una abstracción de esas brigadas.
 
 \subsection{Problema concreto}
 
@@ -213,16 +218,17 @@ Aquí el problema es elegir $K$ municipios base que minimicen el objetivo $J$ de
   \item La \textbf{enumeración exhaustiva} garantiza el óptimo, pero es inviable al crecer el problema. En Chiquimula sí es viable, y se usa como referencia de calidad.
   \item La \textbf{programación entera} exigiría linealizar la regla de asignación heurística y usar un solver externo.
   \item La \textbf{búsqueda local} se estanca en óptimos locales sin un mecanismo de diversidad.
+  \item Una \textbf{heurística voraz} es determinista y muy competitiva, pero construye la solución base a base sin reconsiderar decisiones.
 \end{itemize}
-El algoritmo genético trata el evaluador como una caja negra, mantiene la factibilidad por construcción y escala a instancias grandes.
+El algoritmo genético trata el evaluador como una caja negra y mantiene la factibilidad por construcción. Su desempeño a mayor escala frente a estas alternativas se mide empíricamente en la Sección~\ref{sec:escalabilidad}.
 
 \subsection{Limitaciones de la técnica}
 
 \begin{enumerate}[nosep]
   \item No garantiza el óptimo global; en instancias grandes no hay referencia exacta para medir la brecha.
-  \item Sus parámetros se fijaron por criterio, sin calibrarlos; un problema mayor podría necesitar otros valores.
+  \item Sus parámetros se fijaron por criterio, sin calibrarlos, y resultan cortos para espacios grandes: alcanza el óptimo de Huehuetenango solo en 3 de 30 ejecuciones (Sección~\ref{sec:escalabilidad}).
   \item Optimiza sobre la demanda de referencia y no sobre la incertidumbre de la demanda.
-  \item En este piloto el espacio de búsqueda es pequeño (165 combinaciones). La ventaja frente a la enumeración se argumenta por escalabilidad, pero no se demuestra empíricamente aquí.
+  \item Con estos parámetros no es la mejor alternativa a gran escala: a nivel nacional, una heurística voraz encuentra mejores soluciones, aunque con más evaluaciones. En el piloto de Chiquimula, la enumeración exhaustiva bastaría.
 \end{enumerate}
 
 % ---------------------------------------------------------------------
@@ -294,6 +300,7 @@ Módulo & Función & Integrante \\
 \cod{datos.py}, \cod{demanda.py} & Lectura, validación y unión de fuentes; modelo de demanda, backtest y validación & 1 \\
 \cod{contratos.py}, \cod{distancias.py}, \cod{asignacion.py}, \cod{baseline.py}, \cod{exacto.py}, \cod{simulacion.py} & Contratos, distancias, asignación capacitada, política base, enumerador exacto y réplicas pareadas & 2 \\
 \cod{genetico.py}, \cod{experimentos.py}, \cod{metricas.py}, \cod{visualizacion.py} & Algoritmo genético, experimentos, métricas y figuras & 1 (asignado al 3; ver Contribuciones) \\
+\cod{escalabilidad.py}, \cod{dimensionamiento.py}, \cod{tamizaje.py} & Análisis de escalabilidad, tiempos por carretera y propuesta de tamizaje con reparto óptimo & 1 \\
 \bottomrule
 \end{tabularx}
 \caption{Organización del código (\cod{brigadas/}).}
@@ -303,8 +310,8 @@ Módulo & Función & Integrante \\
 \subsection{Qué implementan las bibliotecas y qué el equipo}
 
 \begin{itemize}
-  \item \textbf{Bibliotecas:} lectura de CSV y Excel y operaciones tabulares (pandas~\cite{pandas}); álgebra vectorial y generación de números aleatorios (NumPy~\cite{numpy}); distribuciones, optimización escalar, correlación de Spearman y distribución $t$ (SciPy~\cite{scipy}); gráficas (Matplotlib~\cite{matplotlib}) y mapas (GeoPandas); pruebas (pytest). \textbf{No se usó ninguna biblioteca de algoritmos evolutivos.}
-  \item \textbf{Equipo:} validación de contratos de datos y correspondencias territoriales; estimación por IRLS del modelo log-lineal M2; prueba de sobredispersión con razón de verosimilitudes; backtest con origen móvil; regla de asignación capacitada y verificador independiente; política base; enumerador exacto; flujo de réplicas pareadas; \textbf{el algoritmo genético completo} (representación, torneo, cruce que preserva la unicidad, mutación, elitismo, caché, terminación e historial de convergencia); intervalos de confianza pareados y figuras.
+  \item \textbf{Bibliotecas:} lectura de CSV y Excel y operaciones tabulares (pandas~\cite{pandas}); álgebra vectorial y generación de números aleatorios (NumPy~\cite{numpy}); distribuciones, optimización escalar, correlación de Spearman, distribución $t$ y el solucionador de programación lineal HiGHS (SciPy~\cite{scipy}); gráficas (Matplotlib~\cite{matplotlib}) y mapas (GeoPandas); pruebas (pytest). \textbf{No se usó ninguna biblioteca de algoritmos evolutivos.}
+  \item \textbf{Equipo:} validación de contratos de datos y correspondencias territoriales; estimación por IRLS del modelo log-lineal M2; prueba de sobredispersión con razón de verosimilitudes; backtest con origen móvil; regla de asignación capacitada y verificador independiente; política base; enumerador exacto; flujo de réplicas pareadas; \textbf{el algoritmo genético completo} (representación, torneo, cruce que preserva la unicidad, mutación, elitismo, caché, terminación, historial de convergencia y la variante con varias brigadas por municipio); la formulación del programa lineal del tamizaje (la biblioteca solo lo resuelve); búsquedas exacta y voraz; intervalos de confianza pareados y figuras.
 \end{itemize}
 
 \subsection{Reproducibilidad}
@@ -318,9 +325,14 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m scripts.validar_demanda --config configs/piloto_chiquimula.json
 .\.venv\Scripts\python.exe -m scripts.ejecutar_baseline --config configs/piloto_chiquimula.json
 .\.venv\Scripts\python.exe -m scripts.ejecutar_experimentos --config configs/piloto_chiquimula.json
+.\.venv\Scripts\python.exe -m scripts.ejecutar_escalabilidad
+.\.venv\Scripts\python.exe -m scripts.ejecutar_dimensionamiento
+.\.venv\Scripts\python.exe -m scripts.ejecutar_tamizaje
 .\.venv\Scripts\python.exe -m scripts.generar_reporte --config configs/piloto_chiquimula.json
 .\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m scripts.planificar --brigadas 6 --mapa
 \end{verbatim}
+El análisis de escalabilidad tarda unos 28 minutos y el estudio de tamizaje, entre 20 y 40; los demás pasos, segundos. El último comando es el \textbf{planificador interactivo}: con cualquier número de brigadas, productividad, tiempo de viaje y objetivo, devuelve en segundos el plan, los casos identificados, los niños evaluados y el mapa.
 Los archivos oficiales están versionados byte a byte en \cod{data/raw}, porque los portales del INE y de HDX bloquean descargas automáticas con desafíos antibots; el primer script verifica su SHA-256. La cadena completa se reprodujo en un clon limpio del repositorio, sin conexión a los portales: las 21 salidas de \cod{resultados/} fueron idénticas, salvo las columnas de tiempo de ejecución.
 
 % ---------------------------------------------------------------------
@@ -532,6 +544,165 @@ Radio 40 km & 96.9 (4.0) & 97.0 (4.0) & +0.2 & [$-0.01$, 0.32] & +0.2\,\% \\
   \item \textbf{Tiempo de cómputo:} unos 42 ms por ejecución del algoritmo genético frente a 0.2 ms de la política base.
 \end{itemize}
 
+\subsection{Análisis adicional: escalabilidad del algoritmo genético}
+\label{sec:escalabilidad}
+
+En Chiquimula la enumeración basta, así que se diseñó y congeló un análisis adicional, antes de ejecutarlo (\cod{docs/analisis\_escalabilidad.md}), con instancias donde enumerar es costoso o imposible:
+
+\begin{itemize}[nosep]
+  \item \textbf{Huehuetenango}, $K=4$: 33 municipios, 40{,}920 combinaciones, óptimo exacto conocido.
+  \item \textbf{País completo}, $K=10$, 20 y 40: 338 municipios y de $10^{18}$ a $10^{52}$ combinaciones.
+\end{itemize}
+
+Las reglas de capacidad son las del piloto; el radio es de 35 km en Huehuetenango (mediana de sus distancias) y de 22 km a escala nacional. Se compararon cuatro métodos sobre la demanda de referencia:
+\begin{itemize}[nosep]
+  \item la política base;
+  \item una búsqueda voraz que agrega la base que más reduce $J$;
+  \item una búsqueda aleatoria con \textbf{el mismo número de evaluaciones} que el algoritmo genético en cada semilla;
+  \item el algoritmo genético con los \textbf{mismos parámetros congelados}.
+\end{itemize}
+Los métodos estocásticos se ejecutaron con 30 semillas.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Instancia & Base & Voraz & Aleatoria & Genético & Gen.\ $-$ aleatoria (IC 95\,\%) \\
+\midrule
+Huehuetenango, $K=4$ & 83.6 & 98.0 & 99.0 & \textbf{99.6} & +0.6 pp [0.4, 0.9] \\
+Nacional, $K=10$ & 35.4 & \textbf{50.0} & 39.0 & 47.9 & +8.9 pp [8.4, 9.4] \\
+Nacional, $K=20$ & 46.9 & \textbf{67.4} & 51.8 & 63.7 & +11.9 pp [11.3, 12.4] \\
+Nacional, $K=40$ & 64.1 & \textbf{81.0} & 64.1 & 76.7 & +12.5 pp [12.0, 13.1] \\
+\bottomrule
+\end{tabular}
+\caption{Cobertura media de la demanda de referencia (\%) por método. En Huehuetenango el óptimo exacto tiene $J=0.0558$; el algoritmo genético lo alcanzó en 3 de 30 ejecuciones (J medio 0.076, frente a 0.166 del voraz).}
+\label{tab:escalabilidad}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figuras/escalabilidad.png}
+\caption{Objetivo $J$ (menor es mejor) por método e instancia. Las cajas muestran las 30 semillas de la búsqueda aleatoria y del algoritmo genético; las líneas, la política base, el voraz y, en Huehuetenango, el óptimo exacto.}
+\label{fig:escalabilidad}
+\end{figure}
+
+\begin{itemize}
+  \item \textbf{Frente a la búsqueda aleatoria con el mismo presupuesto,} el algoritmo genético gana en 118 de 120 pares, y la ventaja crece con el tamaño del problema. Con $K=40$, la búsqueda aleatoria es incluso peor que la política base. La búsqueda guiada del algoritmo sí aporta.
+  \item \textbf{Frente a la política base,} cubre entre 12 y 17 pp más a escala nacional.
+  \item \textbf{Frente al voraz:} en Huehuetenango gana el algoritmo genético, pero \textbf{a escala nacional gana el voraz} (brecha del genético del 3 al 15\,\% en $J$), que usa entre 1.8 y 4 veces más evaluaciones.
+  \item \textbf{Con los parámetros congelados,} el algoritmo evalúa solo el 1.2\,\% del espacio de Huehuetenango y alcanza el óptimo en 3 de 30 ejecuciones. Más población y generaciones, o sembrar la población inicial con la solución voraz, son mejoras naturales que no se probaron.
+\end{itemize}
+
+% ---------------------------------------------------------------------
+\section{Propuesta: cuántas brigadas para identificar cuántos casos}
+\label{sec:propuesta}
+
+Los experimentos anteriores fijan 3 brigadas y preguntan dónde ubicarlas. Para proponer un sistema hay que responder antes \emph{cuántas brigadas hacen falta}. Para eso la capacidad de una brigada tiene que expresarse en una unidad con respaldo.
+
+\subsection{Qué hace una brigada: evidencia}
+
+\begin{itemize}
+  \item \textbf{Productividad:} según el PMA, cada brigada de salud y nutrición ``realiza una evaluación de 20 a 35 niñas y niños'' por día, en jornadas de 8:00 a 15:00 (San Marcos, 2020)~\cite{pma2020}.
+  \item \textbf{Proporción de casos:} en Huehuetenango, 13 brigadas evaluaron a 13{,}433 menores de cinco años y detectaron 257 casos de desnutrición aguda moderada o severa, el 1.9\,\%~\cite{unicef2020}. En Alta Verapaz, 19 brigadas monitorearon a 5{,}574 niños y detectaron 21 casos, el 0.4\,\%~\cite{ops2022}.
+\end{itemize}
+
+Una brigada \textbf{evalúa niños} y, al evaluarlos, \textbf{identifica casos}. Expresar su capacidad en ``casos atendidos por año'', como en una primera versión de este estudio, no tiene respaldo. Esa versión (\cod{docs/estudio\_dimensionamiento.md}) se conserva en el repositorio como antecedente.
+
+\subsection{Diseño}
+
+El estudio se congeló antes de ejecutarlo (\cod{docs/estudio\_tamizaje.md}).
+\begin{itemize}
+  \item \textbf{Demanda de evaluación:} los niños de 0 a 4 años de 2024 por municipio (INE; 50{,}904 en total), con una ronda de tamizaje al año (supuesto).
+  \item \textbf{Capacidad por brigada:} 20, 27.5 o 35 evaluaciones por día (PMA) $\times$ 220 días de campo (supuesto), es decir 4{,}400, 6{,}050 o 7{,}700 evaluaciones al año.
+  \item \textbf{Casos identificados:} niños evaluados en cada municipio $\times$ tasa de casos de 2024 de ese municipio. La tasa aproxima dónde es más probable encontrar casos.
+  \item \textbf{Decisión:} cuántas brigadas tienen base en cada municipio. \textbf{Varias pueden compartir municipio.}
+  \item \textbf{Reparto óptimo:} para una ubicación dada, qué niños evalúa cada brigada (solo dentro del tiempo máximo de viaje por carretera de OSRM~\cite{osrm,osm}) se resuelve como un \textbf{programa lineal}, de forma óptima.
+  \item \textbf{Dos objetivos:} \emph{identificar casos} (principal: maximizar los casos esperados) y \emph{evaluar niños} (alternativo: maximizar los niños evaluados, sin importar la tasa).
+  \item \textbf{Factores:} de 1 a 15 brigadas, las tres productividades y un viaje máximo de 45, 60 o 90 minutos (270 configuraciones).
+  \item \textbf{Búsqueda de la ubicación:}
+    \begin{itemize}[nosep]
+      \item enumeración exacta hasta 5 brigadas (hasta 3{,}003 ubicaciones);
+      \item heurística voraz;
+      \item el algoritmo genético del proyecto, generalizado para admitir varias brigadas por municipio (5 semillas por configuración).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Cuántas brigadas hacen falta}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Productividad & Capacidad anual & 50\,\% de los casos & 80\,\% & 90\,\% \\
+\midrule
+20 evaluaciones/día & 4{,}400 & 5 (59\,\%) & 8 (81--82\,\%) & 10 (93\,\%) \\
+\textbf{27.5 evaluaciones/día} & \textbf{6{,}050} & \textbf{3 (50\,\%)} & \textbf{6 (83\,\%)} & \textbf{7 (91\,\%)} \\
+35 evaluaciones/día & 7{,}700 & 3 (61\,\%) & 5 (86\,\%) & 6 (96\,\%) \\
+\bottomrule
+\end{tabular}
+\caption{Menor número de brigadas que identifica cada meta de los casos esperados de 2024 (objetivo principal). El resultado es el mismo con viajes de hasta 45, 60 o 90 minutos.}
+\label{tab:tamizaje}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figuras/tamizaje_curvas.png}
+\caption{Casos esperados identificados según el número de brigadas, para cada productividad y tiempo máximo de viaje. Líneas continuas: objetivo de identificar casos; punteadas: objetivo de evaluar niños. Líneas horizontales: metas de 50, 80 y 90\,\%.}
+\label{fig:tamizaje}
+\end{figure}
+
+\begin{itemize}
+  \item \textbf{El número de brigadas depende sobre todo de su productividad:} entre 5 y 8 brigadas para identificar el 80\,\% de los casos esperados.
+  \item \textbf{El tiempo de viaje casi no cambia la respuesta:} la capacidad de evaluación, no el acceso, es lo que limita.
+  \item \textbf{Evaluar a todos los niños} una vez al año con 27.5 evaluaciones por día requiere unas 9 brigadas. La recomendación de evaluar cada mes requeriría unas 101 brigadas: la distancia entre lo deseable y lo factible justifica priorizar.
+\end{itemize}
+
+\subsection{Configuración de referencia}
+
+Con 27.5 evaluaciones por día, viajes de hasta 60 minutos y la meta del 80\,\%, hacen falta \textbf{6 brigadas} (Tabla~\ref{tab:referencia}, Figura~\ref{fig:tamizaje_mapa}).
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.4cm}p{4.2cm}rrrr}
+\toprule
+Objetivo & Ubicación & Casos & Niños & Casos (tasas 2023) & Viaje \\
+\midrule
+\textbf{Identificar casos} & Jocotán $\times$2, Camotán $\times$2, Esquipulas, Quezaltepeque & \textbf{83.1\,\%} & 71.3\,\% & 73.3\,\% & 14.2 min \\
+Evaluar niños & Chiquimula $\times$2, Jocotán $\times$2, Camotán, Esquipulas & 75.0\,\% & 71.3\,\% & 72.0\,\% & 1.3 min \\
+\bottomrule
+\end{tabular}
+\caption{Planes con 6 brigadas según el objetivo. ``Casos'': casos esperados identificados respecto de los de 2024; ``Niños'': niños de 0 a 4 años evaluados.}
+\label{tab:referencia}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{figuras/tamizaje_mapa.png}
+\caption{Configuración de referencia: 6 brigadas (27.5 evaluaciones por día, viaje de hasta 60 minutos). El color indica casos por cada 1{,}000 niños en 2024. Estrellas: bases del plan para identificar casos ($\times$n: brigadas en el municipio); círculos: bases del plan para evaluar niños (también con dos brigadas en Chiquimula y en Jocotán). La brigada con base en Quezaltepeque evalúa municipios vecinos con tasa más alta, no el suyo, que tiene de las tasas más bajas.}
+\label{fig:tamizaje_mapa}
+\end{figure}
+
+\begin{itemize}
+  \item \textbf{Mismos niños, más casos.} Los dos planes evalúan a la misma cantidad de niños (71.3\,\%, la capacidad completa), pero orientar las brigadas a los municipios con más tasa \textbf{identifica 8 puntos más de casos} (83.1 frente a 75.0\,\%).
+  \item \textbf{El costo es el viaje.} El plan para identificar casos recorre 14.2 minutos de media frente a 1.3, y deja 3 municipios con menos de la mitad de sus niños evaluados, frente a 6 del otro plan.
+  \item \textbf{Robustez:} con las tasas de 2023 el mismo plan identifica el 73.3\,\% de los casos de ese año. La ubicación depende en parte del año usado para planificar.
+\end{itemize}
+
+\subsection{Calidad de la búsqueda}
+
+\begin{itemize}
+  \item \textbf{Con 5 brigadas o menos,} el algoritmo genético alcanzó el óptimo exacto en 448 de 450 ejecuciones (99.6\,\%).
+  \item \textbf{Con más brigadas,} donde la enumeración ya no es práctica (más de 180{,}000 ubicaciones con 10 brigadas), el mejor plan lo encontró el algoritmo genético en 103 de 180 configuraciones y la heurística voraz en 77. Por eso el plan propuesto toma el mejor de ambos.
+  \item A diferencia del piloto de 3 brigadas, aquí el espacio de búsqueda sí justifica el algoritmo genético.
+\end{itemize}
+
+\subsection{Línea recta frente a carretera}
+
+Por carretera, los trayectos entre municipios son en mediana \textbf{1.74 veces} más largos que en línea recta (39.6 frente a 22.3 km), con un tiempo mediano de 50 minutos. El orden de cercanía se conserva en buena medida (Spearman 0.83). Por tanto, los experimentos de las secciones anteriores, hechos en línea recta, subestiman las distancias reales, aunque la estructura de cercanía es parecida.
+
 % ---------------------------------------------------------------------
 \section{Limitaciones}
 \label{sec:limitaciones}
@@ -541,10 +712,17 @@ Radio 40 km & 96.9 (4.0) & 97.0 (4.0) & +0.2 & [$-0.01$, 0.32] & +0.2\,\% \\
   \item \textbf{Ausencias:} el MSPAS no publica ceros explícitos; un municipio-año sin fila no se distingue de cero casos. En Chiquimula no hay ausencias.
   \item \textbf{Nivel de la demanda subestimado} en un 37.9\,\% en la validación. Con el nivel real, la ventaja simulada del algoritmo desaparece (Sección~\ref{sec:real}).
   \item \textbf{Población proyectada,} no censal: depende del censo 2018 conciliado por el INE.
-  \item \textbf{Distancias geodésicas entre centroides:} no equivalen a distancia vial ni a tiempo de viaje y subestiman el acceso real en zonas montañosas. Esto afecta directamente a la mayor distancia que implica la solución del algoritmo.
-  \item \textbf{Supuestos de escenario} ($K$, $C$, $D_{\max}$, pesos) sin fuente oficial: los resultados dependen de ellos, como muestra la sensibilidad.
-  \item \textbf{Regla de asignación heurística:} no divide la demanda de un municipio entre brigadas y no garantiza la asignación óptima para unas bases dadas.
-  \item \textbf{Algoritmo genético:} no garantiza el óptimo global y sus parámetros no se calibraron. En este piloto el problema es pequeño y la enumeración exhaustiva bastaría (Sección~\ref{sec:tecnica}).
+  \item \textbf{Distancias geodésicas entre centroides} en los experimentos principales: por carretera, los trayectos son en mediana 1.74 veces más largos (Sección~\ref{sec:propuesta}). Esto afecta directamente a la mayor distancia que implica la solución del algoritmo. El estudio de dimensionamiento sí usa tiempos por carretera, pero de OSRM, que supone un automóvil en condiciones normales; en caminos rurales o con lluvia el viaje real puede ser mayor.
+  \item \textbf{Supuestos de escenario} ($K$, $C$, $D_{\max}$, pesos) sin fuente oficial: los resultados dependen de ellos, como muestra la sensibilidad. En los experimentos principales, la capacidad $C$ es una unidad abstracta para comparar métodos. La interpretación operativa, en evaluaciones por día, está en la propuesta de tamizaje (Sección~\ref{sec:propuesta}).
+  \item \textbf{Propuesta de tamizaje:}
+    \begin{itemize}[nosep]
+      \item la productividad proviene de un solo reporte del PMA (2020, niños de 0 a 10 años);
+      \item los 220 días de campo y la ronda única anual son supuestos;
+      \item la tasa de 2024 subestima la prevalencia donde hubo poca búsqueda activa;
+      \item \textbf{no se modela el seguimiento} de los casos detectados, porque no se encontró información pública sobre cuántos puede acompañar una brigada.
+    \end{itemize}
+  \item \textbf{Regla de asignación heurística} en los experimentos principales: no divide la demanda de un municipio entre brigadas y no garantiza la asignación óptima para unas bases dadas. La propuesta de tamizaje la reemplaza por un reparto óptimo mediante programación lineal.
+  \item \textbf{Algoritmo genético:} no garantiza el óptimo global y sus parámetros no se calibraron. En el piloto la enumeración bastaría, y a escala nacional una heurística voraz encuentra mejores soluciones (Sección~\ref{sec:escalabilidad}).
   \item \textbf{Conocimiento previo:} el equipo vio totales agregados de 2023--2024 durante el perfil de calidad, antes de modelar. Se mitigó fijando de antemano los protocolos de demanda, parámetros y diseño experimental.
   \item \textbf{Un solo departamento piloto:} los resultados no se generalizan al país.
 \end{itemize}
@@ -558,7 +736,9 @@ Radio 40 km & 96.9 (4.0) & 97.0 (4.0) & +0.2 & [$-0.01$, 0.32] & +0.2\,\% \\
   \item \textbf{La mejora es condicional.} Depende de que la capacidad sea comparable con la demanda y de que la distancia limite. Se reduce con demanda $\times1.6$ (+1.8 pp), desaparece con un radio amplio (+0.2 pp, no significativa) y, con el nivel real de casos de 2023--2024, es de +0.5 y 0.0 pp. Con la demanda real, el factor limitante es la capacidad total, no la ubicación.
   \item \textbf{La mejora tiene un costo:} mayor distancia media de atención (de 3.0 a 11.0 km en la condición nominal), a cambio de menos municipios completamente desatendidos.
   \item \textbf{El modelo de demanda} identifica correctamente dónde se concentra la carga (Spearman 0.938), pero no anticipa el aumento de 2023--2024 ($-37.9\,\%$ de sesgo). Las conclusiones sobre ubicación son más confiables que las cifras absolutas de cobertura.
-  \item \textbf{El algoritmo genético} alcanzó el óptimo exacto en todas las ejecuciones. En Chiquimula la enumeración también sería viable; su aporte está en escalar a problemas mayores, como el nivel nacional.
+  \item \textbf{El algoritmo genético} alcanzó el óptimo exacto en todas las ejecuciones del piloto, donde la enumeración también es viable. En problemas mayores supera ampliamente a la búsqueda aleatoria y a la política base, pero con sus parámetros actuales una heurística voraz lo supera a escala nacional. Ampliar sus parámetros o combinarlo con la solución voraz es el siguiente paso natural.
+  \item \textbf{Propuesta para Chiquimula.} Con la productividad documentada por el PMA, identificar el 80\,\% de los casos esperados requiere entre 5 y 8 brigadas (35 a 20 evaluaciones por día). En el escenario central, \textbf{6 brigadas (dos en Jocotán, dos en Camotán, una en Esquipulas y una en Quezaltepeque) identifican el 83\,\% de los casos}. Evaluar a todos los niños una vez al año requeriría unas 9.
+  \item \textbf{Cuántas antes que dónde, y a quién priorizar.} El número de brigadas depende sobre todo de su productividad; el tiempo de viaje casi no lo cambia. Con una flota dada, orientar las brigadas a los municipios con más tasa identifica más casos (83 frente a 75\,\% con 6 brigadas), a cambio de más viaje y de dejar menos evaluados a los municipios de tasa baja. Elegir entre detección dirigida y vigilancia amplia es una decisión de política que el modelo hace explícita pero no resuelve.
 \end{itemize}
 \pendiente{Revisión final de las conclusiones por todo el equipo.}
 
@@ -579,6 +759,20 @@ El Integrante 1 usó Claude Code (Anthropic, modelo Claude Opus 5.5)~\cite{claud
 \bibitem{codab} OCHA. \emph{Guatemala --- Subnational Administrative Boundaries (COD-AB)}. Humanitarian Data Exchange. \url{https://data.humdata.org/dataset/cod-ab-gtm}. Consultado el 22 de octubre de 2026.
 
 \bibitem{codps} OCHA. \emph{Guatemala --- Subnational Population Statistics (COD-PS)}. Humanitarian Data Exchange. \url{https://data.humdata.org/dataset/cod-ps-gtm}. Consultado el 22 de octubre de 2026.
+
+\bibitem{ensmi} Ministerio de Salud Pública y Asistencia Social (MSPAS), Instituto Nacional de Estadística (INE), Secretaría de Planificación y Programación de la Presidencia (Segeplán) e ICF International (2017). \emph{Encuesta Nacional de Salud Materno Infantil 2014--2015: Informe Final}. Rockville, Maryland. \url{https://dhsprogram.com/pubs/pdf/FR318/FR318.pdf}.
+
+\bibitem{unicef2024} UNICEF Guatemala (25 de mayo de 2024). Comunicado de prensa sobre la visita de su embajadora de buena voluntad a las brigadas de salud y nutrición en Escuintla. \url{https://www.unicef.org/guatemala/comunicados-prensa/gaby-moreno-embajadora-de-buena-voluntad-de-unicef-en-guatemala-visit\%C3\%B3-escuintla}. Consultado el 8 de noviembre de 2026.
+
+\bibitem{pma2020} Programa Mundial de Alimentos (18 de diciembre de 2020). \emph{Juventudes rurales a la cabeza de las brigadas de salud y nutrición}. \url{https://es.wfp.org/historias/juventudes-rurales-la-cabeza-de-las-brigadas-de-salud-y-nutricion}. Consultado el 8 de noviembre de 2026.
+
+\bibitem{unicef2020} UNICEF Guatemala (16 de diciembre de 2020). \emph{En Guatemala, a la búsqueda de casos de desnutrición infantil ocultos por la pandemia}. \url{https://www.unicef.org/guatemala/historias/en-guatemala-la-b\%C3\%BAsqueda-de-casos-de-desnutrici\%C3\%B3n-infantil-ocultos-por-la-pandemia}. Consultado el 8 de noviembre de 2026.
+
+\bibitem{ops2022} Organización Panamericana de la Salud (24 de octubre de 2022). \emph{Brigadas integrales de salud y nutrición: servicios de salud que llegan a las comunidades más remotas de Alta Verapaz}. \url{https://www.paho.org/es/noticias/24-10-2022-brigadas-integrales-salud-nutricion-servicios-salud-que-llegan-comunidades-mas}. Consultado el 8 de noviembre de 2026.
+
+\bibitem{osrm} Luxen, D. y Vetter, C. (2011). Real-time routing with OpenStreetMap data. En \emph{Proceedings of the 19th ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems}, 513--516. Servidor usado: \url{https://router.project-osrm.org}, consultado el 8 de noviembre de 2026.
+
+\bibitem{osm} OpenStreetMap contributors. \emph{OpenStreetMap}, datos bajo licencia ODbL. \url{https://www.openstreetmap.org}.
 
 \bibitem{cameron} Cameron, A.~C. y Trivedi, P.~K. (2013). \emph{Regression Analysis of Count Data} (2.ª ed.). Cambridge University Press.
 
