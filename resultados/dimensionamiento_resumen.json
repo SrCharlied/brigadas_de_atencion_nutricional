@@ -1,0 +1,82 @@
+{
+  "diseno": "docs/estudio_dimensionamiento.md",
+  "fuente_tiempos": {
+    "fuente": "OSRM (Open Source Routing Machine), servidor de demostracion router.project-osrm.org, perfil driving",
+    "datos_viales": "OpenStreetMap contributors, licencia ODbL",
+    "consultado_utc": "2026-11-08T22:22:36+00:00"
+  },
+  "casos_2024": 1134.0,
+  "casos_2023": 934.0,
+  "referencia": {
+    "capacidad": 221,
+    "umbral_min": 60,
+    "meta_pct": 90,
+    "asignacion": "divisible",
+    "k_minimo": 5,
+    "planes": [
+      {
+        "asignacion": "divisible",
+        "k": 5,
+        "enfoque": "regla",
+        "bases": "0-3-4-6-9",
+        "cobertura_casos_2024_pct": 97.44268077601411,
+        "objetivo_2024": 0.13329481850574984,
+        "cobertura_casos_2023_pct": 100.0,
+        "objetivo_2023": 0.012540422019985726,
+        "vulnerabilidad_pct": 94.17735940805404,
+        "tiempo_medio_min": 14.91869004524887,
+        "municipios_sin_cobertura": 0,
+        "sim_cobertura_media_pct": 92.95554238280698,
+        "sim_ic95_inferior_pct": 89.52142234233156,
+        "sim_ic95_superior_pct": 96.3896624232824,
+        "nombres": "Chiquimula, Jocotán, Camotán, Esquipulas, San Jacinto"
+      },
+      {
+        "asignacion": "divisible",
+        "k": 5,
+        "enfoque": "cobertura",
+        "bases": "0-3-4-6-9",
+        "cobertura_casos_2024_pct": 97.44268077601411,
+        "objetivo_2024": 0.13329481850574984,
+        "cobertura_casos_2023_pct": 100.0,
+        "objetivo_2023": 0.012540422019985726,
+        "vulnerabilidad_pct": 94.17735940805404,
+        "tiempo_medio_min": 14.91869004524887,
+        "municipios_sin_cobertura": 0,
+        "sim_cobertura_media_pct": 92.95554238280698,
+        "sim_ic95_inferior_pct": 89.52142234233156,
+        "sim_ic95_superior_pct": 96.3896624232824,
+        "nombres": "Chiquimula, Jocotán, Camotán, Esquipulas, San Jacinto"
+      },
+      {
+        "asignacion": "divisible",
+        "k": 5,
+        "enfoque": "vulnerabilidad",
+        "bases": "0-3-4-6-9",
+        "cobertura_casos_2024_pct": 97.44268077601411,
+        "objetivo_2024": 0.13329481850574984,
+        "cobertura_casos_2023_pct": 100.0,
+        "objetivo_2023": 0.012540422019985726,
+        "vulnerabilidad_pct": 94.17735940805404,
+        "tiempo_medio_min": 14.91869004524887,
+        "municipios_sin_cobertura": 0,
+        "sim_cobertura_media_pct": 92.95554238280698,
+        "sim_ic95_inferior_pct": 89.52142234233156,
+        "sim_ic95_superior_pct": 96.3896624232824,
+        "nombres": "Chiquimula, Jocotán, Camotán, Esquipulas, San Jacinto"
+      }
+    ]
+  },
+  "techo_rigido_pct": {
+    "150": 73.01587301587301,
+    "221": 88.35978835978835,
+    "300": 96.64902998236332
+  },
+  "recta_frente_a_carretera": {
+    "razon_mediana_km_vial_sobre_recta": 1.7387179224844713,
+    "km_recta_mediana": 22.312247714276182,
+    "km_vial_mediana": 39.62635,
+    "minutos_mediana": 50.1325,
+    "spearman_minutos_frente_a_recta": 0.8255411255411257
+  }
+}

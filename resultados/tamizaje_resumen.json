@@ -1,0 +1,74 @@
+{
+  "diseno": "docs/estudio_tamizaje.md",
+  "ninos_0_4_2024": 50904.0,
+  "casos_2024": 1134.0,
+  "casos_2023": 934.0,
+  "dias_de_campo": 220,
+  "referencia": {
+    "productividad": 27.5,
+    "umbral_min": 60.0,
+    "meta_pct": 80,
+    "k_minimo": 6,
+    "planes": [
+      {
+        "objetivo": "casos",
+        "productividad": 27.5,
+        "umbral_min": 60.0,
+        "capacidad": 6050.0,
+        "k": 6,
+        "metodo": "genetico",
+        "semilla": 0,
+        "bases": "3-3-4-4-6-8",
+        "valor": -942.2348540465975,
+        "evaluaciones": 645,
+        "propuesto": true,
+        "casos_identificados": 942.2349397590361,
+        "casos_pct": 83.0895008605852,
+        "ninos_evaluados": 36300.0,
+        "ninos_pct": 71.31070249882131,
+        "casos_2023_pct": 73.3061408057596,
+        "tiempo_medio_min": 14.163972038567493,
+        "municipios_bajo_50_pct": 3,
+        "ubicacion": "Jocotán ×2, Camotán ×2, Esquipulas, Quezaltepeque"
+      },
+      {
+        "objetivo": "ninos",
+        "productividad": 27.5,
+        "umbral_min": 60.0,
+        "capacidad": 6050.0,
+        "k": 6,
+        "metodo": "voraz",
+        "semilla": -1,
+        "bases": "0-0-3-3-4-6",
+        "valor": -36299.99920552193,
+        "evaluaciones": 66,
+        "propuesto": true,
+        "casos_identificados": 850.5407626555019,
+        "casos_pct": 75.00359459043227,
+        "ninos_evaluados": 36300.0,
+        "ninos_pct": 71.31070249882131,
+        "casos_2023_pct": 71.98000523327595,
+        "tiempo_medio_min": 1.3131868916437097,
+        "municipios_bajo_50_pct": 6,
+        "ubicacion": "Chiquimula ×2, Jocotán ×2, Camotán, Esquipulas"
+      }
+    ]
+  },
+  "calidad_genetico": {
+    "por_rango_k": {
+      "k>5": {
+        "ejecuciones": 900,
+        "proporcion_alcanza": 0.5
+      },
+      "k<=5": {
+        "ejecuciones": 450,
+        "proporcion_alcanza": 0.9955555555555555
+      }
+    },
+    "voraz_alcanza_propuesto": 0.5370370370370371,
+    "metodo_del_plan_propuesto_k>5": {
+      "genetico": 103,
+      "voraz": 77
+    }
+  }
+}

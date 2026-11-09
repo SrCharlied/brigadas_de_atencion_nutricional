@@ -10,7 +10,7 @@ construcción, así que nunca se evalúan soluciones inválidas.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Callable, Sequence
 
 import numpy as np
 
@@ -63,20 +63,35 @@ class ResultadoGenetico:
     historial_mediana: tuple[float, ...]
 
 
-def cruzar(padre: Sequence[int], madre: Sequence[int], k: int, rng: np.random.Generator) -> tuple[int, ...]:
-    """Hijo con K genes distintos elegidos al azar de la unión de los padres."""
-    union = sorted(set(padre) | set(madre))
+def cruzar(padre: Sequence[int], madre: Sequence[int], k: int, rng: np.random.Generator,
+           con_repeticion: bool = False) -> tuple[int, ...]:
+    """Hijo con K genes elegidos al azar de los padres.
+
+    Sin repetición: de la unión de genes distintos. Con repetición: de la unión
+    como multiconjunto, así un gen aparece a lo sumo tantas veces como entre ambos padres.
+    """
+    union = sorted(list(padre) + list(madre)) if con_repeticion else sorted(set(padre) | set(madre))
     elegidos = rng.choice(len(union), size=k, replace=False)
     return tuple(sorted(union[i] for i in elegidos))
 
 
-def mutar(individuo: Sequence[int], n: int, rng: np.random.Generator) -> tuple[int, ...]:
-    """Reemplaza una base al azar por un municipio que no sea base."""
-    candidatos = [m for m in range(n) if m not in individuo]
-    if not candidatos:
-        return tuple(individuo)
+def mutar(individuo: Sequence[int], n: int, rng: np.random.Generator, con_repeticion: bool = False) -> tuple[int, ...]:
+    """Reemplaza una base al azar por otro municipio (con repetición, puede ser uno que ya es base)."""
     genes = list(individuo)
-    genes[int(rng.integers(len(genes)))] = candidatos[int(rng.integers(len(candidatos)))]
+    if con_repeticion:
+        posicion = int(rng.integers(len(genes)))
+        candidatos = [m for m in range(n) if m != genes[posicion]]
+        if not candidatos:
+            return tuple(individuo)
+        genes[posicion] = candidatos[int(rng.integers(len(candidatos)))]
+    else:
+        # Mismo orden de sorteos que la versión original (Python evalúa primero el lado
+        # derecho de la asignación): primero el candidato, luego la posición.
+        candidatos = [m for m in range(n) if m not in individuo]
+        if not candidatos:
+            return tuple(individuo)
+        nuevo = candidatos[int(rng.integers(len(candidatos)))]
+        genes[int(rng.integers(len(genes)))] = nuevo
     return tuple(sorted(genes))
 
 
@@ -89,31 +104,45 @@ def ejecutar_genetico(
     rng: np.random.Generator,
     parametros: ParametrosGenetico | None = None,
     pesos: PesosObjetivo | None = None,
+    aptitud: Callable[[tuple[int, ...]], float] | None = None,
+    con_repeticion: bool = False,
 ) -> ResultadoGenetico:
-    """Busca las K bases que minimizan el objetivo J sobre ``demanda``."""
+    """Busca las K bases que minimizan el objetivo J sobre ``demanda``.
+
+    ``aptitud`` permite minimizar otra función de la tupla de bases (p. ej. el
+    estudio de tamizaje). ``con_repeticion`` permite que varias brigadas compartan
+    municipio; en ese caso K puede superar el número de municipios.
+    """
     p = parametros or ParametrosGenetico()
     demanda, distancias = validar_entradas(demanda, distancias, capacidad, distancia_max)
     n, k = demanda.size, int(cantidad_brigadas)
-    if not 1 <= k <= n:
+    if k < 1 or (not con_repeticion and k > n):
         raise ValueError(f"cantidad_brigadas debe estar entre 1 y {n}")
 
     cache: dict[tuple[int, ...], float] = {}
+    evaluar = aptitud or (lambda ind: float(
+        evaluar_bases(demanda, distancias, ind, capacidad, distancia_max, pesos).objetivo))
 
-    def aptitud(individuo: tuple[int, ...]) -> float:
+    def aptitud_cacheada(individuo: tuple[int, ...]) -> float:
         if individuo not in cache:
-            cache[individuo] = float(evaluar_bases(demanda, distancias, individuo, capacidad, distancia_max, pesos).objetivo)
+            cache[individuo] = float(evaluar(individuo))
         return cache[individuo]
 
     def ordenar(poblacion: list[tuple[int, ...]]) -> list[tuple[int, ...]]:
-        return sorted(poblacion, key=lambda ind: (aptitud(ind), ind))
+        return sorted(poblacion, key=lambda ind: (aptitud_cacheada(ind), ind))
 
     def torneo(poblacion: list[tuple[int, ...]]) -> tuple[int, ...]:
         indices = rng.choice(len(poblacion), size=p.torneo, replace=False)
-        return min((poblacion[i] for i in indices), key=lambda ind: (aptitud(ind), ind))
+        return min((poblacion[i] for i in indices), key=lambda ind: (aptitud_cacheada(ind), ind))
 
-    poblacion = ordenar([tuple(sorted(int(x) for x in rng.choice(n, size=k, replace=False))) for _ in range(p.poblacion)])
-    historial_mejor = [aptitud(poblacion[0])]
-    historial_mediana = [float(np.median([aptitud(ind) for ind in poblacion]))]
+    def individuo_inicial() -> tuple[int, ...]:
+        if con_repeticion:
+            return tuple(sorted(int(x) for x in rng.integers(n, size=k)))
+        return tuple(sorted(int(x) for x in rng.choice(n, size=k, replace=False)))
+
+    poblacion = ordenar([individuo_inicial() for _ in range(p.poblacion)])
+    historial_mejor = [aptitud_cacheada(poblacion[0])]
+    historial_mediana = [float(np.median([aptitud_cacheada(ind) for ind in poblacion]))]
     sin_mejora = 0
     generaciones = 0
 
@@ -121,20 +150,20 @@ def ejecutar_genetico(
         nueva = poblacion[: p.elitismo]
         while len(nueva) < p.poblacion:
             padre, madre = torneo(poblacion), torneo(poblacion)
-            hijo = cruzar(padre, madre, k, rng) if rng.random() < p.prob_cruce else padre
+            hijo = cruzar(padre, madre, k, rng, con_repeticion) if rng.random() < p.prob_cruce else padre
             if rng.random() < p.prob_mutacion:
-                hijo = mutar(hijo, n, rng)
+                hijo = mutar(hijo, n, rng, con_repeticion)
             nueva.append(hijo)
         poblacion = ordenar(nueva)
         generaciones += 1
-        mejor = aptitud(poblacion[0])
+        mejor = aptitud_cacheada(poblacion[0])
         sin_mejora = 0 if mejor < historial_mejor[-1] - _TOLERANCIA else sin_mejora + 1
         historial_mejor.append(mejor)
-        historial_mediana.append(float(np.median([aptitud(ind) for ind in poblacion])))
+        historial_mediana.append(float(np.median([aptitud_cacheada(ind) for ind in poblacion])))
 
     return ResultadoGenetico(
         bases=poblacion[0],
-        objetivo=aptitud(poblacion[0]),
+        objetivo=aptitud_cacheada(poblacion[0]),
         generaciones=generaciones,
         evaluaciones=len(cache),
         historial_mejor=tuple(historial_mejor),
