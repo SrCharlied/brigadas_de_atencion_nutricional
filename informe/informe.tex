@@ -2,11 +2,8 @@
 % Informe técnico — Proyecto 2: brigadas móviles de atención nutricional
 % Compilar en Overleaf con pdfLaTeX. Estructura según la guía oficial.
 %
-% PENDIENTES: \pendiente{...} genera un recuadro naranja y una entrada en la
-% "Lista de pendientes" al inicio. Para la versión final, cambiar
-% [colorinlistoftodos] por [disable] en el paquete todonotes y borrar
-% \listoftodos.
-% \pend{...} es la versión corta (texto rojo) para usar dentro de tablas.
+% PENDIENTES: \pend{...} marca en rojo un dato que falta confirmar.
+% Antes de exportar el PDF final, buscar "\pend{" y no debe quedar ninguno.
 %
 % Todas las cifras provienen de resultados/ del repositorio (ejecución
 % reproducible del 2026-11-08).
@@ -25,13 +22,12 @@
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage[colorinlistoftodos,textsize=small]{todonotes}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,fit}
 \usepackage[hidelinks]{hyperref}
 
-\newcommand{\pendiente}[1]{\todo[inline,color=orange!25]{\textbf{Pendiente:} #1}}
 \newcommand{\pend}[1]{\textcolor{red!70!black}{[#1]}}
 \newcommand{\cod}[1]{\texttt{#1}}
-\renewcommand{\listtodoname}{Lista de pendientes}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 
 \begin{document}
@@ -41,8 +37,8 @@
 % ---------------------------------------------------------------------
 \begin{titlepage}
   \centering
-  {\large \pend{Universidad} \par}
-  {\large \pend{Facultad / Departamento} \par}
+  {\large Universidad del Valle de Guatemala \par}
+  {\large Facultad de Ingeniería \par}
   \vspace{1.5cm}
   {\large Modelación y Simulación — Proyecto 2 \par}
   \vspace{2cm}
@@ -52,18 +48,16 @@
   {\large Caso piloto: departamento de Chiquimula \par}
   \vspace{2.5cm}
   \begin{tabular}{ll}
-    Integrante 1 & \pend{nombre y carné} \\
-    Integrante 2 & Denis Rodríguez \pend{confirmar nombre y carné} \\
-    Integrante 3 & \pend{nombre y carné} \\
+    Carlos López & \pend{carné} \\
+    Denis Rodríguez & \pend{carné} \\
+    Micaela \pend{apellido} & \pend{carné} \\
   \end{tabular}
   \vfill
-  {\large \pend{Catedrático} \par}
+  {\large Catedrático: \pend{nombre} \par}
   \vspace{0.3cm}
   {\large Guatemala, 9 de noviembre de 2026 \par}
 \end{titlepage}
 
-\listoftodos
-\clearpage
 \tableofcontents
 \clearpage
 
@@ -90,7 +84,6 @@ Todos los resultados de cobertura son \textbf{simulados} bajo supuestos declarad
 El Ministerio de Salud Pública y Asistencia Social (MSPAS) publica los casos registrados de desnutrición aguda en menores de cinco años por año, departamento, municipio, grupo etario y sexo, de 2012 a 2024~\cite{mspas}. En ese periodo el archivo suma 239{,}805 casos registrados a nivel nacional, con un aumento marcado desde 2020: 15{,}547 casos en 2019 frente a 27{,}068 en 2020 y 27{,}795 en 2024.
 
 La desnutrición en la primera infancia es un problema persistente en Guatemala: según la Encuesta Nacional de Salud Materno Infantil 2014--2015, la más reciente de alcance nacional, la desnutrición crónica afectaba al 46.5\,\% de los menores de cinco años~\cite{ensmi}. Este proyecto trabaja con la \emph{desnutrición aguda}, que es la que registra el MSPAS en los datos usados y la que buscan y tratan los equipos de campo.
-\pendiente{Confirmar la cifra de 46.5\,\% en el informe final de la ENSMI (FR318); se verificó en documentos del SIINSAN, pero no en el PDF original.}
 
 Para detectar y tratar la desnutrición aguda en las comunidades más alejadas y de difícil acceso, el MSPAS opera \textbf{brigadas de salud y nutrición}: equipos de una nutricionista, tres auxiliares de enfermería y un piloto que hacen evaluaciones nutricionales en visitas domiciliarias, entregan micronutrientes y desparasitan a menores de cinco años. UNICEF las apoyó desde 2018 con más de 72 equipos hasta que el MSPAS las institucionalizó~\cite{unicef2024}. Como el número de equipos es limitado, decidir desde dónde opera cada uno y a qué municipios atiende es un problema de asignación territorial, que es el que aborda este proyecto con una abstracción de esas brigadas.
 
@@ -124,6 +117,7 @@ Una \emph{brigada} es una unidad abstracta de capacidad móvil: tiene un municip
   \item Estimar la diferencia de cobertura simulada entre la política base y el algoritmo genético con 30 réplicas pareadas por condición. \emph{Indicadores:} diferencia media, dispersión e intervalo de confianza del 95\,\%.
   \item Cuantificar la sensibilidad de esa diferencia ante una demanda $\times1.2$ y $\times1.6$, una capacidad $-20\,\%$ y un radio de acceso de 40 km.
   \item Verificar la calidad del algoritmo genético contra el óptimo exacto. \emph{Indicador:} brecha relativa del objetivo frente a la enumeración exhaustiva.
+  \item Proponer cuántas brigadas hacen falta, y dónde ubicarlas, para identificar una meta de los casos esperados en Chiquimula, con una productividad documentada y tiempos de viaje por carretera. \emph{Indicadores:} menor número de brigadas que alcanza el 50, 80 y 90\,\% de los casos esperados, y casos identificados, niños evaluados y tiempo medio de viaje del plan propuesto.
 \end{enumerate}
 
 % ---------------------------------------------------------------------
@@ -235,6 +229,42 @@ El algoritmo genético trata el evaluador como una caja negra y mantiene la fact
 \section{Modelo}
 \label{sec:modelo}
 
+\subsection{Estructura del sistema}
+
+La Figura~\ref{fig:sistema} resume el flujo: los datos oficiales forman el panel municipio-año; con los años de desarrollo se estima la demanda de referencia, con la que deciden las dos políticas, y el modelo de demanda genera las réplicas con las que se evalúan. Ambas políticas pasan por el mismo evaluador, de modo que solo difieren en las bases elegidas.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  caja/.style={draw, rounded corners, align=center, font=\small, text width=3.4cm, minimum height=1.1cm},
+  flecha/.style={-{Stealth[length=2.5mm]}, thick},
+  etiqueta/.style={font=\scriptsize, align=center}
+]
+  \node[caja, fill=blue!8]    (datos)      at (0, 0)     {\textbf{Datos oficiales}\\MSPAS, INE, HDX};
+  \node[caja, fill=blue!8]    (panel)      at (0, -2.2)  {\textbf{Panel municipio-año}\\casos y población 0--4};
+  \node[caja, fill=blue!8]    (demanda)    at (0, -4.4)  {\textbf{Modelo de demanda}\\M0 + binomial negativa};
+  \node[caja, fill=green!10]  (base)       at (5, 0)     {\textbf{Política base}\\$K$ municipios con más casos};
+  \node[caja, fill=green!10]  (ga)         at (5, -2.2)  {\textbf{Algoritmo genético}\\minimiza $J$};
+  \node[caja, fill=orange!12] (replicas)   at (5, -4.4)  {\textbf{30 réplicas pareadas}\\misma demanda y semilla};
+  \node[caja, fill=gray!10]   (evaluador)  at (10, -2.2) {\textbf{Evaluador común}\\asignación con capacidad $C$ y radio $D_{\max}$};
+  \node[caja, fill=gray!10]   (metricas)   at (10, -4.4) {\textbf{Métricas}\\cobertura, distancia, IC 95\,\%};
+  \node[caja, fill=red!8]     (real)       at (10, 0)    {\textbf{Casos reales}\\2023--2024 (reservados)};
+
+  \draw[flecha] (datos) -- (panel);
+  \draw[flecha] (panel) -- node[etiqueta, left] {2015--2022} (demanda);
+  \draw[flecha] (panel.east) -- node[etiqueta, above, pos=0.45] {demanda de\\referencia} (ga.west);
+  \draw[flecha] (panel.north east) -- (base.south west);
+  \draw[flecha] (demanda) -- (replicas);
+  \draw[flecha] (base.east) -- node[etiqueta, above, sloped] {bases} (evaluador.north west);
+  \draw[flecha] (ga) -- node[etiqueta, above] {bases} (evaluador);
+  \draw[flecha] (replicas.east) -- node[etiqueta, below, sloped] {demanda} (evaluador.south west);
+  \draw[flecha] (real) -- node[etiqueta, right] {validación} (evaluador);
+  \draw[flecha] (evaluador) -- (metricas);
+\end{tikzpicture}
+\caption{Estructura del sistema. Las políticas deciden con la demanda de referencia (casos medios de 2015--2022) y nunca ven la demanda de la réplica ni los casos de 2023--2024. La propuesta de tamizaje (Sección~\ref{sec:propuesta}) usa los mismos datos, pero reemplaza el evaluador por un reparto óptimo con programación lineal.}
+\label{fig:sistema}
+\end{figure}
+
 \subsection{Conjuntos, parámetros y decisiones}
 
 $I$ es el conjunto de municipios (11) y $J=I$ el de candidatos a base. $d_i$ es la demanda del municipio $i$ en una réplica (casos por año) y $\mathrm{dist}_{ij}$, la distancia geodésica entre centroides en km (haversine, radio 6{,}371.0088 km). Las decisiones son qué $K$ municipios funcionan como bases y qué brigada atiende a cada municipio.
@@ -288,7 +318,7 @@ La demanda de cada réplica se genera con una binomial negativa NB2, $d_i \sim \
 \section{Implementación}
 \label{sec:implementacion}
 
-El sistema está en Python 3.12 y se organiza por módulos con un responsable cada uno (Tabla~\ref{tab:modulos}). El repositorio incluye los datos oficiales versionados, scripts reproducibles y 247 pruebas automatizadas.
+El sistema está en Python 3.12 y se organiza por módulos con un responsable cada uno (Tabla~\ref{tab:modulos}). El repositorio incluye los datos oficiales versionados, scripts reproducibles y 294 pruebas automatizadas.
 
 \begin{table}[htbp]
 \centering
@@ -301,6 +331,7 @@ Módulo & Función & Integrante \\
 \cod{contratos.py}, \cod{distancias.py}, \cod{asignacion.py}, \cod{baseline.py}, \cod{exacto.py}, \cod{simulacion.py} & Contratos, distancias, asignación capacitada, política base, enumerador exacto y réplicas pareadas & 2 \\
 \cod{genetico.py}, \cod{experimentos.py}, \cod{metricas.py}, \cod{visualizacion.py} & Algoritmo genético, experimentos, métricas y figuras & 1 (asignado al 3; ver Contribuciones) \\
 \cod{escalabilidad.py}, \cod{dimensionamiento.py}, \cod{tamizaje.py} & Análisis de escalabilidad, tiempos por carretera y propuesta de tamizaje con reparto óptimo & 1 \\
+\cod{scripts/planificar.py}, \cod{scripts/menu.py}, \cod{app.py} & Planificador, menú de terminal e interfaz web local & 1 \\
 \bottomrule
 \end{tabularx}
 \caption{Organización del código (\cod{brigadas/}).}
@@ -332,8 +363,8 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m scripts.planificar --brigadas 6 --mapa
 \end{verbatim}
-El análisis de escalabilidad tarda unos 28 minutos y el estudio de tamizaje, entre 20 y 40; los demás pasos, segundos. El último comando es el \textbf{planificador interactivo}: con cualquier número de brigadas, productividad, tiempo de viaje y objetivo, devuelve en segundos el plan, los casos identificados, los niños evaluados y el mapa. El mismo cálculo está disponible en una \textbf{interfaz web local} (\cod{streamlit run app.py}, o \cod{demo\_web.bat}) con controles deslizables, y en un menú de terminal (\cod{demo.bat}).
-Los archivos oficiales están versionados byte a byte en \cod{data/raw}, porque los portales del INE y de HDX bloquean descargas automáticas con desafíos antibots; el primer script verifica su SHA-256. La cadena completa se reprodujo en un clon limpio del repositorio, sin conexión a los portales: las 21 salidas de \cod{resultados/} fueron idénticas, salvo las columnas de tiempo de ejecución.
+El análisis de escalabilidad y el estudio de tamizaje tardan entre 30 y 45 minutos cada uno, según el equipo; los demás pasos, segundos. El último comando es el \textbf{planificador interactivo}: con cualquier número de brigadas, productividad, tiempo de viaje y objetivo, devuelve en segundos el plan, los casos identificados, los niños evaluados y el mapa. El mismo cálculo está disponible en una \textbf{interfaz web local} (\cod{streamlit run app.py}, o \cod{demo\_web.bat}) con controles deslizables, y en un menú de terminal (\cod{demo.bat}).
+Los archivos oficiales están versionados byte a byte en \cod{data/raw}, porque los portales del INE y de HDX bloquean descargas automáticas con desafíos antibots; el primer script verifica su SHA-256. La cadena completa se reprodujo en un clon limpio del repositorio, sin conexión a los portales: las 38 salidas de \cod{resultados/} (tablas, resúmenes y figuras) fueron idénticas, salvo las columnas de tiempo de ejecución.
 
 % ---------------------------------------------------------------------
 \section{Diseño experimental}
@@ -618,7 +649,7 @@ El estudio se congeló antes de ejecutarlo (\cod{docs/estudio\_tamizaje.md}).
   \item \textbf{Casos identificados:} niños evaluados en cada municipio $\times$ tasa de casos de 2024 de ese municipio. La tasa aproxima dónde es más probable encontrar casos.
   \item \textbf{Decisión:} cuántas brigadas tienen base en cada municipio. \textbf{Varias pueden compartir municipio.}
   \item \textbf{Reparto óptimo:} para una ubicación dada, qué niños evalúa cada brigada (solo dentro del tiempo máximo de viaje por carretera de OSRM~\cite{osrm,osm}) se resuelve como un \textbf{programa lineal}, de forma óptima.
-  \item \textbf{Dos objetivos:} \emph{identificar casos} (principal: maximizar los casos esperados) y \emph{evaluar niños} (alternativo: maximizar los niños evaluados, sin importar la tasa).
+  \item \textbf{Dos objetivos:} \emph{identificar casos} (principal: maximizar los casos esperados) y \emph{evaluar niños} (alternativo: maximizar los niños evaluados, sin importar la tasa). La formulación está en~\eqref{eq:tamizaje}.
   \item \textbf{Factores:} de 1 a 15 brigadas, las tres productividades y un viaje máximo de 45, 60 o 90 minutos (270 configuraciones).
   \item \textbf{Búsqueda de la ubicación:}
     \begin{itemize}[nosep]
@@ -627,6 +658,18 @@ El estudio se congeló antes de ejecutarlo (\cod{docs/estudio\_tamizaje.md}).
       \item el algoritmo genético del proyecto, generalizado para admitir varias brigadas por municipio (5 semillas por configuración).
     \end{itemize}
 \end{itemize}
+
+\textbf{Formulación del reparto.} Sea $k_j$ el número de brigadas con base en el municipio $j$ ($\sum_j k_j = K$), $N_i$ los niños de 0 a 4 años del municipio $i$, $r_i$ su tasa de casos de 2024, $Q$ la capacidad anual de una brigada, $t_{ij}$ el tiempo de viaje por carretera y $T$ el tiempo máximo. La variable $x_{ij}\ge 0$ son los niños de $i$ evaluados por las brigadas con base en $j$, definida solo si $t_{ij}\le T$. Para una ubicación $k$ dada:
+\begin{equation}
+\label{eq:tamizaje}
+\begin{aligned}
+\max_{x}\quad & \sum_{i,j} p_i\, x_{ij} \;-\; \varepsilon \sum_{i,j} t_{ij}\, x_{ij} \\
+\text{s.\,a.}\quad & \textstyle\sum_{j} x_{ij} \le N_i \quad \forall i \qquad \text{(no se evalúan más niños de los que hay)}\\
+& \textstyle\sum_{i} x_{ij} \le k_j\, Q \quad \forall j \qquad \text{(capacidad de las brigadas de cada base)}\\
+& x_{ij} \ge 0, \quad x_{ij}=0 \text{ si } t_{ij} > T,
+\end{aligned}
+\end{equation}
+con $p_i = r_i$ para identificar casos y $p_i = 1$ para evaluar niños. El término con $\varepsilon$ (muy pequeño) solo desempata a favor de viajes más cortos, sin sacrificar nunca un caso o un niño. La búsqueda de la ubicación elige $k$; el programa lineal, resuelto con HiGHS~\cite{scipy}, da el mejor reparto para cada $k$ evaluada.
 
 \subsection{Cuántas brigadas hacen falta}
 
@@ -712,7 +755,7 @@ Por carretera, los trayectos entre municipios son en mediana \textbf{1.74 veces}
   \item \textbf{Ausencias:} el MSPAS no publica ceros explícitos; un municipio-año sin fila no se distingue de cero casos. En Chiquimula no hay ausencias.
   \item \textbf{Nivel de la demanda subestimado} en un 37.9\,\% en la validación. Con el nivel real, la ventaja simulada del algoritmo desaparece (Sección~\ref{sec:real}).
   \item \textbf{Población proyectada,} no censal: depende del censo 2018 conciliado por el INE.
-  \item \textbf{Distancias geodésicas entre centroides} en los experimentos principales: por carretera, los trayectos son en mediana 1.74 veces más largos (Sección~\ref{sec:propuesta}). Esto afecta directamente a la mayor distancia que implica la solución del algoritmo. El estudio de dimensionamiento sí usa tiempos por carretera, pero de OSRM, que supone un automóvil en condiciones normales; en caminos rurales o con lluvia el viaje real puede ser mayor.
+  \item \textbf{Distancias geodésicas entre centroides} en los experimentos principales: por carretera, los trayectos son en mediana 1.74 veces más largos (Sección~\ref{sec:propuesta}). Esto afecta directamente a la mayor distancia que implica la solución del algoritmo. La propuesta de tamizaje sí usa tiempos por carretera, pero de OSRM, que supone un automóvil en condiciones normales; en caminos rurales o con lluvia el viaje real puede ser mayor.
   \item \textbf{Supuestos de escenario} ($K$, $C$, $D_{\max}$, pesos) sin fuente oficial: los resultados dependen de ellos, como muestra la sensibilidad. En los experimentos principales, la capacidad $C$ es una unidad abstracta para comparar métodos. La interpretación operativa, en evaluaciones por día, está en la propuesta de tamizaje (Sección~\ref{sec:propuesta}).
   \item \textbf{Propuesta de tamizaje:}
     \begin{itemize}[nosep]
@@ -740,14 +783,23 @@ Por carretera, los trayectos entre municipios son en mediana \textbf{1.74 veces}
   \item \textbf{Propuesta para Chiquimula.} Con la productividad documentada por el PMA, identificar el 80\,\% de los casos esperados requiere entre 5 y 8 brigadas (35 a 20 evaluaciones por día). En el escenario central, \textbf{6 brigadas (dos en Jocotán, dos en Camotán, una en Esquipulas y una en Quezaltepeque) identifican el 83\,\% de los casos}. Evaluar a todos los niños una vez al año requeriría unas 9.
   \item \textbf{Cuántas antes que dónde, y a quién priorizar.} El número de brigadas depende sobre todo de su productividad; el tiempo de viaje casi no lo cambia. Con una flota dada, orientar las brigadas a los municipios con más tasa identifica más casos (83 frente a 75\,\% con 6 brigadas), a cambio de más viaje y de dejar menos evaluados a los municipios de tasa baja. Elegir entre detección dirigida y vigilancia amplia es una decisión de política que el modelo hace explícita pero no resuelve.
 \end{itemize}
-\pendiente{Revisión final de las conclusiones por todo el equipo.}
+
+\subsection*{Trabajo futuro}
+
+\begin{itemize}[nosep]
+  \item \textbf{Medir en campo} la productividad real de las brigadas, los días efectivos de trabajo y la proporción de casos detectados, que hoy provienen de un solo reporte o son supuestos.
+  \item \textbf{Modelar el seguimiento} de los casos detectados, que también consume tiempo de las brigadas.
+  \item \textbf{Actualizar las tasas cada año}, porque la ubicación propuesta depende en parte del año usado para planificar.
+  \item \textbf{Mejorar el algoritmo genético} a gran escala: más población y generaciones, o sembrar la población inicial con la solución voraz.
+\end{itemize}
 
 % ---------------------------------------------------------------------
 \section*{Declaración de uso de inteligencia artificial}
 \addcontentsline{toc}{section}{Declaración de uso de inteligencia artificial}
 
-El Integrante 1 usó Claude Code (Anthropic, modelo Claude Opus 5.5)~\cite{claudecode} como asistente para implementar los módulos de datos, demanda, algoritmo genético, experimentos, métricas y figuras, sus pruebas automatizadas, la documentación técnica y el borrador de este informe. El departamento piloto y la partición temporal provienen del plan del equipo. El protocolo de selección del modelo de demanda, la regla de recalibración de parámetros y el diseño experimental los propuso el asistente, y el equipo los aprobó y congeló antes de ejecutarlos. Los resultados se verificaron con pruebas automatizadas y con reproducción en un clon limpio del repositorio.
-\pendiente{Integrantes 2 y 3: declarar si usaron herramientas de IA, cuáles y para qué. Si la planeación inicial del equipo se hizo con asistencia de IA, declararlo también.}
+El Integrante 1 usó Claude Code (Anthropic, modelo Claude Opus 5.5)~\cite{claudecode} como asistente para implementar los módulos de datos, demanda, algoritmo genético, experimentos, métricas y figuras, el análisis de escalabilidad, la propuesta de tamizaje, el planificador y la interfaz web, sus pruebas automatizadas, la documentación técnica y la redacción de este informe. También lo usó para buscar y resumir fuentes sobre las brigadas; las cifras citadas se contrastaron con las publicaciones originales. El departamento piloto y la partición temporal provienen del plan del equipo. El protocolo de selección del modelo de demanda, la regla de recalibración de parámetros, el diseño experimental y el diseño del estudio de tamizaje los propuso el asistente, y el equipo los revisó, aprobó y congeló antes de ejecutarlos. Las decisiones sobre el enfoque de la propuesta las tomó el equipo. Los resultados se verificaron con pruebas automatizadas y con la reproducción completa en un clon limpio del repositorio.
+
+\pend{Integrantes 2 y 3: herramientas de IA usadas y para qué, o declarar que no usaron ninguna.}
 
 % ---------------------------------------------------------------------
 \begin{thebibliography}{99}
@@ -811,14 +863,12 @@ El Integrante 1 usó Claude Code (Anthropic, modelo Claude Opus 5.5)~\cite{claud
 \toprule
 Integrante & Responsabilidades y aportes \\
 \midrule
-Integrante 1 \pend{nombre} & Requisitos de la guía; adquisición y verificación de datos (MSPAS, INE, HDX) con checksums; correspondencias territoriales; reporte de calidad; selección del departamento piloto; protocolo y modelo de demanda; validación contra 2023--2024; recalibración de parámetros; reproducibilidad (datos versionados). Además, sustituyendo la parte asignada al Integrante 3: diseño experimental, algoritmo genético, experimentos, métricas, figuras y documentación de la técnica. Análisis de escalabilidad, tiempos de viaje por carretera, investigación de la productividad de las brigadas, propuesta de tamizaje con reparto óptimo y planificador interactivo. Borrador del informe. \\
+Integrante 1 (Carlos López) & Requisitos de la guía; adquisición y verificación de datos (MSPAS, INE, HDX) con checksums; correspondencias territoriales; reporte de calidad; selección del departamento piloto; protocolo y modelo de demanda; validación contra 2023--2024; recalibración de parámetros; reproducibilidad (datos versionados). Además, sustituyendo la parte asignada al Integrante 3: diseño experimental, algoritmo genético, experimentos, métricas, figuras y documentación de la técnica. Análisis de escalabilidad, tiempos de viaje por carretera, investigación de la productividad de las brigadas, propuesta de tamizaje con reparto óptimo, planificador, menú e interfaz web. Informe técnico. \\
 Integrante 2 (Denis Rodríguez) & Contratos compartidos; matriz de distancias; regla de asignación capacitada y verificador independiente; política base; enumerador exacto; flujo de réplicas con semillas pareadas; caso conocido; pruebas de propiedades internas; documentación del modelo. \\
-Integrante 3 \pend{nombre} & Asignado: algoritmo genético, experimentos, métricas y visualizaciones. Su commit del 7 de noviembre contenía scripts con valores de relleno no conectados al modelo; se reemplazaron por la implementación descrita (ver \cod{docs/contribuciones.md}). \pend{aporte en informe o presentación, si lo hay} \\
+Integrante 3 (Micaela \pend{apellido}) & Asignado: algoritmo genético, experimentos, métricas y visualizaciones. Su commit del 7 de noviembre contenía scripts con valores de relleno no conectados al modelo; se reemplazaron por la implementación descrita (ver \cod{docs/contribuciones.md}). \pend{aporte en la presentación, si lo hay} \\
 \bottomrule
 \end{tabularx}
 \caption{Registro de contribuciones.}
 \end{table}
-
-\pendiente{El equipo revisa y confirma la redacción de cada fila.}
 
 \end{document}
