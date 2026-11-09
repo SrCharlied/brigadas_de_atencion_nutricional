@@ -82,7 +82,41 @@ Responde **cuántas brigadas hacen falta, y dónde, para identificar un porcenta
 
 Diseño y resultados: `docs/estudio_tamizaje.md`.
 
-### Planificador interactivo (demo)
+### Menú interactivo (demo)
+
+Doble clic en **`demo.bat`**, o bien:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.menu
+```
+
+Opciones:
+
+1. **Planificar brigadas:** dónde ubicar N brigadas y cuántos casos identificarían, con mapa.
+2. **Comparar números de brigadas:** tabla del estudio de tamizaje.
+3. **Ver resultados principales:** validación de la demanda, política base frente al algoritmo genético y brigadas necesarias.
+4. **Abrir una figura.**
+
+Cada pregunta muestra su valor por defecto entre corchetes; Enter lo acepta. Requiere haber creado el `.venv` y haber instalado `requirements.txt`.
+
+### Interfaz web
+
+Doble clic en **`demo_web.bat`**, o bien:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+Se abre en el navegador (`http://localhost:8501`) y no necesita internet. Tiene controles para el número de brigadas, la productividad, el tiempo de viaje y el objetivo, y cuatro pestañas:
+
+- **Planificador:** indicadores, mapa y detalle por municipio.
+- **¿Cuántas brigadas?:** curva y tabla del estudio.
+- **Resultados del estudio.**
+- **Supuestos y fuentes.**
+
+Usa el mismo cálculo que el planificador por comando. Para cerrarla: Ctrl+C en la terminal o cerrar la ventana. La configuración (`.streamlit/config.toml`) desactiva el envío de estadísticas de uso.
+
+### Planificador por comando
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.planificar --brigadas 6
