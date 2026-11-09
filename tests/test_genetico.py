@@ -121,6 +121,64 @@ def test_parametros_por_defecto_coinciden_con_el_diseno_congelado():
             p.prob_mutacion, p.elitismo) == (40, 100, 20, 3, 0.9, 0.3, 2)
 
 
+def test_secuencia_aleatoria_del_modo_por_defecto_no_cambia(instancia_aleatoria):
+    """Regresión: los resultados publicados dependen del orden exacto de los sorteos."""
+    demanda, dist = instancia_aleatoria(n=10, semilla=0)
+    r = ejecutar_genetico(demanda, dist, 3, 40.0, 25.0, rng(11))
+    assert (r.bases, r.generaciones, r.evaluaciones) == ((5, 8, 9), 21, 72)
+    assert r.objetivo == pytest.approx(0.19860243424222232, rel=1e-12)
+
+
+# --- modo con repetición y aptitud externa (estudio de tamizaje) ----------------------
+
+
+def test_cruce_con_repeticion_conserva_k_genes_de_los_padres():
+    g = rng(3)
+    for _ in range(200):
+        hijo = cruzar((0, 0, 4), (0, 2, 2), 3, g, con_repeticion=True)
+        assert len(hijo) == 3 and list(hijo) == sorted(hijo)
+        # Cada gen aparece como máximo tantas veces como entre los dos padres juntos.
+        assert all(hijo.count(v) <= (0, 0, 4, 0, 2, 2).count(v) for v in set(hijo))
+
+
+def test_mutacion_con_repeticion_cambia_un_gen_y_permite_repetidos():
+    g = rng(4)
+    vistos_repetidos = False
+    for _ in range(300):
+        hijo = mutar((1, 1, 3), 4, g, con_repeticion=True)
+        assert len(hijo) == 3 and list(hijo) == sorted(hijo)
+        assert sum(abs(hijo.count(v) - (1, 1, 3).count(v)) for v in range(4)) == 2  # un gen cambió
+        vistos_repetidos |= len(set(hijo)) < 3
+    assert vistos_repetidos
+
+
+def aptitud_rendimientos_decrecientes(demanda, capacidad):
+    """Aptitud a minimizar: −Σ min(brigadas_i · capacidad, demanda_i)."""
+    def aptitud(individuo):
+        conteo = np.bincount(np.asarray(individuo, dtype=int), minlength=len(demanda))
+        return -float(np.minimum(conteo * capacidad, demanda).sum())
+    return aptitud
+
+
+def test_con_repeticion_y_aptitud_externa_alcanza_el_optimo_por_fuerza_bruta():
+    import itertools
+    demanda = np.array([30.0, 12.0, 25.0, 5.0, 18.0])
+    aptitud = aptitud_rendimientos_decrecientes(demanda, 10.0)
+    optimo = min(aptitud(b) for b in itertools.combinations_with_replacement(range(5), 6))
+    dist = np.zeros((5, 5))
+    resultado = ejecutar_genetico(demanda, dist, 6, 10.0, 1.0, rng(0), aptitud=aptitud, con_repeticion=True)
+    assert resultado.objetivo == pytest.approx(optimo)
+    assert len(resultado.bases) == 6 and len(set(resultado.bases)) < 6  # varias brigadas comparten municipio
+
+
+def test_con_repeticion_permite_mas_brigadas_que_municipios():
+    demanda = np.array([30.0, 12.0])
+    resultado = ejecutar_genetico(demanda, np.zeros((2, 2)), 4, 10.0, 1.0, rng(1),
+                                  aptitud=aptitud_rendimientos_decrecientes(demanda, 10.0), con_repeticion=True)
+    assert resultado.objetivo == pytest.approx(-40.0)  # 3 brigadas en el municipio 0 (30) y 1 en el 1 (10)
+    assert resultado.bases == (0, 0, 0, 1)
+
+
 # --- política -----------------------------------------------------------------
 
 

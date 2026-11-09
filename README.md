@@ -58,6 +58,55 @@ Modelo, restricciones, unidades y supuestos: `docs/modelo.md`.
 
 Diseño y parámetros congelados: `docs/diseno_experimental.md`. Técnica: `docs/algoritmo_genetico.md`.
 
+### Análisis adicional de escalabilidad
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.ejecutar_escalabilidad
+```
+
+Compara el algoritmo genético con la política base, una búsqueda voraz y una búsqueda aleatoria con el mismo presupuesto de evaluaciones, en Huehuetenango (K = 4, con óptimo exacto) y en el país completo (K = 10, 20 y 40). Tarda unos 28 minutos. Después, `generar_reporte` produce `resultados/figuras/escalabilidad.png`. Diseño y resultados: `docs/analisis_escalabilidad.md`.
+
+## Propuesta: estudio de tamizaje
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.ejecutar_tamizaje
+```
+
+Responde **cuántas brigadas hacen falta, y dónde, para identificar un porcentaje de los casos esperados** en Chiquimula.
+
+- **Qué hacen las brigadas:** evalúan niños de 0 a 4 años (población INE 2024). La productividad es de 20 a 35 evaluaciones por día, según el PMA, por 220 días de campo (supuesto).
+- **Casos identificados:** niños evaluados por la tasa de casos de 2024 de cada municipio.
+- **Reparto de niños entre brigadas:** óptimo, con programación lineal y tiempos de viaje por carretera.
+- **Búsqueda de la ubicación:** exacta (hasta 5 brigadas), voraz y con el algoritmo genético (varias brigadas pueden compartir municipio).
+- **Duración:** entre 20 y 40 minutos.
+
+Diseño y resultados: `docs/estudio_tamizaje.md`.
+
+### Planificador interactivo (demo)
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.planificar --brigadas 6
+.\.venv\Scripts\python.exe -m scripts.planificar --brigadas 4 --productividad 20 --tiempo 45 --objetivo ninos --mapa
+```
+
+Devuelve en segundos el plan para cualquier número de brigadas: bases, casos identificados, niños evaluados, tiempo de viaje y detalle por municipio. Con `--mapa` guarda `resultados/figuras/plan_<N>.png`. Avisa si los valores se salen del rango estudiado.
+
+## Antecedente: estudio de dimensionamiento con capacidad en casos
+
+Superado por el estudio de tamizaje: expresaba la capacidad en "casos atendidos por año", sin respaldo empírico. Se conserva como antecedente.
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.ejecutar_dimensionamiento
+```
+
+Responde cuántas brigadas hacen falta y dónde ubicarlas en Chiquimula, con los casos reales de 2024 y tiempos de viaje por carretera (OSRM sobre OpenStreetMap, guardados en `data/referencia/osrm_chiquimula.json`).
+
+- Prueba de 1 a 8 brigadas, capacidad de 150, 221 o 300 casos/año y viaje máximo de 45, 60 o 90 minutos.
+- Usa tres enfoques: regla de más casos, óptimo de cobertura y óptimo por vulnerabilidad.
+- Compara dos reglas de asignación: la del modelo y una divisible, que permite repartir un municipio entre varias brigadas.
+
+Tarda unos 25 segundos. Después, `generar_reporte` produce las curvas y los mapas. Diseño y resultados: `docs/estudio_dimensionamiento.md`.
+
 ## Estructura
 
 ```text

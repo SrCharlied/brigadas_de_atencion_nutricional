@@ -72,6 +72,22 @@ En las **150 ejecuciones** (5 condiciones × 30 réplicas), el algoritmo **alcan
 
 **Observación honesta:** en Chiquimula el espacio de búsqueda es pequeño (165 combinaciones). Con una población de 40, la población inicial ya suele contener el óptimo; en la ejecución con la semilla raíz, el mejor individuo es óptimo desde la generación 0 (`resultados/figuras/convergencia_genetico.png`). La convergencia que se ve es la de la mediana de la población. En esta instancia, la enumeración exhaustiva sería suficiente.
 
+**Escalabilidad (análisis adicional, `docs/analisis_escalabilidad.md`).** Con los mismos parámetros, en problemas mayores:
+
+- Huehuetenango con K = 4 (40,920 combinaciones) y el país completo con K = 10, 20 y 40 (de 10^18 a 10^52 combinaciones).
+- **Frente a la búsqueda aleatoria con el mismo presupuesto,** el algoritmo genético es mejor en 118 de 120 pares (+8.9 a +12.5 pp de cobertura a escala nacional). **Frente a la política base,** es mucho mejor en todas las instancias.
+- **Frente al voraz:** en Huehuetenango gana el algoritmo genético; **a escala nacional gana el voraz** (brecha del genético del 3 al 15 % en J), que usa entre 1.8 y 4 veces más evaluaciones.
+- En Huehuetenango, el algoritmo alcanza el óptimo exacto solo en 3 de 30 ejecuciones: los parámetros congelados son cortos para espacios grandes.
+
+**Variante con varias brigadas por municipio (estudio de tamizaje, `docs/estudio_tamizaje.md`).**
+
+- **Generalización:** `ejecutar_genetico` admite `con_repeticion=True` (genes repetidos: varias brigadas en un municipio; el cruce trata a los padres como multiconjunto y la mutación cambia una base por cualquier otro municipio) y `aptitud`, una función externa a minimizar. Allí la aptitud es el valor del programa lineal que reparte los niños de forma óptima.
+- **Modo por defecto intacto:** conserva exactamente la secuencia de sorteos original, y una prueba de regresión lo garantiza.
+- **Resultados:**
+  - Con 5 brigadas o menos alcanzó el óptimo exacto en 448 de 450 ejecuciones.
+  - Con más brigadas (más de 180,000 ubicaciones con 10), el mejor plan lo encontró el algoritmo genético en 103 de 180 configuraciones y la heurística voraz en 77.
+  - Aquí el espacio de búsqueda sí justifica la técnica.
+
 ## 9. Justificación frente a alternativas
 
 | Alternativa | Ventaja | Por qué no como técnica principal |
@@ -79,14 +95,15 @@ En las **150 ejecuciones** (5 condiciones × 30 réplicas), el algoritmo **alcan
 | Enumeración exhaustiva | Óptimo garantizado | Inviable al crecer: con los 340 municipios del país y K = 10 hay del orden de 10^18 combinaciones. Aquí se usa como **referencia de calidad** |
 | Programación entera (MCLP) | Óptimo con un solver | Requiere linealizar la regla de asignación heurística y un solver externo; la regla actual no es lineal |
 | Búsqueda local / *hill climbing* | Simple y rápida | Se estanca en óptimos locales sin un mecanismo de diversidad |
-| Algoritmo genético | Trata el evaluador como caja negra, mantiene la factibilidad por construcción y escala | No garantiza el óptimo; se mitiga comparándolo con el exacto donde es posible |
+| Heurística voraz | Determinista y muy competitiva a escala nacional en el análisis de escalabilidad | Construye la solución base a base sin reconsiderar decisiones; en Huehuetenango quedó lejos del óptimo (J 0.166 frente a 0.056) |
+| Algoritmo genético | Trata el evaluador como caja negra, mantiene la factibilidad por construcción y escala mucho mejor que la búsqueda aleatoria | No garantiza el óptimo; con los parámetros congelados no supera al voraz a escala nacional. Se mitiga comparándolo con el exacto donde es posible |
 
 ## 10. Limitaciones
 
 1. **No garantiza el óptimo global.** En instancias grandes no hay una referencia exacta para medir la brecha.
-2. **Sensible a los parámetros:** población, mutación y estancamiento se fijaron por criterio, sin calibrarlos; un problema mayor podría necesitar otros valores.
+2. **Sensible a los parámetros:** población, mutación y estancamiento se fijaron por criterio, sin calibrarlos. El análisis de escalabilidad confirma que son cortos para espacios grandes: alcanza el óptimo de Huehuetenango solo en 3 de 30 ejecuciones.
 3. **Optimiza sobre la demanda de referencia,** no sobre la incertidumbre: en algunas réplicas la política base cubre más que el algoritmo, porque la demanda real de esa réplica difiere de la media.
-4. **En este piloto el problema es pequeño:** la ventaja del algoritmo sobre la enumeración no se demuestra empíricamente aquí, solo se argumenta por escalabilidad.
+4. **No es la mejor alternativa a gran escala con estos parámetros:** a escala nacional, una heurística voraz encuentra mejores soluciones, aunque con más evaluaciones. En el piloto de Chiquimula, la enumeración exhaustiva bastaría. Mejoras posibles, no probadas: más población y generaciones, o un híbrido que siembre la población inicial con la solución voraz.
 
 ## 11. Qué implementa una biblioteca y qué el equipo
 

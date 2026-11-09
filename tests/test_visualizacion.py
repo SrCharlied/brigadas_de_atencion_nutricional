@@ -19,6 +19,41 @@ def test_mapa(tmp_path):
     assert ruta.stat().st_size > 0
 
 
+def test_dimensionamiento(tmp_path):
+    filas = []
+    for umbral in (45.0, 60.0):
+        for capacidad in (150.0, 221.0):
+            for k in (1, 2, 3):
+                for enfoque, cob in (("cobertura", 40.0 * k), ("regla", 30.0 * k)):
+                    filas.append({"umbral_min": umbral, "capacidad": capacidad, "k": k, "enfoque": enfoque,
+                                  "cobertura_casos_2024_pct": cob, "sim_ic95_inferior_pct": cob - 3,
+                                  "sim_ic95_superior_pct": cob + 3})
+    ruta = tmp_path / "dim.png"
+    vis.figura_dimensionamiento(pd.DataFrame(filas), ruta)
+    assert ruta.stat().st_size > 0
+
+
+def test_tamizaje(tmp_path):
+    filas = [{"objetivo": o, "propuesto": True, "umbral_min": t, "productividad": p, "k": k,
+              "casos_pct": min(100.0, k * (12.0 if o == "casos" else 9.0)), "ninos_pct": min(100.0, k * 8.0)}
+             for o in ("casos", "ninos") for t in (45.0, 60.0) for p in (20.0, 27.5) for k in range(1, 6)]
+    ruta = tmp_path / "tam.png"
+    vis.figura_tamizaje(pd.DataFrame(filas), ruta)
+    assert ruta.stat().st_size > 0
+
+
+def test_escalabilidad(tmp_path):
+    filas = []
+    for instancia, optimo in (("chica", 0.1), ("grande", float("nan"))):
+        filas += [{"instancia": instancia, "metodo": m, "semilla": -1, "objetivo": j, "optimo": optimo}
+                  for m, j in (("base", 0.5), ("voraz", 0.2))]
+        filas += [{"instancia": instancia, "metodo": m, "semilla": s, "objetivo": j + 0.01 * s, "optimo": optimo}
+                  for s in range(3) for m, j in (("aleatoria", 0.3), ("genetico", 0.15))]
+    ruta = tmp_path / "esc.png"
+    vis.figura_escalabilidad(pd.DataFrame(filas), {"chica": "Chica", "grande": "Grande"}, ruta)
+    assert ruta.stat().st_size > 0
+
+
 def test_comparacion_diferencias_y_convergencia(tmp_path):
     resumen = pd.DataFrame({
         "condicion": ["nominal", "dmax_40"], "replicas": [30, 30],

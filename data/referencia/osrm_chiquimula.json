@@ -1,0 +1,527 @@
+{
+  "fuente": "OSRM (Open Source Routing Machine), servidor de demostracion router.project-osrm.org, perfil driving",
+  "datos_viales": "OpenStreetMap contributors, licencia ODbL",
+  "consultado_utc": "2026-11-08T22:22:36+00:00",
+  "url": "https://router.project-osrm.org/table/v1/driving/-89.591375,14.792095;-89.608621,14.715288;-89.431607,14.743329;-89.410272,14.814167;-89.295741,14.867494;-89.323364,14.697487;-89.259236,14.631695;-89.451801,14.489601;-89.458523,14.613131;-89.515368,14.678390;-89.621514,14.579714?annotations=duration,distance",
+  "codigos": [
+    "GT2001",
+    "GT2002",
+    "GT2003",
+    "GT2004",
+    "GT2005",
+    "GT2006",
+    "GT2007",
+    "GT2008",
+    "GT2009",
+    "GT2010",
+    "GT2011"
+  ],
+  "nombres": [
+    "Chiquimula",
+    "San José La Arada",
+    "San Juan Ermita",
+    "Jocotán",
+    "Camotán",
+    "Olopa",
+    "Esquipulas",
+    "Concepción Las Minas",
+    "Quezaltepeque",
+    "San Jacinto",
+    "Ipala"
+  ],
+  "respuesta": {
+    "code": "Ok",
+    "distances": [
+      [
+        0,
+        17017.7,
+        27637.3,
+        34582.9,
+        50049.3,
+        55893.7,
+        75913.3,
+        57487,
+        38430.1,
+        24309.1,
+        36310.6
+      ],
+      [
+        17017.7,
+        0,
+        28004.2,
+        34949.8,
+        50416.2,
+        56260.6,
+        76280.2,
+        57853.9,
+        38797,
+        24676,
+        19292.9
+      ],
+      [
+        27662.1,
+        28004.2,
+        0,
+        10919.4,
+        26385.8,
+        29628.4,
+        48063.2,
+        54479.1,
+        35422.2,
+        21301.2,
+        47297.1
+      ],
+      [
+        34607.7,
+        34949.8,
+        10919.4,
+        0,
+        24398.5,
+        27665,
+        46099.7,
+        61424.7,
+        42367.8,
+        28246.8,
+        54242.7
+      ],
+      [
+        50074.1,
+        50416.2,
+        26385.8,
+        23647.6,
+        0,
+        39803.3,
+        58238.1,
+        76891.1,
+        57834.2,
+        43713.2,
+        69709.1
+      ],
+      [
+        55918.5,
+        56260.6,
+        29628.4,
+        27665,
+        39803.3,
+        0,
+        19769.7,
+        44221,
+        25164.1,
+        35831.6,
+        59428.9
+      ],
+      [
+        75931.6,
+        76273.7,
+        48063.2,
+        46099.7,
+        58238.1,
+        19769.7,
+        0,
+        40908.3,
+        39317.6,
+        55844.7,
+        79442
+      ],
+      [
+        57511.8,
+        57853.9,
+        54479.1,
+        61424.7,
+        76891.1,
+        44221,
+        40914.8,
+        0,
+        20897.8,
+        37425,
+        37609
+      ],
+      [
+        38455,
+        38797,
+        35422.2,
+        42367.8,
+        57834.2,
+        25164.1,
+        39324.1,
+        20897.8,
+        0,
+        18368.1,
+        41965.3
+      ],
+      [
+        24334,
+        24676,
+        21301.2,
+        28246.8,
+        43713.2,
+        35831.6,
+        55851.2,
+        37425,
+        18368.1,
+        0,
+        39656.6
+      ],
+      [
+        36310.6,
+        19292.9,
+        47297.1,
+        54242.7,
+        69709.1,
+        59368.4,
+        79388,
+        37609,
+        41904.8,
+        39596.1,
+        0
+      ]
+    ],
+    "destinations": [
+      {
+        "hint": "qnSljFXslo0OAAAAAAAAAHkPAABGEAAAeuocQQAAAADt7itFZJE0RQ4AAAAAAAAAeQ8AAEYQAAD4fwAA5vWo-uWh4QCx8aj6n7XhAB4BvxAAAAAA",
+        "location": [
+          -89.590298,
+          14.787045
+        ],
+        "name": "",
+        "distance": 570.669065
+      },
+      {
+        "hint": "DXSljHh_pYw5AAAAWwAAANAFAABOAAAAmkXQQk9DI0NAeShFJSELQzkAAABbAAAA0AUAAE4AAAD4fwAAy62o-hiK4ABTrqj6mIngAIwADw4AAAAA",
+        "location": [
+          -89.608757,
+          14.715416
+        ],
+        "name": "Carretera Ipala - San José La Arada",
+        "distance": 20.37325283
+      },
+      {
+        "hint": "6ofzhi5Ro40HAAAAAAAAAMAGAABEAgAAQbSbQAAAAACAHZZE2AzKQwcAAAAAAAAAwAYAAEQCAAD4fwAAtXKr-rEa4QDJYav6IffgAG4AjwgAAAAA",
+        "location": [
+          -89.427275,
+          14.752433
+        ],
+        "name": "",
+        "distance": 1110.098215
+      },
+      {
+        "hint": "yPuCjcr7go0wAAAAAAAAAMgAAAD3AQAAH7RVQQAAAAA3v15Ch6cLQzAAAAAAAAAAyAAAAPcBAAD4fwAADKWr-sQP4gAgtav61wviAAgALwIAAAAA",
+        "location": [
+          -89.414388,
+          14.815172
+        ],
+        "name": "",
+        "distance": 456.7780621
+      },
+      {
+        "hint": "H_aVjSD2lY1SAAAAAAAAADoEAAAAAAAAYUu1QQAAAACAU5ZDAAAAAFIAAAAAAAAAOgQAAAAAAAD4fwAAUnOt-rra4gCDdK36JtziABgAbwQAAAAA",
+        "location": [
+          -89.296046,
+          14.86713
+        ],
+        "name": "",
+        "distance": 51.95581283
+      },
+      {
+        "hint": "FcYyhxbGMocbAAAAAAAAAKQDAADCAAAAG1aWQQAAAACYLSJEdQ4HQxsAAAAAAAAApAMAAMIAAAD4fwAAAf2s-phE4ACcCK36D0TgACYAXwEAAAAA",
+        "location": [
+          -89.326335,
+          14.697624
+        ],
+        "name": "",
+        "distance": 320.3688213
+      },
+      {
+        "hint": "d2CyhVMqJ4wpAAAAAAAAAIUAAAC3AgAAuml4QgAAAABRo0lDBvOERCkAAAAAAAAAhQAAALcCAAD4fwAA_g6u-g4z3wAcA676D0PfAAYA_w4AAAAA",
+        "location": [
+          -89.256194,
+          14.627598
+        ],
+        "name": "Carretera Chanmagua",
+        "distance": 559.3753458
+      },
+      {
+        "hint": "91-yhRJ3pYwMAAAAAAAAAIoBAAA6BgAAWTsBQQAAAADauIhDy1qKRAwAAAAAAAAAigEAADoGAAD4fwAAL_qq-qgj3QDnEqv6ARjdABYATwsAAAAA",
+        "location": [
+          -89.458129,
+          14.492584
+        ],
+        "name": "",
+        "distance": 757.8559873
+      },
+      {
+        "hint": "VMUyhz4dAY41AAAAAAAAAH4AAAAAAAAAB3ATQgAAAABS7K9CAAAAADUAAAAAAAAAfgAAAAAAAAD4fwAANAGr-hH-3gCl-Kr6i_reAAgADxIAAAAA",
+        "location": [
+          -89.456332,
+          14.614033
+        ],
+        "name": "",
+        "distance": 256.279994
+      },
+      {
+        "hint": "pk4ijDzs2I0GAAAACAAAAOEFAAA0BQAA04yJQHD-qECDqIJElvNnRAYAAAAIAAAA4QUAADQFAAD4fwAAsxSq-h733wCYGqr6dvnfAHgAHxUAAAAA",
+        "location": [
+          -89.516877,
+          14.67779
+        ],
+        "name": "",
+        "distance": 175.5713559
+      },
+      {
+        "hint": "DxurjBAbq4wnAAAAAAAAADMBAAC6BAAAIhnZQQAAAADYlFVDcSZSRCcAAAAAAAAAMwEAALoEAAD4fwAAdICo-hx83gD2e6j6AnjeAAwATxMAAAAA",
+        "location": [
+          -89.620364,
+          14.580764
+        ],
+        "name": "",
+        "distance": 169.8652741
+      }
+    ],
+    "durations": [
+      [
+        0,
+        1498.4,
+        2234.6,
+        3061.6,
+        3470.5,
+        3640,
+        5215.9,
+        3342.8,
+        2355.9,
+        1905.1,
+        2951.6
+      ],
+      [
+        1506.1,
+        0,
+        2251.6,
+        3078.6,
+        3487.5,
+        3657,
+        5232.9,
+        3359.8,
+        2372.9,
+        1922.1,
+        1453.2
+      ],
+      [
+        2244.6,
+        2250.8,
+        0,
+        1558.7,
+        1967.6,
+        2726.6,
+        4335.8,
+        3010.8,
+        2023.9,
+        1573.1,
+        3704
+      ],
+      [
+        3065.8,
+        3072,
+        1556.4,
+        0,
+        2133,
+        3065.6,
+        4674.8,
+        3832,
+        2845.1,
+        2394.3,
+        4525.2
+      ],
+      [
+        3476.9,
+        3483.1,
+        1967.5,
+        2127.8,
+        0,
+        3436.1,
+        5045.3,
+        4243.1,
+        3256.2,
+        2805.4,
+        4936.3
+      ],
+      [
+        3649.8,
+        3656,
+        2727.1,
+        3058.2,
+        3429.2,
+        0,
+        1809.5,
+        2787.9,
+        1801,
+        2401.7,
+        4235.8
+      ],
+      [
+        5233.6,
+        5239.8,
+        4339.1,
+        4670.2,
+        5041.2,
+        1810,
+        0,
+        3379.5,
+        3140.7,
+        3985.5,
+        5819.6
+      ],
+      [
+        3348,
+        3354.2,
+        3005.1,
+        3832.1,
+        4241,
+        2777.3,
+        3366.8,
+        0,
+        1255.1,
+        2099.9,
+        3702.6
+      ],
+      [
+        2364.8,
+        2371,
+        2021.9,
+        2848.9,
+        3257.8,
+        1794.1,
+        3131.6,
+        1258.5,
+        0,
+        1116.7,
+        2950.8
+      ],
+      [
+        1918.7,
+        1924.9,
+        1575.8,
+        2402.8,
+        2811.7,
+        2398.4,
+        3974.3,
+        2101.2,
+        1114.3,
+        0,
+        2996.9
+      ],
+      [
+        2958.9,
+        1452.8,
+        3704.4,
+        4531.4,
+        4940.3,
+        4230,
+        5805.9,
+        3695.6,
+        2945.9,
+        2998.3,
+        0
+      ]
+    ],
+    "sources": [
+      {
+        "hint": "qnSljFXslo0OAAAAAAAAAHkPAABGEAAAeuocQQAAAADt7itFZJE0RQ4AAAAAAAAAeQ8AAEYQAAD4fwAA5vWo-uWh4QCx8aj6n7XhAB4BvxAAAAAA",
+        "location": [
+          -89.590298,
+          14.787045
+        ],
+        "name": "",
+        "distance": 570.669065
+      },
+      {
+        "hint": "DXSljHh_pYw5AAAAWwAAANAFAABOAAAAmkXQQk9DI0NAeShFJSELQzkAAABbAAAA0AUAAE4AAAD4fwAAy62o-hiK4ABTrqj6mIngAIwADw4AAAAA",
+        "location": [
+          -89.608757,
+          14.715416
+        ],
+        "name": "Carretera Ipala - San José La Arada",
+        "distance": 20.37325283
+      },
+      {
+        "hint": "6ofzhi5Ro40HAAAAAAAAAMAGAABEAgAAQbSbQAAAAACAHZZE2AzKQwcAAAAAAAAAwAYAAEQCAAD4fwAAtXKr-rEa4QDJYav6IffgAG4AjwgAAAAA",
+        "location": [
+          -89.427275,
+          14.752433
+        ],
+        "name": "",
+        "distance": 1110.098215
+      },
+      {
+        "hint": "yPuCjcr7go0wAAAAAAAAAMgAAAD3AQAAH7RVQQAAAAA3v15Ch6cLQzAAAAAAAAAAyAAAAPcBAAD4fwAADKWr-sQP4gAgtav61wviAAgALwIAAAAA",
+        "location": [
+          -89.414388,
+          14.815172
+        ],
+        "name": "",
+        "distance": 456.7780621
+      },
+      {
+        "hint": "H_aVjSD2lY1SAAAAAAAAADoEAAAAAAAAYUu1QQAAAACAU5ZDAAAAAFIAAAAAAAAAOgQAAAAAAAD4fwAAUnOt-rra4gCDdK36JtziABgAbwQAAAAA",
+        "location": [
+          -89.296046,
+          14.86713
+        ],
+        "name": "",
+        "distance": 51.95581283
+      },
+      {
+        "hint": "FcYyhxbGMocbAAAAAAAAAKQDAADCAAAAG1aWQQAAAACYLSJEdQ4HQxsAAAAAAAAApAMAAMIAAAD4fwAAAf2s-phE4ACcCK36D0TgACYAXwEAAAAA",
+        "location": [
+          -89.326335,
+          14.697624
+        ],
+        "name": "",
+        "distance": 320.3688213
+      },
+      {
+        "hint": "d2CyhVMqJ4wpAAAAAAAAAIUAAAC3AgAAuml4QgAAAABRo0lDBvOERCkAAAAAAAAAhQAAALcCAAD4fwAA_g6u-g4z3wAcA676D0PfAAYA_w4AAAAA",
+        "location": [
+          -89.256194,
+          14.627598
+        ],
+        "name": "Carretera Chanmagua",
+        "distance": 559.3753458
+      },
+      {
+        "hint": "91-yhRJ3pYwMAAAAAAAAAIoBAAA6BgAAWTsBQQAAAADauIhDy1qKRAwAAAAAAAAAigEAADoGAAD4fwAAL_qq-qgj3QDnEqv6ARjdABYATwsAAAAA",
+        "location": [
+          -89.458129,
+          14.492584
+        ],
+        "name": "",
+        "distance": 757.8559873
+      },
+      {
+        "hint": "VMUyhz4dAY41AAAAAAAAAH4AAAAAAAAAB3ATQgAAAABS7K9CAAAAADUAAAAAAAAAfgAAAAAAAAD4fwAANAGr-hH-3gCl-Kr6i_reAAgADxIAAAAA",
+        "location": [
+          -89.456332,
+          14.614033
+        ],
+        "name": "",
+        "distance": 256.279994
+      },
+      {
+        "hint": "pk4ijDzs2I0GAAAACAAAAOEFAAA0BQAA04yJQHD-qECDqIJElvNnRAYAAAAIAAAA4QUAADQFAAD4fwAAsxSq-h733wCYGqr6dvnfAHgAHxUAAAAA",
+        "location": [
+          -89.516877,
+          14.67779
+        ],
+        "name": "",
+        "distance": 175.5713559
+      },
+      {
+        "hint": "DxurjBAbq4wnAAAAAAAAADMBAAC6BAAAIhnZQQAAAADYlFVDcSZSRCcAAAAAAAAAMwEAALoEAAD4fwAAdICo-hx83gD2e6j6AnjeAAwATxMAAAAA",
+        "location": [
+          -89.620364,
+          14.580764
+        ],
+        "name": "",
+        "distance": 169.8652741
+      }
+    ]
+  }
+}
