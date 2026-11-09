@@ -16,6 +16,12 @@
   - algoritmo genético (`brigadas/genetico.py`);
   - experimentos, métricas y visualizaciones (`brigadas/experimentos.py`, `metricas.py`, `visualizacion.py`, `scripts/ejecutar_experimentos.py`, `scripts/generar_reporte.py`);
   - documentación de la técnica (`docs/algoritmo_genetico.md`).
+- **Análisis y propuesta adicionales (8 de noviembre de 2026):**
+  - análisis de escalabilidad del algoritmo genético en Huehuetenango y el país completo (`brigadas/escalabilidad.py`, `docs/analisis_escalabilidad.md`);
+  - matriz de tiempos de viaje por carretera (OSRM) y estudio de dimensionamiento con capacidad en casos, conservado como antecedente (`brigadas/dimensionamiento.py`, `docs/estudio_dimensionamiento.md`);
+  - investigación de la productividad de las brigadas (PMA, UNICEF, OPS) y propuesta de tamizaje con reparto óptimo por programación lineal (`brigadas/tamizaje.py`, `docs/estudio_tamizaje.md`);
+  - generalización del algoritmo genético para varias brigadas por municipio;
+  - planificador interactivo para la demostración (`scripts/planificar.py`).
 - Borrador del informe técnico.
 - Herramienta de IA usada: Claude Code (Anthropic). Ver la declaración en el informe.
 

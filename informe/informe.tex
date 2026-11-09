@@ -310,7 +310,7 @@ Módulo & Función & Integrante \\
 \subsection{Qué implementan las bibliotecas y qué el equipo}
 
 \begin{itemize}
-  \item \textbf{Bibliotecas:} lectura de CSV y Excel y operaciones tabulares (pandas~\cite{pandas}); álgebra vectorial y generación de números aleatorios (NumPy~\cite{numpy}); distribuciones, optimización escalar, correlación de Spearman, distribución $t$ y el solucionador de programación lineal HiGHS (SciPy~\cite{scipy}); gráficas (Matplotlib~\cite{matplotlib}) y mapas (GeoPandas); pruebas (pytest). \textbf{No se usó ninguna biblioteca de algoritmos evolutivos.}
+  \item \textbf{Bibliotecas:} lectura de CSV y Excel y operaciones tabulares (pandas~\cite{pandas}); álgebra vectorial y generación de números aleatorios (NumPy~\cite{numpy}); distribuciones, optimización escalar, correlación de Spearman, distribución $t$ y el solucionador de programación lineal HiGHS (SciPy~\cite{scipy}); gráficas (Matplotlib~\cite{matplotlib}) y mapas (GeoPandas); interfaz web local (Streamlit); pruebas (pytest). \textbf{No se usó ninguna biblioteca de algoritmos evolutivos.}
   \item \textbf{Equipo:} validación de contratos de datos y correspondencias territoriales; estimación por IRLS del modelo log-lineal M2; prueba de sobredispersión con razón de verosimilitudes; backtest con origen móvil; regla de asignación capacitada y verificador independiente; política base; enumerador exacto; flujo de réplicas pareadas; \textbf{el algoritmo genético completo} (representación, torneo, cruce que preserva la unicidad, mutación, elitismo, caché, terminación, historial de convergencia y la variante con varias brigadas por municipio); la formulación del programa lineal del tamizaje (la biblioteca solo lo resuelve); búsquedas exacta y voraz; intervalos de confianza pareados y figuras.
 \end{itemize}
 
@@ -332,7 +332,7 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m scripts.planificar --brigadas 6 --mapa
 \end{verbatim}
-El análisis de escalabilidad tarda unos 28 minutos y el estudio de tamizaje, entre 20 y 40; los demás pasos, segundos. El último comando es el \textbf{planificador interactivo}: con cualquier número de brigadas, productividad, tiempo de viaje y objetivo, devuelve en segundos el plan, los casos identificados, los niños evaluados y el mapa.
+El análisis de escalabilidad tarda unos 28 minutos y el estudio de tamizaje, entre 20 y 40; los demás pasos, segundos. El último comando es el \textbf{planificador interactivo}: con cualquier número de brigadas, productividad, tiempo de viaje y objetivo, devuelve en segundos el plan, los casos identificados, los niños evaluados y el mapa. El mismo cálculo está disponible en una \textbf{interfaz web local} (\cod{streamlit run app.py}, o \cod{demo\_web.bat}) con controles deslizables, y en un menú de terminal (\cod{demo.bat}).
 Los archivos oficiales están versionados byte a byte en \cod{data/raw}, porque los portales del INE y de HDX bloquean descargas automáticas con desafíos antibots; el primer script verifica su SHA-256. La cadena completa se reprodujo en un clon limpio del repositorio, sin conexión a los portales: las 21 salidas de \cod{resultados/} fueron idénticas, salvo las columnas de tiempo de ejecución.
 
 % ---------------------------------------------------------------------
@@ -811,7 +811,7 @@ El Integrante 1 usó Claude Code (Anthropic, modelo Claude Opus 5.5)~\cite{claud
 \toprule
 Integrante & Responsabilidades y aportes \\
 \midrule
-Integrante 1 \pend{nombre} & Requisitos de la guía; adquisición y verificación de datos (MSPAS, INE, HDX) con checksums; correspondencias territoriales; reporte de calidad; selección del departamento piloto; protocolo y modelo de demanda; validación contra 2023--2024; recalibración de parámetros; reproducibilidad (datos versionados). Además, sustituyendo la parte asignada al Integrante 3: diseño experimental, algoritmo genético, experimentos, métricas, figuras y documentación de la técnica. Borrador del informe. \\
+Integrante 1 \pend{nombre} & Requisitos de la guía; adquisición y verificación de datos (MSPAS, INE, HDX) con checksums; correspondencias territoriales; reporte de calidad; selección del departamento piloto; protocolo y modelo de demanda; validación contra 2023--2024; recalibración de parámetros; reproducibilidad (datos versionados). Además, sustituyendo la parte asignada al Integrante 3: diseño experimental, algoritmo genético, experimentos, métricas, figuras y documentación de la técnica. Análisis de escalabilidad, tiempos de viaje por carretera, investigación de la productividad de las brigadas, propuesta de tamizaje con reparto óptimo y planificador interactivo. Borrador del informe. \\
 Integrante 2 (Denis Rodríguez) & Contratos compartidos; matriz de distancias; regla de asignación capacitada y verificador independiente; política base; enumerador exacto; flujo de réplicas con semillas pareadas; caso conocido; pruebas de propiedades internas; documentación del modelo. \\
 Integrante 3 \pend{nombre} & Asignado: algoritmo genético, experimentos, métricas y visualizaciones. Su commit del 7 de noviembre contenía scripts con valores de relleno no conectados al modelo; se reemplazaron por la implementación descrita (ver \cod{docs/contribuciones.md}). \pend{aporte en informe o presentación, si lo hay} \\
 \bottomrule

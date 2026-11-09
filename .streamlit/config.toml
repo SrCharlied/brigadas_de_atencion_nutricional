@@ -1,0 +1,7 @@
+# Configuración de la interfaz web (app.py).
+[browser]
+# Sin envío de estadísticas de uso: la app funciona sin internet.
+gatherUsageStats = false
+
+[server]
+port = 8501

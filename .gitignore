@@ -21,3 +21,6 @@ data/processed/*
 Thumbs.db
 .vscode/
 .idea/
+
+#otros
+resultados/figuras/plan_*.png
